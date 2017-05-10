@@ -64,8 +64,8 @@ local.properties
 # Eclipse Core
 .project
 .eclipse-pmd
-target/
-*/*/target/
+target/*
+
 # External tool builders
 .externalToolBuilders/
 

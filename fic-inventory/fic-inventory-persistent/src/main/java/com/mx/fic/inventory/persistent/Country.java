@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
  * Country entity
  *
  */
-@Entity(name = "Country")
 public class Country 
 {
 	@GeneratedValue

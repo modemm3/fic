@@ -21,55 +21,55 @@ public class ProductDTO implements BaseDTO {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(final Integer id) {
 		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	public BigDecimal getPublicPrice() {
 		return publicPrice;
 	}
-	public void setPublicPrice(BigDecimal publicPrice) {
+	public void setPublicPrice(final BigDecimal publicPrice) {
 		this.publicPrice = publicPrice;
 	}
 	public BigDecimal getStock() {
 		return stock;
 	}
-	public void setStock(BigDecimal stock) {
+	public void setStock(final BigDecimal stock) {
 		this.stock = stock;
 	}
 	public Integer getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(Integer categoryId) {
+	public void setCategoryId(final Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 	public Integer getDepartmentId() {
 		return departmentId;
 	}
-	public void setDepartmentId(Integer departmentId) {
+	public void setDepartmentId(final Integer departmentId) {
 		this.departmentId = departmentId;
 	}
 	public Integer getProductId() {
 		return productId;
 	}
-	public void setProductId(Integer productId) {
+	public void setProductId(final Integer productId) {
 		this.productId = productId;
 	}
 	public BigDecimal getBuyPrice() {
 		return buyPrice;
 	}
-	public void setBuyPrice(BigDecimal buyPrice) {
+	public void setBuyPrice(final BigDecimal buyPrice) {
 		this.buyPrice = buyPrice;
 	}
 	public String getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(final String code) {
 		this.code = code;
 	}
 	@Override

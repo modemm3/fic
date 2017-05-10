@@ -55,8 +55,7 @@ public final class TransferObjectAssembler {
         BuilderConfiguration config;
         while (itAnnotated.hasNext()) {
             clazz = itAnnotated.next();
-            System.out.println("loading builder: "+ clazz.getName());
-            LOG.info("Loading builder: " + clazz.getName());
+            LOG.info("loading builder: {}", clazz.getName());
             try {
                 config = clazz.getAnnotation(BuilderConfiguration.class);
                 constructor = clazz.getConstructor(noSignature);
@@ -81,7 +80,6 @@ public final class TransferObjectAssembler {
      */
     public <K extends BaseDTO, E extends BaseEntity> K assembleTO(final Class<K> dtoClass, final E entity) {
         final AbstractDTOBuilder builder = loadedBuilders.get(entity.getClass());
-        System.out.println("builder:    "+builder);
         LOG.info("builder {}", builder);
         
         BaseDTO dto = null;

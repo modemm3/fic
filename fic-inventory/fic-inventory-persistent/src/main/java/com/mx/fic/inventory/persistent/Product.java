@@ -46,48 +46,48 @@ public class Product implements BaseEntity {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(final Integer id) {
 		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	public BigDecimal getPublicPrice() {
 		return publicPrice;
 	}
-	public void setPublicPrice(BigDecimal publicPrice) {
+	public void setPublicPrice(final BigDecimal publicPrice) {
 		this.publicPrice = publicPrice;
 	}
 	public BigDecimal getStock() {
 		return stock;
 	}
-	public void setStock(BigDecimal stock) {
+	public void setStock(final BigDecimal stock) {
 		this.stock = stock;
 	}
 	public Product getProduct() {
 		return product;
 	}
-	public void setProduct(Product product) {
+	public void setProduct(final Product product) {
 		this.product = product;
 	}
 	public BigDecimal getBuyPrice() {
 		return buyPrice;
 	}
-	public void setBuyPrice(BigDecimal buyPrice) {
+	public void setBuyPrice(final BigDecimal buyPrice) {
 		this.buyPrice = buyPrice;
 	}
 	public String getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(final String code) {
 		this.code = code;
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		final StringBuilder builder = new StringBuilder();
 		builder.append("Product [id=");
 		builder.append(id);
 		builder.append(", name=");
@@ -127,7 +127,7 @@ public class Product implements BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		final Product other = (Product) obj;
 		if (buyPrice == null) {
 			if (other.buyPrice != null)
 				return false;
