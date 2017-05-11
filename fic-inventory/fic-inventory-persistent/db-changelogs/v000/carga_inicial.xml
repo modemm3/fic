@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="Developer (generated)" id="1494470833444-1">
+        <createTable remarks="Tabla que guarda las direcciones de los proveedores y compañías" tableName="address">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la dirección" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="address_pkey"/>
+            </column>
+            <column name="street" remarks="Nombre de la calle" type="VARCHAR(255)"/>
+            <column name="colony" remarks="Nombre de la colonia" type="VARCHAR(255)"/>
+            <column name="exterior_number" remarks="Número exterior" type="INT4"/>
+            <column name="interior_number" remarks="Número interior" type="INT4"/>
+            <column name="postal_code" remarks="Código postal" type="INT4"/>
+            <column name="town" remarks="Nombre del municipio" type="VARCHAR(500)"/>
+            <column name="city" remarks="Nombre de la ciudad" type="VARCHAR(255)"/>
+            <column name="state" remarks="Nombre de la ciudad" type="VARCHAR(255)"/>
+            <column name="type_address_id" remarks="Id del tipo de dirección" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="Indica el estatus de la dirección si es activa, inactiva, temporal, etc" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Id de la compañía a la que pertenecen las direcciones registradas" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-2">
+        <createTable remarks="Tabla que contiene todas las compañías que ingresan al sistema" tableName="company">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la compañía" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="company_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre con los cuales fue constituida la empresa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason_social" remarks="Nombre como se le conoce colectivamente a una empresa" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rfc" remarks="Registro Federal del Contribuyente" type="VARCHAR(100)"/>
+            <column name="email" remarks="email de la empresa" type="VARCHAR(255)"/>
+            <column name="status_id" remarks="Estatus de la compañía si se encuentra Activa, Inactiva, Pendiente, etc." type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-3">
+        <createTable remarks="Tabla que guarda la relación de las direcciones que tiene la compañía" tableName="company_address">
+            <column name="company_id" remarks="Id de la compañía a la que pertenece la dirección" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" remarks="Id de la dirección que pertenece la compañía" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column autoIncrement="true" name="id" remarks="Id consecutivo que tiene la relación de la compañía-dirección" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="company_address_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-4">
+        <createTable remarks="Tabla que guarda las unidades de  medida como son kilogramos, gramos, litros, entre otros" tableName="measure_unit">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la unidad de medida" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="measure_unit_pkey"/>
+            </column>
+            <column name="name" remarks="Indica la unidad de medida como pueden ser litros, gramos, kilogramos, piezas, entre otros" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción de la unidad de medida" type="VARCHAR(255)"/>
+            <column name="company_id" remarks="Id de la compañía que le corresponden las unidades de medida" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-5">
+        <createTable remarks="Tabla que guarda los conceptos de los movimientos como son las entradas, salidas, entre otros" tableName="movement_concept">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del movimiento del concepto" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="movement_concept_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre del concepto del movimiento como son compras, devolución, cambio producto, venta, robo, roturas, etc" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción del concepto de movimiento" type="VARCHAR(255)"/>
+            <column name="status_id" remarks="Estatus del concepto de movimiento como es Activo, Inactivo, etc" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Id de la compañía a la que pertenecen los conceptos de los movimientos" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-6">
+        <createTable remarks="Tabla que guarda los tipos de movimiento como son compras, ventas, devoluciones entre otros" tableName="movement_type">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de movimiento" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="movement_type_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre del tipo de movimiento como son Entradas, Salidas, etc" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="movement_concept_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-7">
+        <createTable remarks="Tabla que guarda las operaciones de los movimientos de los productos" tableName="operations">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la operación" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="operations_pkey"/>
+            </column>
+            <column name="product_id" remarks="Id del producto a la que pertenece la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movement_type_id" remarks="Id del tipo de movimiento que presenta la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="Id del estatus de la operación como puede ser Activa, Inactiva, Pendiente u otra" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" remarks="Fecha de creación o movimiento de la operación" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="stocks" remarks="Indicador de cantidad existente del producto" type="numeric(19, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="folio_document" remarks="Folio de la nota de remisión o con que se identifique la operación" type="VARCHAR(255)"/>
+            <column name="time_unit_id" remarks="Id de la unidad de tiempo que indica si son días, meses, año, etc" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivery_time" remarks="Indica el tiempo de entrega en de acuerdo al numero de días, mes o año previamente seleccionado" type="numeric(19, 5)"/>
+            <column name="provider_id" remarks="Id del proveedor a la que pertenece la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Id de la compañía a la cual pertenece la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-8">
+        <createTable remarks="Tabla que guarda los códigos postales" tableName="postal_code">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del código postal" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="postal_code_pkey"/>
+            </column>
+            <column name="postal_code" remarks="Código postal asignado al área geográfica" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" remarks="Nombre del estado" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="town" remarks="Nombre del municipio" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" remarks="Nombre de la ciudad" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-9">
+        <createTable remarks="Tabla que guarda los precios registrados para los productos que maneja la compañía" tableName="prices">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del precio" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="prices_pkey"/>
+            </column>
+            <column name="type_price_id" remarks="Id del tipo de precio" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" remarks="Precio" type="numeric(19, 5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" remarks="Id del producto al que pertenece el precio" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" remarks="Fecha de fin del precio que tiene el producto" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="season_id" remarks="Id de la temporada en la que esta el precio disponible" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="Estatus en el que se encuentra el precio para el producto" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Id de la compañía que registro los precios para dicho producto" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-10">
+        <createTable remarks="Tabla que guarda los productos que maneja la compañía" tableName="product">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del producto" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="product_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre del producto" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción del producto" type="VARCHAR(255)"/>
+            <column name="barcode" remarks="Código de barras del producto" type="VARCHAR(255)"/>
+            <column name="measure_unit_id" remarks="Indica la unidad de medida del producto como pueden ser litros, gramos, kilogramos, entre otros" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="Id del estatus del producto si se encuentra activo, inactivo entre otro" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minimum_stock" remarks="Indica la cantidad minima a existir del producto" type="numeric(19, 5)"/>
+            <column name="maximum_stock" remarks="Indica la cantidad máxima permitida del producto" type="numeric(19, 5)"/>
+            <column name="company_id" remarks="Id de la compañía donde se registro el producto" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-11">
+        <createTable remarks="Tabla que guarda los proveedores que se encuentran registrados en la compañía" tableName="provider">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del proveedor" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="provider_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre del proveedor" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" remarks="Apellido paterno" type="VARCHAR(255)"/>
+            <column name="surname" remarks="Apellido materno" type="VARCHAR(10)"/>
+            <column name="reason_social" remarks="Razon social de como esta constituida la empresa" type="VARCHAR(500)"/>
+            <column name="rfc" remarks="Registro Federal del Contribuyente" type="VARCHAR(100)"/>
+            <column name="email" remarks="Correo electrónico del proveedor" type="VARCHAR(255)"/>
+            <column name="type_person_id" remarks="Id del tipo de persona a la que pertenece el proveedor" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="Id del estatus del proveedor si esta Activo, Inactivo, Pendiente, etc." type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Id de la compañía de las cuales estan registrados los proveedores" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-12">
+        <createTable remarks="Tabla que guarda la relación de las diferentes direcciones que tiene el proveedor" tableName="provider_address">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo que tiene la relación proveedor - dirección" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="provider_address_pkey"/>
+            </column>
+            <column name="provider_id" remarks="Id del proveedor al que pertenece la dirección" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_id" remarks="Id de la dirección del proveedor" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-13">
+        <createTable remarks="Tabla que guarda las temporadas como son verano, julio regalado, entre otros" tableName="season">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la temporada" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="season_pkey"/>
+            </column>
+            <column name="name" remarks="Nombre de la temporada como puede ser verano,  decembrina, agosto al costo, julio regalado, entre otros" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción de la temporada" type="VARCHAR(255)"/>
+            <column name="company_id" remarks="Id de la compañía que le corresponden las temporadas" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-14">
+        <createTable remarks="Tabla que guarda los diferentes estatus que maneja la compañía" tableName="status">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de los estatus" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="status_pkey"/>
+            </column>
+            <column name="name" remarks="Se especifica si esta Activo, Inactivo, Pendiente o cualquier otro estatus" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción de los estatus" type="VARCHAR(255)"/>
+            <column name="company_id" remarks="Id de la compañía a la que pertenecen los estatus" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-15">
+        <createTable remarks="Tabla que guarda las unidades de tiempo como son los días, año. mes entre otros" tableName="time_unit">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la unidad de tiempo" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="time_unit_pkey"/>
+            </column>
+            <column name="name" remarks="Contienes si es días, mes, año, etc." type="VARCHAR(100)"/>
+            <column name="description" remarks="Breve descripción de la unidad de tiempo" type="VARCHAR(255)"/>
+            <column name="company_id" remarks="Id de la compañía a la que pertenecen las unidades de tiempo" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-16">
+        <createTable remarks="Tabla que guarda los tipos de direcciones como son particular, fiscal, entre otros" tableName="type_address">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de dirección" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="type_address_pkey"/>
+            </column>
+            <column name="name" remarks="Tipo de dirección como puede ser fiscal, particular, etc" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción del tipo de dirección" type="VARCHAR(255)"/>
+            <column name="company_id" remarks="Id de la compañía a las que pertenece el tipo de dirección" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-17">
+        <createTable remarks="Tabla que guarda los tipos de persona como puede ser fisica o moral, entre otras" tableName="type_person">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de persona" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="type_person_pkey"/>
+            </column>
+            <column name="name" remarks="Indica si el tipo de persona es física o moral" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción del tipo de persona" type="INT4"/>
+            <column name="company_id" remarks="Id de la compañía a las que pertenecen registradas los tipos de persona" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-18">
+        <createTable remarks="Tabla que guarda los tipos de precio como son precio especial, precio por cliente, entre otros" tableName="type_price">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de precio" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="type_price_pkey"/>
+            </column>
+            <column name="name" remarks="Contiene los tipos de precio como son precio público en general, precio a mayoristas, precio al publico especial" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción del tipo de precio" type="VARCHAR(255)"/>
+            <column name="status_id" remarks="Estatus del tipo de precio si es que se encuentra activo, inactivo, pendiente, etc" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Indica el id de la compañía a la que pertenecen los tipos de precios" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-19">
+        <createTable remarks="Tiene las valuaciones que han registrado las compañías por ejercicio fiscal" tableName="valuation">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la valuación asignada a la compañía" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="valuation_pkey"/>
+            </column>
+            <column name="fiscal_exercise" remarks="Indica el año del ejercicio fiscal" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" remarks="fecha de inicio del ejercicio fiscal" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="fecha final del ejercicio fiscal" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valuation_type_id" remarks="tipo de valuacion para la compañia, solo se puede seleccionar una única vez no podrá ser cambiado" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Se guarda el id de la companía que le corresponde el tipo de valuación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" remarks="indica el id del estatus que tiene la valuación para la compañía" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-20">
+        <createTable remarks="Tabla que guarda los tipos de valuaciones como son primeras entradas y primeras salidas, entre otros registradas por los compañías" tableName="valuation_type">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de valuación" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="valuation_type_pkey"/>
+            </column>
+            <column name="name" remarks="Indica el tipo de valuación como puede ser medicion, costo promedio, primeras entradas y primeras salidas u otros" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" remarks="Breve descripción de la valuación" type="VARCHAR(255)"/>
+            <column name="key_valuation" remarks="Clave de la valuación como es VEPS, PEPS, etc" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" remarks="Tiene el id compañía al cual le pertenece el tipo de valuación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-21">
+        <addForeignKeyConstraint baseColumnNames="type_address_id" baseTableName="address" constraintName="fkaddress180289" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_address"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-22">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="address" constraintName="fkaddress87856" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-23">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="address" constraintName="fkaddress90051" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-24">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="company" constraintName="fkcompany88184" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-25">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="company_address" constraintName="fkcompany_ad433429" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-26">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="company_address" constraintName="fkcompany_ad880858" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-27">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="measure_unit" constraintName="fkmeasure_un34020" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-28">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="movement_concept" constraintName="fkmovement_c144432" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-29">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="movement_concept" constraintName="fkmovement_c966524" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-30">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="movement_type" constraintName="fkmovement_t274598" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-31">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="movement_type" constraintName="fkmovement_t452505" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-32">
+        <addForeignKeyConstraint baseColumnNames="movement_concept_id" baseTableName="movement_type" constraintName="fkmovement_t796942" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="movement_concept"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-33">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="operations" constraintName="fkoperations171819" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-34">
+        <addForeignKeyConstraint baseColumnNames="movement_type_id" baseTableName="operations" constraintName="fkoperations352960" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="movement_type"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-35">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="operations" constraintName="fkoperations74527" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-36">
+        <addForeignKeyConstraint baseColumnNames="time_unit_id" baseTableName="operations" constraintName="fkoperations810869" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="time_unit"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-37">
+        <addForeignKeyConstraint baseColumnNames="provider_id" baseTableName="operations" constraintName="fkoperations855608" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="provider"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-38">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="operations" constraintName="fkoperations896619" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-39">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="prices" constraintName="fkprices47334" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-40">
+        <addForeignKeyConstraint baseColumnNames="season_id" baseTableName="prices" constraintName="fkprices572202" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-41">
+        <addForeignKeyConstraint baseColumnNames="type_price_id" baseTableName="prices" constraintName="fkprices712099" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_price"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-42">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="prices" constraintName="fkprices855817" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-43">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="prices" constraintName="fkprices869426" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-44">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="product" constraintName="fkproduct128766" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-45">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="product" constraintName="fkproduct306673" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-46">
+        <addForeignKeyConstraint baseColumnNames="measure_unit_id" baseTableName="product" constraintName="fkproduct609314" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="measure_unit"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-47">
+        <addForeignKeyConstraint baseColumnNames="type_person_id" baseTableName="provider" constraintName="fkprovider580060" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_person"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-48">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="provider" constraintName="fkprovider751418" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-49">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="provider" constraintName="fkprovider929325" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-50">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="provider_address" constraintName="fkprovider_a693241" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-51">
+        <addForeignKeyConstraint baseColumnNames="provider_id" baseTableName="provider_address" constraintName="fkprovider_a795642" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="provider"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-52">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="season" constraintName="fkseason210320" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-53">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="status" constraintName="fkstatus356339" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-54">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="time_unit" constraintName="fktime_unit325602" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-55">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_address" constraintName="fktype_addre960962" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-56">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_person" constraintName="fktype_perso351159" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-57">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_price" constraintName="fktype_price159532" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-58">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="type_price" constraintName="fktype_price981624" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-59">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="valuation" constraintName="fkvaluation204077" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-60">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="valuation" constraintName="fkvaluation26170" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-61">
+        <addForeignKeyConstraint baseColumnNames="valuation_type_id" baseTableName="valuation" constraintName="fkvaluation969222" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="valuation_type"/>
+    </changeSet>
+    <changeSet author="Developer (generated)" id="1494470833444-62">
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="valuation_type" constraintName="fkvaluation_505472" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+    </changeSet>
+</databaseChangeLog>

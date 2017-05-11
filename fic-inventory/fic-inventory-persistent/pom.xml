@@ -44,7 +44,7 @@
 			<version>${eclipselink.javax.persistence}</version>
 		</dependency>
 	</dependencies>
-<!-- 	<build>
+ 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.liquibase</groupId>
@@ -80,5 +80,4 @@
 			</plugin>
 		</plugins>
 	</build> 
-	 -->
 </project>
