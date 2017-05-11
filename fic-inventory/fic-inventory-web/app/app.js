@@ -7,8 +7,10 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', '$routeProvider','$compileProvider', function($locationProvider, $routeProvider,$compileProvider) {
   $locationProvider.hashPrefix('!');
-
+  $compileProvider.debugInfoEnabled(false);
+  $compileProvider.commentDirectivesEnabled(false);
+  $compileProvider.cssClassDirectivesEnabled(false);
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
