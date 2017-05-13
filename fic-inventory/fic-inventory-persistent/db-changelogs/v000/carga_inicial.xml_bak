@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
-    <changeSet author="Developer (generated)" id="1494649180534-1">
+    <changeSet author="Developer (generated)" id="1494470833444-1">
         <createTable remarks="Tabla que guarda las direcciones de los proveedores y compañías" tableName="address">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la dirección" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="address_pkey"/>
@@ -24,7 +24,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-2">
+    <changeSet author="Developer (generated)" id="1494470833444-2">
         <createTable remarks="Tabla que contiene todas las compañías que ingresan al sistema" tableName="company">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la compañía" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="company_pkey"/>
@@ -43,7 +43,7 @@
             <column name="contact_name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-3">
+    <changeSet author="Developer (generated)" id="1494470833444-3">
         <createTable remarks="Tabla que guarda la relación de las direcciones que tiene la compañía" tableName="company_address">
             <column name="company_id" remarks="Id de la compañía a la que pertenece la dirección" type="INT4">
                 <constraints nullable="false"/>
@@ -56,7 +56,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-4">
+    <changeSet author="Developer (generated)" id="1494470833444-4">
         <createTable remarks="Tabla que guarda las unidades de  medida como son kilogramos, gramos, litros, entre otros" tableName="measure_unit">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la unidad de medida" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="measure_unit_pkey"/>
@@ -70,7 +70,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-5">
+    <changeSet author="Developer (generated)" id="1494470833444-5">
         <createTable remarks="Tabla que guarda los conceptos de los movimientos como son las entradas, salidas, entre otros" tableName="movement_concept">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del movimiento del concepto" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="movement_concept_pkey"/>
@@ -87,7 +87,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-6">
+    <changeSet author="Developer (generated)" id="1494470833444-6">
         <createTable remarks="Tabla que guarda los tipos de movimiento como son compras, ventas, devoluciones entre otros" tableName="movement_type">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de movimiento" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="movement_type_pkey"/>
@@ -107,42 +107,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-7">
-        <createTable remarks="Se encarga de almacenar las diferentes configuraciones para los modulos, menus, empresas y todo lo que se le puede mostrar al usuario" tableName="operational_module">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="operational_module_pkey"/>
-            </column>
-            <column name="name" remarks="Nombre del modulo" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" remarks="Descripcion del modulo" type="VARCHAR(255)"/>
-            <column name="key" type="INT4"/>
-            <column defaultValueBoolean="true" name="active" remarks="Indica si el modulo esta habilitado" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-            <column name="creation_date" remarks="Fecha de creacion del modulo" type="TIMESTAMP WITHOUT TIME ZONE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_update" remarks="Fecha de la ultima actualizacion" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="modify_by" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="true" name="is_parent" remarks="Indica si es un nodo hijo" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-            <column name="class" remarks="Almacena el nombre del controler" type="VARCHAR(255)"/>
-            <column name="title" remarks="Titulo del modulo" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="true" name="is_module" remarks="Indica si es modulo" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-            <column name="parent" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-8">
+    <changeSet author="Developer (generated)" id="1494470833444-7">
         <createTable remarks="Tabla que guarda las operaciones de los movimientos de los productos" tableName="operations">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la operación" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="operations_pkey"/>
@@ -175,37 +140,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-9">
-        <createTable remarks="Almacena el historico de password" tableName="password_history">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="password_history_pkey"/>
-            </column>
-            <column name="user_id" remarks="Usuario al cual esta relacionado el hsitorico de password" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" remarks="Password Anterior" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="false" name="active" remarks="estado del password" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-10">
-        <createTable remarks="Tabla intermedia para la asignacion de permisos al usuario." tableName="permit_assignment">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="permit_assignment_pkey"/>
-            </column>
-            <column name="user_id" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="module_id" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="company_id" type="INT4"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-11">
+    <changeSet author="Developer (generated)" id="1494470833444-8">
         <createTable remarks="Tabla que guarda los códigos postales" tableName="postal_code">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del código postal" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="postal_code_pkey"/>
@@ -224,7 +159,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-12">
+    <changeSet author="Developer (generated)" id="1494470833444-9">
         <createTable remarks="Tabla que guarda los precios registrados para los productos que maneja la compañía" tableName="prices">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del precio" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="prices_pkey"/>
@@ -250,7 +185,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-13">
+    <changeSet author="Developer (generated)" id="1494470833444-10">
         <createTable remarks="Tabla que guarda los productos que maneja la compañía" tableName="product">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del producto" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="product_pkey"/>
@@ -273,7 +208,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-14">
+    <changeSet author="Developer (generated)" id="1494470833444-11">
         <createTable remarks="Tabla que guarda los proveedores que se encuentran registrados en la compañía" tableName="provider">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del proveedor" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="provider_pkey"/>
@@ -297,7 +232,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-15">
+    <changeSet author="Developer (generated)" id="1494470833444-12">
         <createTable remarks="Tabla que guarda la relación de las diferentes direcciones que tiene el proveedor" tableName="provider_address">
             <column autoIncrement="true" name="id" remarks="Id consecutivo que tiene la relación proveedor - dirección" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="provider_address_pkey"/>
@@ -310,29 +245,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-16">
-        <createTable remarks="Almacena la configuracion de intentos por usuario, cada usuario puede tener n registro de intentos, cada registro de intentos debe de quedar en falso para bloquear el acceso del usuario. en caso de que el usuario notavia tenga registros activos, se le permitira todavia el acceso." tableName="retries">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="retries_pkey"/>
-            </column>
-            <column name="user_id" remarks="Clave del usuario para quien se le va a confikgurar los reintentos" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="retry" remarks="Numero de reintentos que lleva el usuario, este valor va ir incrementando hasta que el usuario ingrese la contraseña correcta" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="max_retry" remarks="Numero de reintentos maximos antes de que el registro se desactive, si no existen mas registros para ese usuario el usario va a quedar bloqueado" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="minutes" remarks="Numero de minutos entre reintentos" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" remarks="Estado del registro. donde false será desahilitado" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-17">
+    <changeSet author="Developer (generated)" id="1494470833444-13">
         <createTable remarks="Tabla que guarda las temporadas como son verano, julio regalado, entre otros" tableName="season">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la temporada" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="season_pkey"/>
@@ -348,30 +261,7 @@
             <column name="end_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-18">
-        <createTable remarks="Es un catalogo de preguntas en caso de que un usuario requiera recuperar su contraseña" tableName="secret_question">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="secret_question_pkey"/>
-            </column>
-            <column name="question" remarks="Es la pregunta que se le mostrara al usuario para su pregunta secreta" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-19">
-        <createTable remarks="Almacena la session activa del usuario. solo va a existir una session por usuario, de tal forma que si un usuario se logue por segunda ocasión unas de las sessiones se va a cerrar" tableName="sesssions">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="sesssions_pkey"/>
-            </column>
-            <column name="user_id" remarks="id del usuario que esta con la session, este id es de latabla de usuarios" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="jsession_id" remarks="Es el jsessionid de la aplicacion web" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-20">
+    <changeSet author="Developer (generated)" id="1494470833444-14">
         <createTable remarks="Tabla que guarda los diferentes estatus que maneja la compañía" tableName="status">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de los estatus" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="status_pkey"/>
@@ -385,7 +275,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-21">
+    <changeSet author="Developer (generated)" id="1494470833444-15">
         <createTable remarks="Tabla que guarda las unidades de tiempo como son los días, año. mes entre otros" tableName="time_unit">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la unidad de tiempo" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="time_unit_pkey"/>
@@ -397,7 +287,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-22">
+    <changeSet author="Developer (generated)" id="1494470833444-16">
         <createTable remarks="Tabla que guarda los tipos de direcciones como son particular, fiscal, entre otros" tableName="type_address">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de dirección" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="type_address_pkey"/>
@@ -411,7 +301,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-23">
+    <changeSet author="Developer (generated)" id="1494470833444-17">
         <createTable remarks="Tabla que guarda los tipos de persona como puede ser fisica o moral, entre otras" tableName="type_person">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de persona" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="type_person_pkey"/>
@@ -425,7 +315,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-24">
+    <changeSet author="Developer (generated)" id="1494470833444-18">
         <createTable remarks="Tabla que guarda los tipos de precio como son precio especial, precio por cliente, entre otros" tableName="type_price">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de precio" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="type_price_pkey"/>
@@ -442,70 +332,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-25">
-        <createTable remarks="Almacena el registro de los usuarios permitidos en el sistema" tableName="user">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="user_pkey"/>
-            </column>
-            <column name="user_detail_id" remarks="Datos adicionales del usuario" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" remarks="Nombre del usuario" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" remarks="Password del usuario" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" remarks="estado del usuario" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-            <column name="creation_date" remarks="Fecha de creacion del registro" type="TIMESTAMP WITHOUT TIME ZONE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="modification_date" remarks="Fecha de moldificacion del registro" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="modify_by" remarks="Usuario que modifica el registro" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_access" remarks="Se registra el ultimo acceso" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="password_change_date" remarks="Fecha para el cambio de la contraseña" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column defaultValueBoolean="true" name="password_change_enable" remarks="Habilita el cambio de password de forma periodica en el usuario" type="BOOL">
-                <constraints nullable="false"/>
-            </column>
-            <column name="question_secret_id" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-            <column name="response_secret" remarks="Respuesta secreta" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueNumeric="5" name="password_change_notification" remarks="Se indica el numero de dias antes del cambio de contraseña" type="INT4">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-26">
-        <createTable remarks="Almacena el detalle de los usuarios, datos adicionales" tableName="user_detail">
-            <column autoIncrement="true" name="id" type="SERIAL">
-                <constraints primaryKey="true" primaryKeyName="user_detail_pkey"/>
-            </column>
-            <column name="short_name" remarks="Almacena el nombre corto para el usuario" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" remarks="Nombre del usuario" type="VARCHAR(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" remarks="Apellido paterno" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="sur_name" remarks="Apellido materno" type="VARCHAR(50)"/>
-            <column name="telephone" remarks="Telefono del usuario" type="VARCHAR(30)"/>
-            <column name="address" remarks="Direccion del usuario" type="VARCHAR(255)"/>
-            <column name="curp" remarks="Curp del usuario" type="VARCHAR(20)"/>
-            <column name="rfc" remarks="Rfc del usuario" type="VARCHAR(20)"/>
-            <column name="last_access" remarks="Fecha del ultimo acceso" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="email" remarks="Correo electronico" type="VARCHAR(100)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-27">
+    <changeSet author="Developer (generated)" id="1494470833444-19">
         <createTable remarks="Tiene las valuaciones que han registrado las compañías por ejercicio fiscal" tableName="valuation">
             <column autoIncrement="true" name="id" remarks="Id consecutivo de la valuación asignada a la compañía" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="valuation_pkey"/>
@@ -530,7 +357,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-28">
+    <changeSet author="Developer (generated)" id="1494470833444-20">
         <createTable remarks="Tabla que guarda los tipos de valuaciones como son primeras entradas y primeras salidas, entre otros registradas por los compañías" tableName="valuation_type">
             <column autoIncrement="true" name="id" remarks="Id consecutivo del tipo de valuación" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="valuation_type_pkey"/>
@@ -547,160 +374,130 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-29">
+    <changeSet author="Developer (generated)" id="1494470833444-21">
         <addForeignKeyConstraint baseColumnNames="type_address_id" baseTableName="address" constraintName="fkaddress180289" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_address"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-30">
+    <changeSet author="Developer (generated)" id="1494470833444-22">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="address" constraintName="fkaddress87856" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-31">
+    <changeSet author="Developer (generated)" id="1494470833444-23">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="address" constraintName="fkaddress90051" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-32">
+    <changeSet author="Developer (generated)" id="1494470833444-24">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="company" constraintName="fkcompany88184" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-33">
+    <changeSet author="Developer (generated)" id="1494470833444-25">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="company_address" constraintName="fkcompany_ad433429" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-34">
+    <changeSet author="Developer (generated)" id="1494470833444-26">
         <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="company_address" constraintName="fkcompany_ad880858" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-35">
+    <changeSet author="Developer (generated)" id="1494470833444-27">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="measure_unit" constraintName="fkmeasure_un34020" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-36">
+    <changeSet author="Developer (generated)" id="1494470833444-28">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="movement_concept" constraintName="fkmovement_c144432" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-37">
+    <changeSet author="Developer (generated)" id="1494470833444-29">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="movement_concept" constraintName="fkmovement_c966524" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-38">
+    <changeSet author="Developer (generated)" id="1494470833444-30">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="movement_type" constraintName="fkmovement_t274598" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-39">
+    <changeSet author="Developer (generated)" id="1494470833444-31">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="movement_type" constraintName="fkmovement_t452505" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-40">
+    <changeSet author="Developer (generated)" id="1494470833444-32">
         <addForeignKeyConstraint baseColumnNames="movement_concept_id" baseTableName="movement_type" constraintName="fkmovement_t796942" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="movement_concept"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-41">
-        <addForeignKeyConstraint baseColumnNames="modify_by" baseTableName="operational_module" constraintName="fkoperationa463171" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-42">
-        <addForeignKeyConstraint baseColumnNames="parent" baseTableName="operational_module" constraintName="fkoperationa600872" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="operational_module"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-43">
+    <changeSet author="Developer (generated)" id="1494470833444-33">
         <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="operations" constraintName="fkoperations171819" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-44">
+    <changeSet author="Developer (generated)" id="1494470833444-34">
         <addForeignKeyConstraint baseColumnNames="movement_type_id" baseTableName="operations" constraintName="fkoperations352960" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="movement_type"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-45">
+    <changeSet author="Developer (generated)" id="1494470833444-35">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="operations" constraintName="fkoperations74527" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-46">
+    <changeSet author="Developer (generated)" id="1494470833444-36">
         <addForeignKeyConstraint baseColumnNames="time_unit_id" baseTableName="operations" constraintName="fkoperations810869" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="time_unit"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-47">
+    <changeSet author="Developer (generated)" id="1494470833444-37">
         <addForeignKeyConstraint baseColumnNames="provider_id" baseTableName="operations" constraintName="fkoperations855608" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="provider"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-48">
+    <changeSet author="Developer (generated)" id="1494470833444-38">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="operations" constraintName="fkoperations896619" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-49">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_history" constraintName="fkpassword_h948446" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-50">
-        <addForeignKeyConstraint baseColumnNames="module_id" baseTableName="permit_assignment" constraintName="fkpermit_ass576872" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="operational_module"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-51">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="permit_assignment" constraintName="fkpermit_ass613297" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-52">
+    <changeSet author="Developer (generated)" id="1494470833444-39">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="prices" constraintName="fkprices47334" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-53">
+    <changeSet author="Developer (generated)" id="1494470833444-40">
         <addForeignKeyConstraint baseColumnNames="season_id" baseTableName="prices" constraintName="fkprices572202" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="season"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-54">
+    <changeSet author="Developer (generated)" id="1494470833444-41">
         <addForeignKeyConstraint baseColumnNames="type_price_id" baseTableName="prices" constraintName="fkprices712099" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_price"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-55">
+    <changeSet author="Developer (generated)" id="1494470833444-42">
         <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="prices" constraintName="fkprices855817" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-56">
+    <changeSet author="Developer (generated)" id="1494470833444-43">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="prices" constraintName="fkprices869426" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-57">
+    <changeSet author="Developer (generated)" id="1494470833444-44">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="product" constraintName="fkproduct128766" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-58">
+    <changeSet author="Developer (generated)" id="1494470833444-45">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="product" constraintName="fkproduct306673" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-59">
+    <changeSet author="Developer (generated)" id="1494470833444-46">
         <addForeignKeyConstraint baseColumnNames="measure_unit_id" baseTableName="product" constraintName="fkproduct609314" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="measure_unit"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-60">
+    <changeSet author="Developer (generated)" id="1494470833444-47">
         <addForeignKeyConstraint baseColumnNames="type_person_id" baseTableName="provider" constraintName="fkprovider580060" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_person"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-61">
+    <changeSet author="Developer (generated)" id="1494470833444-48">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="provider" constraintName="fkprovider751418" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-62">
+    <changeSet author="Developer (generated)" id="1494470833444-49">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="provider" constraintName="fkprovider929325" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-63">
+    <changeSet author="Developer (generated)" id="1494470833444-50">
         <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="provider_address" constraintName="fkprovider_a693241" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="address"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-64">
+    <changeSet author="Developer (generated)" id="1494470833444-51">
         <addForeignKeyConstraint baseColumnNames="provider_id" baseTableName="provider_address" constraintName="fkprovider_a795642" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="provider"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-65">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="retries" constraintName="fkretries848245" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-66">
+    <changeSet author="Developer (generated)" id="1494470833444-52">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="season" constraintName="fkseason210320" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-67">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="sesssions" constraintName="fksesssions325626" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-68">
+    <changeSet author="Developer (generated)" id="1494470833444-53">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="status" constraintName="fkstatus356339" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-69">
+    <changeSet author="Developer (generated)" id="1494470833444-54">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="time_unit" constraintName="fktime_unit325602" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-70">
+    <changeSet author="Developer (generated)" id="1494470833444-55">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_address" constraintName="fktype_addre960962" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-71">
+    <changeSet author="Developer (generated)" id="1494470833444-56">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_person" constraintName="fktype_perso351159" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-72">
+    <changeSet author="Developer (generated)" id="1494470833444-57">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="type_price" constraintName="fktype_price159532" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-73">
+    <changeSet author="Developer (generated)" id="1494470833444-58">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="type_price" constraintName="fktype_price981624" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-74">
-        <addForeignKeyConstraint baseColumnNames="question_secret_id" baseTableName="user" constraintName="fkuser116410" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="secret_question"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-75">
-        <addForeignKeyConstraint baseColumnNames="modify_by" baseTableName="user" constraintName="fkuser375160" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-76">
-        <addForeignKeyConstraint baseColumnNames="user_detail_id" baseTableName="user" constraintName="fkuser662691" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user_detail"/>
-    </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-77">
+    <changeSet author="Developer (generated)" id="1494470833444-59">
         <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="valuation" constraintName="fkvaluation204077" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-78">
+    <changeSet author="Developer (generated)" id="1494470833444-60">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="valuation" constraintName="fkvaluation26170" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-79">
+    <changeSet author="Developer (generated)" id="1494470833444-61">
         <addForeignKeyConstraint baseColumnNames="valuation_type_id" baseTableName="valuation" constraintName="fkvaluation969222" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="valuation_type"/>
     </changeSet>
-    <changeSet author="Developer (generated)" id="1494649180534-80">
+    <changeSet author="Developer (generated)" id="1494470833444-62">
         <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="valuation_type" constraintName="fkvaluation_505472" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
     </changeSet>
 </databaseChangeLog>
