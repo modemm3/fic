@@ -11,10 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="measure_unit")
-public class MeasureUnit implements BaseEntity {
+@Table (name="movement_type")
+public class MovementType implements BaseEntity {
 
-	private static final long serialVersionUID = -262718285703772247L;
+	private static final long serialVersionUID = -7004668452945870833L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,6 +23,12 @@ public class MeasureUnit implements BaseEntity {
 	private String name;
 	@Column(name="description")
 	private String description;
+	@JoinColumn(name="movement_concept_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private MovementConcept movementConcept;
+	@JoinColumn(name="status_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Status status;
 	@JoinColumn(name="company_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Company company;
@@ -45,6 +51,18 @@ public class MeasureUnit implements BaseEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public MovementConcept getMovementConcept() {
+		return movementConcept;
+	}
+	public void setMovementConcept(MovementConcept movementConcept) {
+		this.movementConcept = movementConcept;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 	public Company getCompany() {
 		return company;
 	}
@@ -53,8 +71,8 @@ public class MeasureUnit implements BaseEntity {
 	}
 	
 	public String toString() {
-		return "MeasureUnit [id=" + id + ", name=" + name + ", description=" + description + ", company=" + company
-				+ "]";
+		return "MovementType [id=" + id + ", name=" + name + ", description=" + description + ", movementConcept="
+				+ movementConcept + ", status=" + status + ", company=" + company + "]";
 	}
 	
 	public int hashCode() {
@@ -63,7 +81,9 @@ public class MeasureUnit implements BaseEntity {
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((movementConcept == null) ? 0 : movementConcept.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 	
@@ -74,7 +94,7 @@ public class MeasureUnit implements BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MeasureUnit other = (MeasureUnit) obj;
+		MovementType other = (MovementType) obj;
 		if (company == null) {
 			if (other.company != null)
 				return false;
@@ -90,12 +110,22 @@ public class MeasureUnit implements BaseEntity {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (movementConcept == null) {
+			if (other.movementConcept != null)
+				return false;
+		} else if (!movementConcept.equals(other.movementConcept))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
 		return true;
 	}
-
+	
 }
