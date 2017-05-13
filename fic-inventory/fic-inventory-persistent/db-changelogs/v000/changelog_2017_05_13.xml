@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="perita" id="1">
+    <modifyDataType tableName="type_person" columnName="name" newDataType="varchar(100)"/>
+    <modifyDataType tableName="type_person" columnName="description" newDataType="varchar(255)"/>
+    </changeSet>
+    <changeSet author="perita" id="2">
+    <addForeignKeyConstraint constraintName="fkCompanyId" referencedTableName="company" baseColumnNames="company_id" baseTableName="permit_assignment" referencedColumnNames="id"/>
+    </changeSet> 
+    <changeSet author="perita" id="3">
+    <addNotNullConstraint tableName="permit_assignment" columnName="company_id"/>
+    </changeSet>     
+</databaseChangeLog>
