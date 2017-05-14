@@ -8,7 +8,7 @@
 		<artifactId>fic-inventory</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.mx.fic.inventory.business</groupId>
+<!-- 	<groupId>com.mx.fic.inventory.business</groupId> -->
 	<artifactId>fic-inventory-business</artifactId>
 	<name>fic-inventory-business</name>
 	<url>http://maven.apache.org</url>
@@ -16,6 +16,8 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source>
+        <maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -33,28 +35,33 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>${project.Junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.mx.fic.inventory.dto</groupId>
+			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-dto</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.mx.fic.inventory.persistent</groupId>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-services</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-persistent</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
+			<version>${project.slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
-			<version>${reflections.version}</version>
+			<version>${project.reflections.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
@@ -150,5 +157,6 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>fic-inventory-business</finalName>
 	</build>
 </project>

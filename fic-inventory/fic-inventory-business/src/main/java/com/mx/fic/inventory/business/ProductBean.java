@@ -1,7 +1,5 @@
 package com.mx.fic.inventory.business;
 
-import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -9,22 +7,21 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 
 import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
 import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Status;
+import com.mx.fic.inventory.services.ProductRemote;
 
 
 
-@Local
 @Stateless (mappedName="ProductBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ProductBean{
-	@PersistenceUnit(unitName="unit-fic")
-	@PersistenceContext
+public class ProductBean implements ProductRemote{
+//	@PersistenceUnit(unitName="unit-fic")
+	@PersistenceContext(unitName="unit-fic")
 	private EntityManager entityManager;
 
 	
@@ -33,10 +30,10 @@ public class ProductBean{
 		/*
 		 * Agregar la fecha de creacion del producto
 		 * */
-		Product product= new Product();
-		MeasureUnit measureUnit= new MeasureUnit();
-		Company company= new Company();
-		Status status= new Status();
+		final Product product= new Product();
+		final MeasureUnit measureUnit= new MeasureUnit();
+		final Company company= new Company();
+		final Status status= new Status();
 		
 		status.setId(1);
 		status.setName("Pendiente");

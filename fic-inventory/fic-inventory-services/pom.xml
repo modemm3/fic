@@ -8,17 +8,34 @@
 		<artifactId>fic-inventory</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.mx.fic.inventory.services</groupId>
+	<!-- <groupId>com.mx.fic.inventory.services</groupId> -->
 	<artifactId>fic-inventory-services</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<name>fic-inventory-services</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target>
+	</properties>
 	<dependencies>
+		<dependency><!-- Esta dependencia fue tomada del pom de tpv-ejb -->
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>${javaee.web.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>${project.Junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-dto</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<finalName>fic-inventory-services</finalName>
+	</build>
 </project>

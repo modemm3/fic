@@ -11,23 +11,35 @@
   <name>fic-inventory-ear</name>
   <url>http://maven.apache.org</url>
   <packaging>ear</packaging>
+      <properties>
+        <maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source>
+        <maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target>
+    </properties>
+  
 <dependencies>
 
 
 		<dependency>
-			<groupId>com.mx.fic.inventory.business</groupId>
+			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-business</artifactId>
 			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
+
 		<dependency>
-			<groupId>com.mx.fic.inventory.persistent</groupId>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-services</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-persistent</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>com.mx.fic.inventory.dto</groupId>
+			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-dto</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
@@ -59,23 +71,29 @@
 					<generateApplicationXml>true</generateApplicationXml>
 					<modules>
 						<ejbModule>
-							<groupId>com.mx.fic.inventory.business</groupId>
+							<groupId>com.mx.fic.inventory</groupId>
 							<artifactId>fic-inventory-business</artifactId>
-							<bundleFileName>fic-inventory-business-1.0.jar</bundleFileName>
+							<bundleFileName>fic-inventory-business.jar</bundleFileName>
 						</ejbModule>
 						<jarModule>
-							<groupId>com.mx.fic.inventory.persistent</groupId>
-							<artifactId>fic-inventory-persistent</artifactId>
-							<bundleFileName>fic-inventory-persistent-1.0.jar</bundleFileName>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-services</artifactId>
+							<bundleFileName>fic-inventory-services.jar</bundleFileName>
 						</jarModule>
 						<jarModule>
-							<groupId>com.mx.fic.inventory.dto</groupId>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-persistent</artifactId>
+							<bundleFileName>fic-inventory-persistent.jar</bundleFileName>
+						</jarModule>
+						<jarModule>
+							<groupId>com.mx.fic.inventory</groupId>
 							<artifactId>fic-inventory-dto</artifactId>
-							<bundleFileName>fic-inventory-dto-1.0.jar</bundleFileName>
+							<bundleFileName>fic-inventory-dto.jar</bundleFileName>
 						</jarModule>
 					</modules>
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>fic-inventory-ear</finalName>
 	</build>
 </project>

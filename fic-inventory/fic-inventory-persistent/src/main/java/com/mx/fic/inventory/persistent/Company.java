@@ -1,5 +1,7 @@
 package com.mx.fic.inventory.persistent;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="company")
-public class Company implements BaseEntity {
+public class Company implements BaseEntity,Serializable {
 
 	private static final long serialVersionUID = -6769173865805833755L;
 	
