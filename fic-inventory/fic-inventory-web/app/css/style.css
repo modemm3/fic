@@ -155,3 +155,81 @@ body {
 }
 
 
+body{
+   font-size: 25px;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+nav{
+   width:300px;
+   margin: 5% auto;
+   background: #EEE;
+}
+nav li{
+   list-style: none;
+   position:relative; /* importante, para que el submenu tome la posición correcta*/
+}
+nav li a{
+   color:#666;
+   text-decoration:none;
+   padding: 5px;
+   display:block;
+}
+nav li a:hover{
+   color:#08D;
+}
+nav li.parent:hover{
+   border:1px #ccc solid;
+   margin:-1px;
+   background:#F8F8F8;
+}
+nav li li a{
+   width:250px;/*el ancho de los links del submenu, debe ser fijo, esto servirá para crear la animación mas adelante */
+   display:block;
+}
+/* aquí esta lo importante!! */
+nav li ul {
+   width: 250px;
+   margin:0;
+   display:none;
+   background:#F8F8F8;
+   border:1px #ccc solid;
+   position: absolute;
+   left: 100%;
+   top:-1px;
+}
+nav li:hover ul {
+   display: block;
+}
+
+nav li ul {
+      width: 0; /*Cambiamos la linea */
+   margin:0;
+      /*display:none; Lo Eliminamos */
+   background:#F8F8F8;
+   border:1px #ccc solid;
+   position: absolute;
+   left: 100%;
+   top:-1px;
+   
+   overflow:hidden; /* Para evitar Que se salgan los links */
+   z-index:-1;/*El Submenu tiene que ir atras, para evitar que los 0 pixeles causen problema al :hover*/ 
+   
+   opacity: 0; 
+   filter: alpha(opacity=0); /* Internet Explorer*/
+   -webkit-transition: opacity 0.2s ease-in 0.3s, width 0.4s ease-in 0.3s;/* Chrome, Safari*/
+   transition: opacity 0.2s ease-in  0.3s, width 0.4s ease-in 0.3s;/* Navegadores CSS3 */
+   -moz-transition: opacity 0.2s ease-in  0.3s, width 0.4s ease-in 0.3s; /* Firefox 4 */
+   -o-transition: opacity 0.2s ease-in 0.3s, width 0.4s ease-in 0.3s; /*Opera */
+}
+nav li:hover ul {
+      /*display:block; Lo Eliminamos */
+      
+   width: 250px; /*La animación de 0 a 250px*/
+      
+   opacity: 1;
+   filter: alpha(opacity=100);/* Internet Explorer*/
+   -webkit-transition: opacity 0.1s linear 0s, width 0.3s ease-out 0s;/* Chrome, Safari*/
+   transition: opacity 0.1s linear 0s, width 0.3s ease-out 0s;/* Navegadores CSS3 */
+   -moz-transition: opacity 0.1s linear 0s, width 0.3s ease-out 0s; /* Firefox 4 */
+   -o-transition: oopacity 0.1s linear 0s, width 0.3s ease-out 0s; /* Opera */
+}

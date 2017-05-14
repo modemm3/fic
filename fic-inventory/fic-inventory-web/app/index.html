@@ -14,9 +14,82 @@
   <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/menu.css" />
+  <link href="css/menu.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/boo...">
+<script src="http://disq.us/url?url=http%3A%2F%2Fmaxcdn.bootstrapcdn.com%2Fbootstrap%2F3.2.0%2Fjs%2Fbootstrap.min.js%3AonfgZ8hHtFwEmw74VGy12-ICfzo&cuid=1677672"></script>
+<script src="https://disq.us/url?url=https%3A%2F%2Fajax.googleapis.com%2Fajax%2Flibs%2Fjquery%2F3.1.1%2Fjquery.min.js%3Ak3fzaHQqoHELcX7od-dbLutzaEw&cuid=1677672"></script>
 </head>
 <body>
 
+<div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse in">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs & Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                </li>  
+                <ul class="sub-menu collapse" id="service">
+                  <li>New Service 1</li>
+                  <li>New Service 2</li>
+                  <li>New Service 3</li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                  <li>New New 1</li>
+                  <li>New New 2</li>
+                  <li>New New 3</li>
+                </ul>
+
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-users fa-lg"></i> Users
+                  </a>
+                </li>
+            </ul>
+     </div>
+</div>
 
 <!-- <div class="login-page"> -->
 <!-- 	<div class="row"> -->
@@ -41,23 +114,25 @@
 
 <!-- 		</div> -->
 <!-- 	</div> -->
-<div class="login-page">
-  <div class="form">
-    <form class="register-form">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
-  </div>
-</div>
+<!-- <div class="login-page"> -->
+<!--   <div class="form"> -->
+<!--     <form class="register-form"> -->
+<!--       <input type="text" placeholder="name"/> -->
+<!--       <input type="password" placeholder="password"/> -->
+<!--       <input type="text" placeholder="email address"/> -->
+<!--       <button>create</button> -->
+<!--       <p class="message">Already registered? <a href="#">Sign In</a></p> -->
+<!--     </form> -->
+<!--     <form class="login-form"> -->
+<!--       <input type="text" placeholder="username"/> -->
+<!--       <input type="password" placeholder="password"/> -->
+<!--       <button>login</button> -->
+<!--       <p class="message">Not registered? <a href="#">Create an account</a></p> -->
+<!--     </form> -->
+<!--   </div> -->
+<!-- </div> -->
+
+
   <ul class="menu">
     <li><a href="#!/view1">view1</a></li>
     <li><a href="#!/view2">view2</a></li>

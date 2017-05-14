@@ -17,5 +17,52 @@
 		<module>fic-inventory-services</module>
 		<module>fic-inventory-business</module>
     <module>fic-inventory-persistent</module>
+    <module>fic-inventory-ear</module>
   </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.6.5.201403032054</version>
+        <configuration>
+          <propertyName>jacoco.agent.argLine</propertyName>
+          <destFile>${sonar.jacoco.itReportPath}</destFile>
+          <append>true</append>
+        </configuration>
+        <executions>
+          <execution>
+            <id>agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.14.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>2.14.1</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <argLine>${jacoco.agent.argLine}</argLine>
+          <testFailureIgnore>true</testFailureIgnore>
+          <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    </build>
 </project>

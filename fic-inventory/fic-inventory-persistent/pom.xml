@@ -12,6 +12,17 @@
 	<artifactId>fic-inventory-persistent</artifactId>
 	<name>fic-inventory-persistent</name>
 	<url>http://maven.apache.org</url>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${arquillian.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -43,8 +54,48 @@
 			<artifactId>javax.persistence</artifactId>
 			<version>${eclipselink.javax.persistence}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<!-- <version>${arquillian.junit.container}</version> -->
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
- 	<build>
+	
+	    <profiles>
+		<profile>
+			<id>glassfish-remote-dev</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-web-6.0</artifactId>
+					<version>${jboss.javaee.web-6.0.version}</version>
+					<type>pom</type>
+					<scope>provided</scope>
+					<exclusions>
+						<exclusion>
+							<groupId>xalan</groupId>
+							<artifactId>xalan</artifactId>
+						</exclusion>
+					</exclusions>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-glassfish-remote-3.1</artifactId>
+					<version>${arquillian.glassfish.remote.3.1.version}</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources/resources-glassfish-remote</directory>
+					</testResource>
+				</testResources>
+			</build>
+		</profile>
+	</profiles>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.liquibase</groupId>
@@ -79,5 +130,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build> 
+	</build>
 </project>

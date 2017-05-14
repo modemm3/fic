@@ -1,12 +1,13 @@
 package com.mx.fic.inventory.business;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import com.mx.fic.inventory.dto.ProductDTO;
@@ -23,6 +24,7 @@ public class ProductBean{
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final ProductDTO productDTO) {
 		Product product= new Product();
 		MeasureUnit measureUnit= new MeasureUnit();
@@ -39,10 +41,10 @@ public class ProductBean{
 		product.setMeasureUnit(measureUnit);
 		company.setId(1);
 		company.setName("compania uno");
-		
+		product.setCompany(company);
 		entityManager.persist(product);
 		
-		entityManager.close();
+//		entityManager.close();
 	}
 
 }
