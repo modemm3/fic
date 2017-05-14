@@ -2,6 +2,8 @@ package com.mx.fic.inventory.persistent;
 
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.GeneratedValue;
 
 @Entity
 @Table (name="secret_question")
+@NamedQueries({
+	@NamedQuery(name="SecretQuestion.getAll", query="select secretq from SecretQuestion secretq")
+})
 public class SecretQuestion implements BaseEntity{
 	
 	private static final long serialVersionUID = 2667124523128841311L;
