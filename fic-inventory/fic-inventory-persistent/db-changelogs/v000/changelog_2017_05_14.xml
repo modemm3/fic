@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+	<changeSet author="perita" id="4">
+    	<dropNotNullConstraint tableName="company" columnName="status_id"/>
+	    	<addColumn tableName="company">
+    		 <column name="creation_date" type="Timestamp"/>
+    	</addColumn>
+    	<addColumn tableName="company">
+    		 <column name="modify_date" type="Timestamp"/>
+    	</addColumn>
+    	<insert tableName="company">
+    		<column name="name" value="asociados"></column>
+    		<column name="reason_social" value="FIC"></column>
+    		<column name="rfc" value="rfc12344"></column>
+    		<column name="email" value="patito@hotmail.com"></column>
+    		<column name="contact_name" value="contacto asociados"></column>
+    	</insert>    	
+	</changeSet>
+	<changeSet author="perita" id="5">
+    	<insert tableName="status">
+    		<column name="name" value="Activo"></column>
+    		<column name="description" value="Se encuentra activo"></column>
+    		<column name="company_id" value="1"></column>    	
+    	</insert>
+    	<insert tableName="status">
+    		<column name="name" value="Inactivo"></column>
+    		<column name="description" value="Se encuentra inactivo"></column>
+    		<column name="company_id" value="1"></column>    	    		
+    	</insert>    	
+	</changeSet>	
+    <changeSet author="perita" id="6">
+    	<insert tableName="movement_concept">
+    		<column name="name" value="Entradas"></column>
+    		<column name="description" value="Se refiere a las entradas como son compras, entre otros"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert> 
+    	<insert tableName="movement_concept">
+    		<column name="name" value="Salidas"></column>
+    		<column name="description" value="Se refiere a las salidas como ventas, devoluciones, entre otros"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>     
+	</changeSet>	
+    <changeSet author="perita" id="8">
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Kilogramo"></column>
+    		<column name="description" value="unidad de medida kilogramo"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Gramo"></column>
+    		<column name="description" value="unidad de medida gramo"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>    
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Litro"></column>
+    		<column name="description" value="unidad de medida litro"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>  
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Pieza"></column>
+    		<column name="description" value="unidad de medida pieza"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>      	 
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Metro cubico"></column>
+    		<column name="description" value="unidad de medida cubico"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>      	   		
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Tonelada"></column>
+    		<column name="description" value="unidad de medida tonelada"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Botella"></column>
+    		<column name="description" value="unidad de medida botella"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>      	      	
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Caja"></column>
+    		<column name="description" value="unidad de medida caja"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>   
+    	<insert tableName="measure_unit">
+    		<column name="name" value="Par"></column>
+    		<column name="description" value="unidad de medida par"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>    
+    	<insert tableName="movement_type">
+    		<column name="name" value="Compra"></column>
+    		<column name="description" value="Compras realizadas"></column>
+    		<column name="movement_concept_id" value="1"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert> 
+    	<insert tableName="movement_type">
+    		<column name="name" value="Cambio"></column>
+    		<column name="description" value="cambios realizados"></column>
+    		<column name="movement_concept_id" value="1"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>    
+    	<insert tableName="movement_type">
+    		<column name="name" value="Venta"></column>
+    		<column name="description" value="ventas realizadas"></column>
+    		<column name="movement_concept_id" value="2"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>   
+    	<insert tableName="movement_type">
+    		<column name="name" value="Robo"></column>
+    		<column name="description" value="robos"></column>
+    		<column name="movement_concept_id" value="2"></column>
+    		<column name="status_id" value="1"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>  
+    	<insert tableName="type_address">
+    		<column name="name" value="Particular"></column>
+    		<column name="description" value="domicilio particular"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>  
+    	<insert tableName="type_address">
+    		<column name="name" value="Fiscal"></column>
+    		<column name="description" value="domicilio fiscal"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert> 
+    	<insert tableName="type_person">
+    		<column name="name" value="Moral"></column>
+    		<column name="description" value="Persona moral"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>   
+    	<insert tableName="type_person">
+    		<column name="name" value="Física"></column>
+    		<column name="description" value="Persona Física"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>  
+    	<insert tableName="type_price">
+    		<column name="name" value="Venta"></column>
+    		<column name="description" value="Precio venta"></column>
+    		<column name="status_id" value="1"></column>    		
+    		<column name="company_id" value="1"></column>
+    	</insert>   
+    	<insert tableName="type_price">
+    		<column name="name" value="Especial"></column>
+    		<column name="description" value="Precio especial"></column>
+    		<column name="status_id" value="1"></column>    		
+    		<column name="company_id" value="1"></column>
+    	</insert> 
+    	<insert tableName="type_price">
+    		<column name="name" value="Temporada"></column>
+    		<column name="description" value="Precio de temporada"></column>
+    		<column name="status_id" value="1"></column>    		
+    		<column name="company_id" value="1"></column>
+    	</insert>
+    	<insert tableName="time_unit">
+    		<column name="name" value="Año"></column>
+    		<column name="description" value="año"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>    
+    	<insert tableName="time_unit">
+    		<column name="name" value="Mes"></column>
+    		<column name="description" value="meses"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>     
+    	<insert tableName="time_unit">
+    		<column name="name" value="Día"></column>
+    		<column name="description" value="dias"></column>
+    		<column name="company_id" value="1"></column>
+    	</insert>  
+    	<insert tableName="valuation_type">
+    		<column name="name" value="Primeras entradas"></column>
+    		<column name="description" value="entradas"></column>
+    		<column name="key_valuation" value="PEPS"></column>    		
+    		<column name="company_id" value="1"></column>
+    	</insert>     	    
+    	<insert tableName="valuation_type">
+    		<column name="name" value="Primeras salidas"></column>
+    		<column name="description" value="salidas"></column>
+    		<column name="key_valuation" value="VEPS"></column>    		
+    		<column name="company_id" value="1"></column>
+    	</insert>     		 		    	 	    	    	    	  	  	    	  	  	  	    	
+   </changeSet>
+</databaseChangeLog>

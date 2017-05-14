@@ -28,6 +28,9 @@ public class Product implements BaseEntity {
 	@JoinColumn(name="measure_unit_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private MeasureUnit measureUnit;
+	@JoinColumn(name="status_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Status status;
 	@Column(name="minimum_stock")
 	private Integer minimumStock;
 	@Column(name="maximum_stock")
@@ -84,11 +87,17 @@ public class Product implements BaseEntity {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 	
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", barcode=" + barcode
-				+ ", measureUnit=" + measureUnit + ", minimumStock=" + minimumStock + ", maximumStock=" + maximumStock
-				+ ", company=" + company + "]";
+				+ ", measureUnit=" + measureUnit + ", status=" + status + ", minimumStock=" + minimumStock
+				+ ", maximumStock=" + maximumStock + ", company=" + company + "]";
 	}
 	
 	public int hashCode() {
@@ -102,6 +111,7 @@ public class Product implements BaseEntity {
 		result = prime * result + ((measureUnit == null) ? 0 : measureUnit.hashCode());
 		result = prime * result + ((minimumStock == null) ? 0 : minimumStock.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 	
@@ -153,6 +163,12 @@ public class Product implements BaseEntity {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
 		return true;
 	}
+	
 }
