@@ -1,43 +1,21 @@
-package com.mx.fic.inventory.persistent;
+package com.mx.fic.inventory.dto;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class CompanyDTO implements BaseDTO{
 
-@Entity
-@Table (name="company")
-public class Company implements BaseEntity {
-
-	private static final long serialVersionUID = -6769173865805833755L;
+	private static final long serialVersionUID = -6918141828676112594L;
 	
-	@Id
-	@GeneratedValue (strategy= GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="name")
 	private String name;
-	@Column(name="reason_social")
 	private String reasonSocial;
-	@Column(name="rfc")
 	private String rfc;
-	@Column(name="email")
 	private String email;
-	@Column(name="contact_name")
+	private StatusDTO statusDTO;
 	private String contactName;
-	@Column(name="creation_date")
 	private Timestamp creationDate;
-	@Column(name="modify_date")
 	private Timestamp modifyDate;
-	@JoinColumn(name="status_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Status status;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -68,17 +46,17 @@ public class Company implements BaseEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public StatusDTO getStatusDTO() {
+		return statusDTO;
+	}
+	public void setStatusDTO(StatusDTO statusDTO) {
+		this.statusDTO = statusDTO;
+	}
 	public String getContactName() {
 		return contactName;
 	}
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
-	}
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 	public Timestamp getCreationDate() {
 		return creationDate;
@@ -94,9 +72,9 @@ public class Company implements BaseEntity {
 	}
 	
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", reasonSocial=" + reasonSocial + ", rfc=" + rfc + ", email="
-				+ email + ", contactName=" + contactName + ", creationDate=" + creationDate + ", modifyDate="
-				+ modifyDate + ", status=" + status + "]";
+		return "CompanyDTO [id=" + id + ", name=" + name + ", reasonSocial=" + reasonSocial + ", rfc=" + rfc
+				+ ", email=" + email + ", statusDTO=" + statusDTO + ", contactName=" + contactName + ", creationDate="
+				+ creationDate + ", modifyDate=" + modifyDate + "]";
 	}
 	
 	public int hashCode() {
@@ -110,7 +88,7 @@ public class Company implements BaseEntity {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((reasonSocial == null) ? 0 : reasonSocial.hashCode());
 		result = prime * result + ((rfc == null) ? 0 : rfc.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((statusDTO == null) ? 0 : statusDTO.hashCode());
 		return result;
 	}
 	
@@ -121,7 +99,7 @@ public class Company implements BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Company other = (Company) obj;
+		CompanyDTO other = (CompanyDTO) obj;
 		if (contactName == null) {
 			if (other.contactName != null)
 				return false;
@@ -162,11 +140,12 @@ public class Company implements BaseEntity {
 				return false;
 		} else if (!rfc.equals(other.rfc))
 			return false;
-		if (status == null) {
-			if (other.status != null)
+		if (statusDTO == null) {
+			if (other.statusDTO != null)
 				return false;
-		} else if (!status.equals(other.status))
+		} else if (!statusDTO.equals(other.statusDTO))
 			return false;
 		return true;
 	}
+
 }

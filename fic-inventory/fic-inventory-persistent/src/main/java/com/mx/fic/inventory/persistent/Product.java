@@ -32,9 +32,9 @@ public class Product implements BaseEntity {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Status status;
 	@Column(name="minimum_stock")
-	private Integer minimumStock;
+	private Double minimumStock;
 	@Column(name="maximum_stock")
-	private Integer maximumStock;
+	private Double maximumStock;
 	@JoinColumn(name="company_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Company company;
@@ -69,16 +69,16 @@ public class Product implements BaseEntity {
 	public void setMeasureUnit(MeasureUnit measureUnit) {
 		this.measureUnit = measureUnit;
 	}
-	public Integer getMinimumStock() {
+	public Double getMinimumStock() {
 		return minimumStock;
 	}
-	public void setMinimumStock(Integer minimumStock) {
+	public void setMinimumStock(Double minimumStock) {
 		this.minimumStock = minimumStock;
 	}
-	public Integer getMaximumStock() {
+	public Double getMaximumStock() {
 		return maximumStock;
 	}
-	public void setMaximumStock(Integer maximumStock) {
+	public void setMaximumStock(Double maximumStock) {
 		this.maximumStock = maximumStock;
 	}
 	public Company getCompany() {

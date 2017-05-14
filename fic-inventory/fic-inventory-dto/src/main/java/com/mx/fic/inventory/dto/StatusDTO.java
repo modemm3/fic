@@ -1,37 +1,13 @@
-package com.mx.fic.inventory.persistent;
+package com.mx.fic.inventory.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+public class StatusDTO implements BaseDTO{
 
-@Entity
-@Table (name="status")
-@NamedQueries({
-	@NamedQuery(name="Status.getAll", query="select s from Status s where s.company.id=:id")
-})
-public class Status implements BaseEntity {
-
-	private static final long serialVersionUID = 7624435044865173550L;
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name="name")
-	private String name;
-	@Column(name="description")
-	private String description;
-	@JoinColumn(name="company_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Company company;
+	private static final long serialVersionUID = -6806564412257868670L;
 	
+	private Integer id;
+	private String name;
+	private String description;
+	private CompanyDTO companyDTO;
 	public Integer getId() {
 		return id;
 	}
@@ -50,21 +26,20 @@ public class Status implements BaseEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Company getCompany() {
-		return company;
+	public CompanyDTO getCompanyDTO() {
+		return companyDTO;
 	}
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyDTO(CompanyDTO companyDTO) {
+		this.companyDTO = companyDTO;
 	}
-	
 	public String toString() {
-		return "Status [id=" + id + ", name=" + name + ", description=" + description + ", company=" + company + "]";
+		return "StatusDTO [id=" + id + ", name=" + name + ", description=" + description + ", company=" + companyDTO + "]";
 	}
 	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((companyDTO == null) ? 0 : companyDTO.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -78,11 +53,11 @@ public class Status implements BaseEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Status other = (Status) obj;
-		if (company == null) {
-			if (other.company != null)
+		StatusDTO other = (StatusDTO) obj;
+		if (companyDTO == null) {
+			if (other.companyDTO != null)
 				return false;
-		} else if (!company.equals(other.company))
+		} else if (!companyDTO.equals(other.companyDTO))
 			return false;
 		if (description == null) {
 			if (other.description != null)
