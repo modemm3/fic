@@ -8,6 +8,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
@@ -24,7 +25,9 @@ public class ProductBean{
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final ProductDTO productDTO) {
-
+		/*
+		 * Agregar la fecha de creacion del producto
+		 * */
 		final Product product= new Product();
 		final MeasureUnit measureUnit= new MeasureUnit();
 		final Company company= new Company();

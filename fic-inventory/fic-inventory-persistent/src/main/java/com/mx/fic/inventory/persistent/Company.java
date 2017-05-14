@@ -1,5 +1,6 @@
 package com.mx.fic.inventory.persistent;
 
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

@@ -8,10 +8,15 @@
 		<artifactId>fic-inventory</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.mx.fic.inventory.persistent</groupId>
+	<!-- <groupId>com.mx.fic.inventory.persistent</groupId> -->
 	<artifactId>fic-inventory-persistent</artifactId>
 	<name>fic-inventory-persistent</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -27,7 +32,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>${project.Junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -52,7 +57,7 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
-			<version>${eclipselink.javax.persistence}</version>
+			<version>${javax.persistence.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
@@ -60,9 +65,14 @@
 			<!-- <version>${arquillian.junit.container}</version> -->
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${project.slf4j.version}</version>
+		</dependency>
 	</dependencies>
-	
-	    <profiles>
+
+	<profiles>
 		<profile>
 			<id>glassfish-remote-dev</id>
 			<dependencies>
@@ -130,5 +140,6 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>fic-inventory-persistent</finalName>
 	</build>
 </project>
