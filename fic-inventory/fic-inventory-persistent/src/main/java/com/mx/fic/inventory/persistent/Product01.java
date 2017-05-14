@@ -16,11 +16,11 @@ import javax.persistence.Table;
 
 //@Entity
 //@Table (name="product")
-/*@NamedQueries({
+@NamedQueries({
 	@NamedQuery(name="Product.findByCode",query="select p from Product p where p.code=:code"),
 	@NamedQuery(name="Product.getAll", query="SELECT prod FROM Product prod ORDER BY prod.id"),
 	@NamedQuery(name="Product.getCount", query="SELECT count(prod) FROM Product prod")
-})*/
+})
 public class Product01 implements BaseEntity {
 	/**
 	 * 
