@@ -185,4 +185,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
     		<column name="company_id" value="1"></column>
     	</insert>     		 		    	 	    	    	    	  	  	    	  	  	  	    	
    </changeSet>
+   <changeSet author="perita" id="9">
+   	<dropNotNullConstraint tableName="user" columnName="modify_by"/>
+   </changeSet>   
 </databaseChangeLog>

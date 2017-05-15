@@ -1,40 +1,19 @@
-package com.mx.fic.inventory.persistent;
+package com.mx.fic.inventory.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class UserDetailDTO implements BaseDTO {
 
-@Entity
-@Table (name="user_detail")
-public class UserDetail implements BaseEntity{
+	private static final long serialVersionUID = -8486810703441289306L;
 	
-	private static final long serialVersionUID = 3685994975662088624L;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="short_name")
 	private String shortName;
-	@Column(name="name")
 	private String name;
-	@Column(name="last_name")
 	private String lastName;
-	@Column(name="sur_name")
 	private String surName;
-	@Column(name="telephone")
 	private String telephone;
-	@Column(name="address")
 	private String address;
-	@Column(name="curp")
 	private String curp;
-	@Column(name="rfc")
 	private String rfc;
-	@Column(name="last_access")
 	private String lastAccess;
-	@Column(name="email")
 	private String email;
 	
 	public Integer getId() {
@@ -105,7 +84,7 @@ public class UserDetail implements BaseEntity{
 	}
 	
 	public String toString() {
-		return "UserDetail [id=" + id + ", shortName=" + shortName + ", name=" + name + ", lastName=" + lastName
+		return "UserDetailDTO [id=" + id + ", shortName=" + shortName + ", name=" + name + ", lastName=" + lastName
 				+ ", surName=" + surName + ", telephone=" + telephone + ", address=" + address + ", curp=" + curp
 				+ ", rfc=" + rfc + ", lastAccess=" + lastAccess + ", email=" + email + "]";
 	}
@@ -134,7 +113,7 @@ public class UserDetail implements BaseEntity{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserDetail other = (UserDetail) obj;
+		UserDetailDTO other = (UserDetailDTO) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -192,5 +171,5 @@ public class UserDetail implements BaseEntity{
 			return false;
 		return true;
 	}
-
+	
 }

@@ -1,27 +1,10 @@
-package com.mx.fic.inventory.persistent;
+package com.mx.fic.inventory.dto;
 
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-
-@Entity
-@Table (name="secret_question")
-@NamedQueries({
-	@NamedQuery(name="SecretQuestion.getAll", query="select secretq from SecretQuestion secretq")
-})
-public class SecretQuestion implements BaseEntity{
+public class SecretQuestionDTO implements BaseDTO {
 	
-	private static final long serialVersionUID = 2667124523128841311L;
+	private static final long serialVersionUID = 5600783115134342054L;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="question")
 	private String question;
 	
 	public Integer getId() {
@@ -38,7 +21,7 @@ public class SecretQuestion implements BaseEntity{
 	}
 	
 	public String toString() {
-		return "SecretQuestion [id=" + id + ", question=" + question + "]";
+		return "SecretQuestionDTO [id=" + id + ", question=" + question + "]";
 	}
 	
 	public int hashCode() {
@@ -56,7 +39,7 @@ public class SecretQuestion implements BaseEntity{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SecretQuestion other = (SecretQuestion) obj;
+		SecretQuestionDTO other = (SecretQuestionDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
