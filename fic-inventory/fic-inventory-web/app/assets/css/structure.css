@@ -154,11 +154,11 @@ body{
 {
     text-shadow:rgba(0,0,0,0.3) 0 -1px 0px; 
 }
-footer#main{
-	position:fixed;
-	left:0;
-	bottom:10px;
-	text-align:center;
-	font:normal 11px/16px Arial, Helvetica, sans-serif;
-	width:100%;
-}
+/* footer#main{ */
+/* 	position:fixed; */
+/* 	left:0; */
+/* 	bottom:10px; */
+/* 	text-align:center; */
+/* 	font:normal 11px/16px Arial, Helvetica, sans-serif; */
+/* 	width:100%; */
+/* } */
