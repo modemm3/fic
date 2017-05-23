@@ -12,6 +12,7 @@
 	<artifactId>fic-inventory-business</artifactId>
 	<name>fic-inventory-business</name>
 	<url>http://maven.apache.org</url>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
