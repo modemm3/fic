@@ -26,7 +26,7 @@ public class StatusBean {
 		StatusDTO statusDTO= null;
 		List<Status> statusLst= new ArrayList<Status>();
 		
-		TypedQuery<Status> query= entityManager.createNamedQuery("Status.getAll", Status.class);
+		TypedQuery<Status> query= entityManager.createNamedQuery("Status.getAllByCompany", Status.class);
 		query.setParameter("id", idCompany);
 		statusLst= query.getResultList();
 		

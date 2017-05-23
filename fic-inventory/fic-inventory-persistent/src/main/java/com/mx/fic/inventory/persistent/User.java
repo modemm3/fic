@@ -35,8 +35,9 @@ public class User implements BaseEntity{
 	private Timestamp creationDate;
 	@Column(name="modification_date")
 	private Timestamp modificationDate;
-	@Column(name="modify_by")
-	private Integer modifyBy;
+	@JoinColumn(name="modify_by", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private User modifyBy;
 	@Column(name="last_access")
 	private Timestamp lastAccess;
 	@Column(name="password_change_date")
@@ -93,10 +94,10 @@ public class User implements BaseEntity{
 	public void setModificationDate(Timestamp modificationDate) {
 		this.modificationDate = modificationDate;
 	}
-	public Integer getModifyBy() {
+	public User getModifyBy() {
 		return modifyBy;
 	}
-	public void setModifyBy(Integer modifyBy) {
+	public void setModifyBy(User modifyBy) {
 		this.modifyBy = modifyBy;
 	}
 	public Timestamp getLastAccess() {

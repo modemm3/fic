@@ -1,6 +1,7 @@
 package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
+import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
 import com.mx.fic.inventory.dto.CompanyDTO;
@@ -8,6 +9,7 @@ import com.mx.fic.inventory.dto.MeasureUnitDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.MeasureUnit;
 
+@BuilderConfiguration (dtoClass= MeasureUnitDTO.class, entityClass= MeasureUnit.class)
 public class MeasureUnitBuilder extends AbstractDTOBuilder{
 
 	public BaseDTO createDTO(BaseEntity entity) {
