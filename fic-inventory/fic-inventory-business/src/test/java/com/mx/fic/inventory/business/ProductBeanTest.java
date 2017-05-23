@@ -53,7 +53,7 @@ public class ProductBeanTest {
         System.out.println( "Hello World!" );
         final ProductBean prodBean= new ProductBean();
         final ProductDTO productDTO = new ProductDTO();
-        prodBean.save(productDTO);
+       // prodBean.save(productDTO);
 	}
 
 }
