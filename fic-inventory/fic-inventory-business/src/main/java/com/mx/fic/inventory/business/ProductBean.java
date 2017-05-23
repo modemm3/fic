@@ -1,14 +1,23 @@
 package com.mx.fic.inventory.business;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TransactionRequiredException;
 
+import org.eclipse.persistence.exceptions.TransactionException;
+
+import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
@@ -24,7 +33,7 @@ public class ProductBean{
 	private EntityManager entityManager;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(final ProductDTO productDTO) {
+	public void save(final ProductDTO productDTO) throws PersistenceException {
 		/*
 		 * Agregar la fecha de creacion del producto
 		 * */
@@ -32,7 +41,7 @@ public class ProductBean{
 		final MeasureUnit measureUnit= new MeasureUnit();
 		final Company company= new Company();
 		final Status status= new Status();
-		
+		try{
 		measureUnit.setId(productDTO.getMeasureUnitDTO().getId());
 		measureUnit.setName(productDTO.getMeasureUnitDTO().getName());
 		company.setId(productDTO.getCompanyDTO().getId());
@@ -50,7 +59,18 @@ public class ProductBean{
 		product.setName(productDTO.getName());
 		
 		entityManager.persist(product);
+		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			throw new PersistenceException("Errror al guardar en la tabla de productos");
+		}
+	}
+	
+	public List<ProductDTO> getAllByCompany(final Integer idCompany){
+		List<ProductDTO> productDTOLst = new ArrayList<ProductDTO>();
+		List<Product> productLst= new ArrayList<Product>();
+		ProductDTO productDTO = null;
 		
+		
+		return productDTOLst;
 	}
 
 }
