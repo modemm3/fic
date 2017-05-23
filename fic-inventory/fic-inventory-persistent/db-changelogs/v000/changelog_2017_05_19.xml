@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+	<changeSet author="mode" id="10">
+    	<insert tableName="secret_question">
+    		<column name="question" value="¿Cual es el nombre de tu padre?"></column>
+    	</insert>    	
+    	<insert tableName="secret_question">
+    		<column name="question" value="¿Cual es el nombre de tu mascota?"></column>
+    	</insert>    	
+    	<insert tableName="secret_question">
+    		<column name="question" value="¿Cual es la fecha de tu cumpleaños?"></column>
+    	</insert>    	
+	</changeSet>
+	<changeSet author="mode" id="11">
+    	<insert tableName="user_detail">
+    		<column name="short_name" value="admin"></column>
+    		<column name="name" value="admin"></column>
+    		<column name="last_name" value="admin"></column>
+    		<column name="sur_name" value="admin"></column>
+    		<column name="telephone" value="1234567890"></column>
+    		<column name="address" value="patito"></column>
+    		<column name="curp" value="123456781234567891"></column>
+    		<column name="rfc" value="mexs850820nx4"></column>
+    		<column name="last_access" value="now()"></column>
+    		<column name="email" value="test@test.com"></column>
+    	</insert>    	
+	</changeSet>
+	<changeSet id="mode" author="12">
+		<insert tableName="user">
+			<column name="user_detail_id" value="1"></column>
+			<column name="name" value="admin"></column>
+			<column name="password" value="12345"></column>
+			<column name="active" value="true"></column>
+			<column name="creation_date" value="now()"></column>
+			<column name="password_change_date" value="now()"></column>
+			<column name="password_change_enable" value="false"></column>
+			<column name="question_secret_id" value="1"></column>
+			<column name="response_secret" value="ninguno"></column>
+			<column name="password_change_notification" value="10"></column>
+		</insert>
+	</changeSet>
+	<changeSet id="13" author="mode">
+		<insert tableName="retries">
+			<column name="user_id" value="1"></column>
+			<column name="retry" value="0"></column>
+			<column name="max_retry" value="5"></column>
+			<column name="minutes" value="5"></column>
+			<column name="active" value="true"></column>
+		</insert>
+	</changeSet>
+	<changeSet id="14" author="mode">
+		<dropNotNullConstraint tableName="operational_module" columnName="parent"/>
+		<dropNotNullConstraint tableName="operational_module" columnName="modify_by"/>
+	</changeSet>
+</databaseChangeLog>

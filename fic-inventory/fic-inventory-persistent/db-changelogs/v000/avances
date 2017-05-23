@@ -1,0 +1,23 @@
+inserts en las tablas de modulo operacional
+permisos asignados
+
+
+
+
+create function login(user_name varchar(50),password varchar(50)) RETURNS refcursos AS $$
+declare
+    record_user record;
+    is_connect bool;
+begin
+    for record_user in (select * from "user" where name='admin' and password='12345')
+    begin
+        select coalesce(id,true,false) into is_connect from sesssions where id=record_user.id;
+        if is_connect is true then
+            return select -1,'active session';
+        else
+            select * from 
+        end if;
+
+    end loop;
+    
+end;
