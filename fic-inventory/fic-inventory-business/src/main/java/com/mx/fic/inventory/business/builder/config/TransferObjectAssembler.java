@@ -31,7 +31,7 @@ public final class TransferObjectAssembler {
     /** Class logger. */
     private static final Logger LOG = LoggerFactory.getLogger(TransferObjectAssembler.class);
     /** Package containing all the builders. */
-    private static final String BUILDERS_PACKAGE = "com.tesis.tpv.ejb.builder";
+    private static final String BUILDERS_PACKAGE = "com.mx.fic.inventory.business.builder";
     /** Map containing all the builders implementation. */
     private final Map<Class<?>, AbstractDTOBuilder> loadedBuilders;
     /** Unique instance of the builder. */
