@@ -22,18 +22,29 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	 url:"/dashboard",
 	 views:{
 		 'header':{
-			 templateUrl :'layout/header.html'
+			 templateUrl :'layout/views/header.html'
+//			 controller  :"HeaderController"
 		 },
 		 'sideLeft':{
-			 templateUrl :'layout/sideLeft.html'
+			 templateUrl :'layout/views/sideLeft.html'
 		 },
 		 'content':{
-			 templateUrl :'layout/content.html'
+			 templateUrl :'layout/views/content.html'
 		 },
 		 'footer':{
-			 templateUrl :'layout/footer.html'
+			 templateUrl :'layout/views/footer.html'
 		 }
 		 
 	 }
   });
+  
+//	$translateProvider.useStaticFilesLoader({
+//		prefix : 'assets/locale/',
+//		suffix : '.json'
+//	});
+//	$translateProvider.useLocalStorage();
+//	$translateProvider.useLocalStorage();
+//	$translateProvider.preferredLanguage('es-mx')
+//	$translateProvider.fallbackLanguage([ 'es' ]);
+//	$tmhDynamicLocaleProvider.localeLocationPattern('assets/locale/locale_{{locale}}.js');
 }]);
