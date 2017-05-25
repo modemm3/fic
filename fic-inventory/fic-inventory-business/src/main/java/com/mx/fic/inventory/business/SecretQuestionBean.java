@@ -20,7 +20,7 @@ import com.mx.fic.inventory.persistent.SecretQuestion;
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class SecretQuestionBean {
 	
-	@PersistenceContext(unitName="unit-fic")
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	public List<SecretQuestionDTO> getAll(){

@@ -15,7 +15,7 @@ import com.mx.fic.inventory.persistent.User;
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class UserBean {
 	
-	@PersistenceContext(unitName= "unit-fic")
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	public void save(UserDTO userDTO){

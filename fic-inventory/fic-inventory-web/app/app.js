@@ -19,7 +19,7 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  
   });
   $stateProvider.state('dashboard',{
-	 url:"/dashboard",
+	 url:"/:dashboard",
 	 views:{
 		 'header':{
 			 templateUrl :'layout/views/header.html'
@@ -37,6 +37,14 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 		 
 	 }
   });
+  $stateProvider.state('operations',{
+	  url:"/operations",
+	  views:{
+		  'content':{
+			  templateUrl:'operations/operations.html'
+		  }
+	  }
+  })
   
 //	$translateProvider.useStaticFilesLoader({
 //		prefix : 'assets/locale/',

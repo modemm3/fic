@@ -6,5 +6,5 @@ import com.mx.fic.inventory.dto.ProductDTO;
 
 @Remote
 public interface ProductRemote {
-	void save(final ProductDTO productDTO);
+	void save(final ProductDTO productDTO) throws Exception;
 }

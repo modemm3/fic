@@ -29,7 +29,7 @@ import com.mx.fic.inventory.persistent.Status;
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class ProductBean{
 	//@PersistenceUnit(unitName="unit-fic")
-	@PersistenceContext(unitName="unit-fic")
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

@@ -12,25 +12,23 @@
   <url>http://maven.apache.org</url>
   <packaging>ear</packaging>
       <properties>
-        <maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source>
-        <maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target>
+<!--         <maven.compiler.source>${maven.compiler.source.version}</maven.compiler.source> -->
+<!--         <maven.compiler.target>${maven.compiler.target.version}</maven.compiler.target> -->
     </properties>
   
 <dependencies>
-
-
-		<dependency>
-			<groupId>com.mx.fic.inventory</groupId>
-			<artifactId>fic-inventory-business</artifactId>
-			<version>${project.version}</version>
-			<type>ejb</type>
-		</dependency>
 
 		<dependency>
 			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-services</artifactId>
 			<version>${project.version}</version>
 			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-business</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>com.mx.fic.inventory</groupId>
@@ -77,14 +75,15 @@
 						</ejbModule>
 						<jarModule>
 							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-persistent</artifactId>
+							<bundleFileName>fic-inventory-persistent.jar</bundleFileName>
+						</jarModule>						
+						<jarModule>
+							<groupId>com.mx.fic.inventory</groupId>
 							<artifactId>fic-inventory-services</artifactId>
 							<bundleFileName>fic-inventory-services.jar</bundleFileName>
 						</jarModule>
-						<jarModule>
-							<groupId>com.mx.fic.inventory</groupId>
-							<artifactId>fic-inventory-persistent</artifactId>
-							<bundleFileName>fic-inventory-persistent.jar</bundleFileName>
-						</jarModule>
+
 						<jarModule>
 							<groupId>com.mx.fic.inventory</groupId>
 							<artifactId>fic-inventory-dto</artifactId>
