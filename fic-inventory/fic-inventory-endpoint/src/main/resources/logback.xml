@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <file>/opt/logs/fic-inventory-endpoint.log</file>
+        <append>true</append>
+        <prudent>false</prudent>
+        <encoder>
+            <pattern>%10r  %d %5p [%t] [%X{modulo} %X{id} %X{number}] [%F:%M:%L] - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <fileNamePattern>/opt/logs/zip_logs/fic-inventory-endpoint_%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" >
+        <encoder>
+            <pattern>%10r  %d %5p [%t] [%X{modulo} %X{id} %X{number}] [%F:%M:%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.cm.clarosync" level="DEBUG" />
+    <root level="INFO" >
+        <appender-ref ref="FILE" />
+        <!-- appender-ref ref="STDOUT" / -->
+    </root>
+</configuration>

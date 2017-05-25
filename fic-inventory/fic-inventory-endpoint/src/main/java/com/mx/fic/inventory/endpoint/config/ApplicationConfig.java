@@ -6,18 +6,27 @@
  */
 package com.mx.fic.inventory.endpoint.config;
 
-import org.glassfish.jersey.server.ResourceConfig;
+import java.util.Set;
+
+import javax.ws.rs.core.Application;
 
 import com.mx.fic.inventory.endpoint.filter.CORSResponseFilter;
+import com.mx.fic.inventory.endpoint.ws.ProductWS;
 
 /**
  * */
 @javax.ws.rs.ApplicationPath("/services")
-public class ApplicationConfig extends ResourceConfig {
+public class ApplicationConfig extends Application {
 
-	public ApplicationConfig() {
-		packages("com.mx.fic.inventory.endpoint.ws");
-		register(CORSResponseFilter.class);
+	@Override
+	public Set<Class<?>> getClasses() {
+        final Set<Class<?>> resources = new java.util.HashSet<>();
+        addRestResourceClasses(resources);
+        return resources;
+	}
+	private void addRestResourceClasses(final Set<Class<?>> resources) {
+		resources.add(ProductWS.class);
+		resources.add(CORSResponseFilter.class);
 	}
     
 
