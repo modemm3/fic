@@ -50,7 +50,7 @@ public class ProductBean{
 		status.setName(productDTO.getStatusDTO().getName());
 		
 		product.setCompany(company);
-		product.setMeasureUnit(measureUnit);
+		product.setMeasure(measureUnit);
 		product.setStatus(status);
 		product.setBarcode(productDTO.getBarCode());
 		product.setDescription(productDTO.getDescription());

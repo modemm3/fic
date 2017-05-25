@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="prices")
+@Table(name="prices")
 public class Prices implements BaseEntity{
 	
 	private static final long serialVersionUID = 4694416096868757952L;

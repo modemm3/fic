@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="product")
+@Table(name="product")
 @NamedQueries({
 	@NamedQuery(name="Product.getAllByCompany", query="select p from Product p where p.company.id=:id")
 })
@@ -30,18 +30,18 @@ public class Product implements BaseEntity {
 	private String description;
 	@Column(name="barcode")
 	private String barcode;
-	@JoinColumn(name="measure_unit_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private MeasureUnit measureUnit;
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
+	@JoinColumn(name="measure_unit_id")
+	private MeasureUnit measure;
 	@JoinColumn(name="status_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	private Status status;
 	@Column(name="minimum_stock")
 	private Double minimumStock;
 	@Column(name="maximum_stock")
 	private Double maximumStock;
 	@JoinColumn(name="company_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	private Company company;
 	
 	public Integer getId() {
@@ -68,11 +68,11 @@ public class Product implements BaseEntity {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	public MeasureUnit getMeasureUnit() {
-		return measureUnit;
+	public MeasureUnit getMeasure() {
+		return measure;
 	}
-	public void setMeasureUnit(MeasureUnit measureUnit) {
-		this.measureUnit = measureUnit;
+	public void setMeasure(MeasureUnit measure) {
+		this.measure = measure;
 	}
 	public Double getMinimumStock() {
 		return minimumStock;
@@ -101,7 +101,7 @@ public class Product implements BaseEntity {
 	
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", barcode=" + barcode
-				+ ", measureUnit=" + measureUnit + ", status=" + status + ", minimumStock=" + minimumStock
+				+ ", measureUnit=" + measure + ", status=" + status + ", minimumStock=" + minimumStock
 				+ ", maximumStock=" + maximumStock + ", company=" + company + "]";
 	}
 	
@@ -113,7 +113,7 @@ public class Product implements BaseEntity {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((maximumStock == null) ? 0 : maximumStock.hashCode());
-		result = prime * result + ((measureUnit == null) ? 0 : measureUnit.hashCode());
+		result = prime * result + ((measure == null) ? 0 : measure.hashCode());
 		result = prime * result + ((minimumStock == null) ? 0 : minimumStock.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -153,10 +153,10 @@ public class Product implements BaseEntity {
 				return false;
 		} else if (!maximumStock.equals(other.maximumStock))
 			return false;
-		if (measureUnit == null) {
-			if (other.measureUnit != null)
+		if (measure== null) {
+			if (other.measure != null)
 				return false;
-		} else if (!measureUnit.equals(other.measureUnit))
+		} else if (!measure.equals(other.measure))
 			return false;
 		if (minimumStock == null) {
 			if (other.minimumStock != null)

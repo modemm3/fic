@@ -13,12 +13,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="measure_unit")
+@Table(name="measure_unit")
 @NamedQueries({
 	@NamedQuery(name="MeasureUnit.getAll", query="select m from MeasureUnit m where m.company.id=:id")
 })
 public class MeasureUnit implements BaseEntity {
-
 	private static final long serialVersionUID = -262718285703772247L;
 	
 	@Id

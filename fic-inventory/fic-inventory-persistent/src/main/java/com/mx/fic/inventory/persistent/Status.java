@@ -13,7 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="status")
+@Table(name="status")
 @NamedQueries({
 	@NamedQuery(name="Status.getAllByCompany", query="select s from Status s where s.company.id=:id")
 })

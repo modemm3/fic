@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="company")
+@Table(name="company")
 public class Company implements BaseEntity {
 
 	private static final long serialVersionUID = -6769173865805833755L;
