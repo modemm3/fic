@@ -109,3 +109,9 @@ dist/
 nbdist/
 .nb-gradle
 */target/*
+#ignore npm package
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
