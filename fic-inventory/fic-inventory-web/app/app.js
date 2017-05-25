@@ -4,7 +4,7 @@
 angular.module('FicApp', ['ngRoute','ui.router']).
 config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider','$urlRouterProvider',
 	 function($locationProvider, $routeProvider,$compileProvider,$stateProvider,$urlRouterProvider) {
-  $locationProvider.hashPrefix('!');
+//  $locationProvider.hashPrefix('!');
   $compileProvider.debugInfoEnabled(false);
   $compileProvider.commentDirectivesEnabled(false);
   $compileProvider.cssClassDirectivesEnabled(false);
