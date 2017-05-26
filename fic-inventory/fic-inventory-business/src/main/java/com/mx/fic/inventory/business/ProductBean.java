@@ -69,8 +69,18 @@ public class ProductBean{
 		List<Product> productLst= new ArrayList<Product>();
 		ProductDTO productDTO = null;
 		
+		TypedQuery<Product> queryProduct= entityManager.createNamedQuery("Product.getAllByCompany",Product.class);
+		queryProduct.setParameter("id", idCompany );
+		
+		productLst = queryProduct.getResultList();
+		
+		
 		
 		return productDTOLst;
+	}
+	
+	public List<ProductDTO> deleteProductByCompany(final ProductDTO productDTO){
+		
 	}
 
 }

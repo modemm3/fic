@@ -43,27 +43,62 @@ public class ProductWS {
 				productBean.save(productDTO);
 				message.setCode(200);
 				message.setMessage("exito");
-				response.setMessage(message);
 			}else{
 				status= 400;
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
-				response.setMessage(message);
 			}
 		} catch (PersistenceException e) {
 			status=500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			response.setMessage(message);
 			e.printStackTrace();
 		} catch (Exception e){
 			status= 500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			response.setMessage(message);
 			e.printStackTrace();
 		}
 		
+		response.setMessage(message);
+
 		return Response.status(status).entity(response).build();
+	}
+	
+	@Post
+	@Path("authenticate")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getProduct(@FormParam("ProductDTO") final ProductDTO productDTO){
+		ProductResponse response = new ProductResponse();
+		List<ProductDTO> productDTOLst= null;
+		Message message= new Message();
+		int status= 200;
+		LOGGER.info("Aunthenticate");
+		
+		try{
+			if(productDTO.getCompanyDTO()!= null && productDTO.getCompanyDTO().getId()>0){
+				productDTOLst= productBean.getAllByCompany(productDTO.getCompanyDTO().getId());
+				message.setCode(200);
+				message.setMessage("exito");
+			}else{
+				status= 400;
+				message.setCode(400);
+				message.setMessage("error => Es requerido el id de la compañía");
+			}
+		}catch(PersistenceException e){
+			status = 500;
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+			e.printStrackTrace();
+		}catch (Exception e){
+			status= 500;
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+			e.printStackTrace();
+		}
+		
+		response.setMessage(message);
+		return Response.status(status).entity(response.build());
 	}
 }

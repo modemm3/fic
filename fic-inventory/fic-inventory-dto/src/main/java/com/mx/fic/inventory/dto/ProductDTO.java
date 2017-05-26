@@ -13,6 +13,7 @@ public class ProductDTO implements BaseDTO {
 	private Double minimunStock;
 	private Double maximumStock;
 	private CompanyDTO companyDTO;
+	private PaginationDTO paginationDTO;		
 	
 	public Integer getId() {
 		return id;
@@ -67,6 +68,14 @@ public class ProductDTO implements BaseDTO {
 	}
 	public void setCompanyDTO(CompanyDTO companyDTO) {
 		this.companyDTO = companyDTO;
+	}
+	
+	public PaginarionDTO getPaginationDTO() {
+		return paginationDTO;
+	}
+	
+	public void setPaginationDTO(PaginarionDTO paginationDTO) {
+		this.paginationDTO = paginationDTO;
 	}
 	
 	public String toString() {
