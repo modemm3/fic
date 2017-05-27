@@ -1,6 +1,5 @@
 package com.mx.fic.inventory.endpoint.ws;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -12,36 +11,40 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.MeasureUnitBean;
+import com.mx.fic.inventory.business.TimeUnitBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.MeasureUnitDTO;
-import com.mx.fic.inventory.endpoint.response.MeasureUnitResponse;
+import com.mx.fic.inventory.dto.TimeUnitDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
+import com.mx.fic.inventory.endpoint.response.TimeUnitResponse;
 
-@Path("/measureUnit")
-public class MeasureUnitWS {
-	@EJB(mappedName="MeasureUnitBean")
-	private MeasureUnitBean measureUnitBean;
-	private static final Logger logger = LoggerFactory.getLogger(MeasureUnitWS.class);
+@Path("/timeUnit")
+public class TimeUnitWS {
+	
+	@EJB(mappedName="TimeUnitBean")
+	TimeUnitBean timeUnitBean;
+	
+	private static final Logger logger = LoggerFactory.getLogger(TimeUnitWS.class);
 
 	@POST
-	@Path("saveMeasureUnit")
+	@Path("saveTimeUnit")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveMeasureUnit(MeasureUnitDTO measureUnitDTO){
-		MeasureUnitResponse response = new MeasureUnitResponse();
+	public Response saveTimeUnit(final TimeUnitDTO timeUnitDTO) throws PersistenceException{
+		TimeUnitResponse response = new TimeUnitResponse();
 		Message message = new Message();
-		logger.info("saveMeasureUnit");
 		
+		logger.info("saveTimeUnit");
+
 		try{
-			if((measureUnitDTO!=null && measureUnitDTO.getName()!=null) &&
-					(measureUnitDTO.getCompanyDTO()!=null && measureUnitDTO.getCompanyDTO().getId()!=null)){
-				measureUnitBean.save(measureUnitDTO);
+			if((timeUnitDTO!= null && timeUnitDTO.getName()!=null) &&
+					(timeUnitDTO.getCompanyDTO()!=null
+					&& timeUnitDTO.getCompanyDTO().getId()!=null)){
+				timeUnitBean.save(timeUnitDTO);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
 				message.setCode(400);
-				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
+				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");			
 			}
 		} catch (PersistenceException e) {
 			message.setCode(500);
@@ -50,31 +53,31 @@ public class MeasureUnitWS {
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 		}
+		
 		response.setMessage(message);
 		
-		return Response.status(message.getCode()).entity(response).build();
+		return Response.status(message.getCode()).entity(response).build();				
 	}
 	
 	@POST
-	@Path("getMeasureUnitByCompany/{companyId}")
+	@Path("getTimeUnitByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@SuppressWarnings("unused")	
-	public Response getMeasureUnitByCompany(@PathParam("companyId") Integer companyId){
-		MeasureUnitResponse response = new MeasureUnitResponse();
-		List<MeasureUnitDTO> measureUnitDTOLst = null;
+	public Response getTimeUnitByCompany(@PathParam("companyId") Integer companyId){
+		TimeUnitResponse response = new TimeUnitResponse();
+		List<TimeUnitDTO> timeUnitDTOLst = null;
 		Message message = new Message();
 		
 		try{
 			if(companyId!=null){
-				measureUnitDTOLst = new ArrayList<MeasureUnitDTO>();
-				measureUnitDTOLst = measureUnitBean.getAllByCompany(companyId);
+				timeUnitDTOLst = timeUnitBean.getAllByCompany(companyId);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
 				message.setCode(400);
-				message.setMessage("error => Es requerido el id de la compañía");
-			}	
+				message.setMessage("error => Es requerido el id de la compañía");			
+			}
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
@@ -84,9 +87,6 @@ public class MeasureUnitWS {
 		}
 		response.setMessage(message);
 		
-		return Response.status(message.getCode()).entity(response).build();
-		
+		return Response.status(message.getCode()).entity(response).build();	
 	}
-	
-
 }

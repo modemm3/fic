@@ -4,4 +4,4 @@
 
 'use strict';
 
-angular.module('app', ['ngResource','app.routes', 'app.controller']);
+angular.module('app', ['ngResource','app.routes', 'app.controller','app.services']);
