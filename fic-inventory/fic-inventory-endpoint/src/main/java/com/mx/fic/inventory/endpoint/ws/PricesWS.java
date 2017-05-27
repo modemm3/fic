@@ -1,16 +1,17 @@
 package com.mx.fic.inventory.endpoint.ws;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mx.fic.inventory.business.PricesBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.PricesDTO;
@@ -56,6 +57,40 @@ public class PricesWS {
 		response.setMessage(message);
 		
 		return Response.status(message.getCode()).entity(response).build();
+	}
+	
+	@POST
+	@Path("getPricesByCompany/{companyId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@SuppressWarnings("unused")	
+	public Response getPricesByCompany(@PathParam("companyId") Integer companyId){
+		PricesResponse response = new PricesResponse();
+		List<PricesDTO> pricesDTOLst = null;
+		Message message = new Message();
+		
+		try{
+		if(companyId!=null){
+			pricesDTOLst = new ArrayList<PricesDTO>();
+			pricesDTOLst= pricesBean.getAllByCompany(companyId);
+			message.setCode(200);
+			message.setMessage("exito");
+			
+		}else{
+			message.setCode(400);
+			message.setMessage("error => Es requerido el id de la compañía");
+		}
+		}catch(PersistenceException e){
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+		}catch (Exception e){
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+		}
+		response.setMessage(message);
+		
+		return Response.status(message.getCode()).entity(response).build();
+		
 	}
 	
 	

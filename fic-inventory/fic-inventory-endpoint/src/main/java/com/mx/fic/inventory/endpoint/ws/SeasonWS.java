@@ -3,9 +3,9 @@ package com.mx.fic.inventory.endpoint.ws;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -55,12 +55,12 @@ public class SeasonWS {
 		return Response.status(message.getCode()).entity(response).build();
 	}
 
-	@SuppressWarnings("unused")
 	@POST
-	@Path("getSeasonByCompany")
+	@Path("getSeasonByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getseasonByCompany(@FormParam("companyId") Integer companyId){
+	@SuppressWarnings("unused")	
+	public Response getseasonByCompany(@PathParam("companyId") Integer companyId){
 		SeasonResponse response = new SeasonResponse();
 		Message message = new Message();
 		List<SeasonDTO> seasonDTOLst= null;

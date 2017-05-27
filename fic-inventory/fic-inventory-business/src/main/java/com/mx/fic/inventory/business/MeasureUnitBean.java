@@ -34,7 +34,7 @@ public class MeasureUnitBean {
 		final MeasureUnit measureUnit = new MeasureUnit();
 		final Company company = new Company();
 		try{
-			company.setId(measureUnit.getCompany().getId());
+			company.setId(measureUnitDTO.getCompanyDTO().getId());
 			measureUnit.setName(measureUnitDTO.getName());
 			measureUnit.setDescription(measureUnitDTO.getDescription());
 			measureUnit.setCompany(company);
