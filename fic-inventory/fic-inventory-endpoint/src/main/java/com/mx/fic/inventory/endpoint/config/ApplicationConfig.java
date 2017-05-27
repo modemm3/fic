@@ -16,6 +16,7 @@ import com.mx.fic.inventory.endpoint.ws.PricesWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
 import com.mx.fic.inventory.endpoint.ws.SeasonWS;
 import com.mx.fic.inventory.endpoint.ws.StatusWS;
+import com.mx.fic.inventory.endpoint.ws.TimeUnitWS;
 import com.mx.fic.inventory.endpoint.ws.TypePriceWS;
 
 /**
@@ -36,6 +37,7 @@ public class ApplicationConfig extends Application {
 		resources.add(SeasonWS.class);
 		resources.add(StatusWS.class);
 		resources.add(TypePriceWS.class);
+		resources.add(TimeUnitWS.class);
 		resources.add(CORSResponseFilter.class);
 		
 	}

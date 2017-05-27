@@ -59,7 +59,6 @@ public class SeasonWS {
 	@Path("getSeasonByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")	
 	public Response getseasonByCompany(@PathParam("companyId") Integer companyId){
 		SeasonResponse response = new SeasonResponse();
 		Message message = new Message();
@@ -68,6 +67,7 @@ public class SeasonWS {
 		try{
 			if(companyId!=null){
 				seasonDTOLst= seasonBean.getAllByCompany(companyId);
+				response.setSeasonDTOLst(seasonDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{

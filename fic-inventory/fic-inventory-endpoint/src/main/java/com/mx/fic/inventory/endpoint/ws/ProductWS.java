@@ -70,7 +70,6 @@ public class ProductWS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProductByCompany(@PathParam("companyId") Integer companyId){
 		ProductResponse response = new ProductResponse();
-		@SuppressWarnings("unused")
 		List<ProductDTO> productDTOLst= null;
 		Message message= new Message();
 		logger.info("getProductByCompany");
@@ -79,6 +78,7 @@ public class ProductWS {
 			if(companyId!= null){
 				productDTOLst = new ArrayList<ProductDTO>();
 				productDTOLst= productBean.getAllByCompany(companyId);
+				response.setProductDTOLst(productDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{

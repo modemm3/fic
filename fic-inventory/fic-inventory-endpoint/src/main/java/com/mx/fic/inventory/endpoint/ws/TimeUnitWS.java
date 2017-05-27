@@ -63,7 +63,6 @@ public class TimeUnitWS {
 	@Path("getTimeUnitByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")	
 	public Response getTimeUnitByCompany(@PathParam("companyId") Integer companyId){
 		TimeUnitResponse response = new TimeUnitResponse();
 		List<TimeUnitDTO> timeUnitDTOLst = null;
@@ -72,6 +71,7 @@ public class TimeUnitWS {
 		try{
 			if(companyId!=null){
 				timeUnitDTOLst = timeUnitBean.getAllByCompany(companyId);
+				response.setTimeUnitDTOLst(timeUnitDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
