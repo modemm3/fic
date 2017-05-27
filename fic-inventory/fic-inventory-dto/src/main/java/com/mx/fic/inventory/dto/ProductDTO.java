@@ -70,14 +70,12 @@ public class ProductDTO implements BaseDTO {
 		this.companyDTO = companyDTO;
 	}
 	
-	public PaginarionDTO getPaginationDTO() {
+	public PaginationDTO getPaginationDTO() {
 		return paginationDTO;
 	}
-	
-	public void setPaginationDTO(PaginarionDTO paginationDTO) {
+	public void setPaginationDTO(PaginationDTO paginationDTO) {
 		this.paginationDTO = paginationDTO;
 	}
-	
 	public String toString() {
 		return "ProductDTO [id=" + id + ", name=" + name + ", description=" + description + ", barCode=" + barCode
 				+ ", measureUnitDTO=" + measureUnitDTO + ", statusDTO=" + statusDTO + ", minimunStock=" + minimunStock
