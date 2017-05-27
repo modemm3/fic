@@ -61,10 +61,10 @@ public class TypePriceWS {
 	
 	@SuppressWarnings("unused")
 	@POST
-	@Path("getStatusByCompany")
+	@Path("getTypePriceByCompany")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getStatusByCompany(@FormParam("companyId") final Integer companyId){
+	public Response getTypePriceByCompany(@FormParam("companyId") final Integer companyId){
 		TypePriceResponse response = new TypePriceResponse();
 		List<TypePriceDTO> typePriceDTOLst= null;
 		Message message = new Message();
