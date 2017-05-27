@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import com.mx.fic.inventory.endpoint.filter.CORSResponseFilter;
+import com.mx.fic.inventory.endpoint.ws.LoginWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
 
 /**
@@ -27,6 +28,7 @@ public class ApplicationConfig extends Application {
 	private void addRestResourceClasses(final Set<Class<?>> resources) {
 		resources.add(ProductWS.class);
 		resources.add(CORSResponseFilter.class);
+		resources.add(LoginWS.class);
 	}
     
 

@@ -1,0 +1,65 @@
+<div class="container">
+	<div class="panel panel-primary">
+	<div class="panel-heading">Registro de Inventario
+
+	</div>
+		<div class="panel-body">
+			<form class="form">
+				<div class="form-group">
+					<label class="col-lg-1">Nombre</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  placeholder="Nombre del producto"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Descripcion</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  placeholder="Descripcion del producto"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Medida</label>
+					<div class="btn-group col-lg-5">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Unidad de medida
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li ng-repeat="unity in measureUnity"><a href="">{{unity}}</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Cantidad M&iacutenima</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control btn btn-default"  placeholder="Cantidad"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Cantidad m&aacutexima</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control"  placeholder="Cantidad"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Cantidad</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  placeholder="Cantidad a Registrar"></input>
+					</div>
+				</div>				
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="col-lg-2">Cantidad a Registrar</label> -->
+<!-- 					<div class="col-lg-3"> -->
+<!-- 						<input type="text" class="form-control"  placeholder="Cantidad"></input> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+			</form>
+		</div>
+		<div class="panel-footer">
+		  	<div class="btn-group">
+			    <button type="button" class="btn btn-default ">
+			      <span class="glyphicon glyphicon-floppy-save"></span>
+			    </button>
+		    </div>
+    	</div>		
+	</div>
+</div>
