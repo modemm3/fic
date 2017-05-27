@@ -2,6 +2,7 @@ package com.mx.fic.inventory.endpoint.ws;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -10,92 +11,85 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.ProductBean;
-import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.ProductDTO;
-import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.ProductResponse;
 
-@Path("/product")
-public class ProductWS {
-	@EJB(mappedName="ProductBean") 
-	private ProductBean productBean;
-	private static final Logger logger = LoggerFactory.getLogger(ProductWS.class);
+import com.mx.fic.inventory.business.MeasureUnitBean;
+import com.mx.fic.inventory.business.exception.PersistenceException;
+import com.mx.fic.inventory.dto.MeasureUnitDTO;
+import com.mx.fic.inventory.endpoint.response.MeasureUnitResponse;
+import com.mx.fic.inventory.endpoint.response.Message;
+
+@Path("/measureUnit")
+public class MeasureUnitWS {
+	@EJB(mappedName="MeasureUnitBean")
+	private MeasureUnitBean measureUnitBean;
+	private static final Logger logger = LoggerFactory.getLogger(MeasureUnitWS.class);
 
 	@POST
-	@Path("saveProduct")
+	@Path("saveMeasureUnit")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveProduct(ProductDTO productDTO){
-		ProductResponse response = new ProductResponse();
+	public Response saveMeasureUnit(MeasureUnitDTO measureUnitDTO){
+		MeasureUnitResponse response = new MeasureUnitResponse();
 		Message message = new Message();
-		int status=200;
-		logger.info("saveProduct");
+		logger.info("saveMeasureUnit");
 		
-		try {
-			if((productDTO.getName()!=null && !productDTO.getName().equals("")) &&
-					(productDTO.getMeasureUnitDTO()!= null && productDTO.getMeasureUnitDTO().getId()!=null)
-					&& (productDTO.getCompanyDTO()!=null && productDTO.getCompanyDTO().getId()!=null)
-					&& productDTO.getStatusDTO()!= null && productDTO.getStatusDTO().getId()!=null){
-				productBean.save(productDTO);
+		try{
+			if((measureUnitDTO!=null && measureUnitDTO.getName()!=null) &&
+					(measureUnitDTO.getCompanyDTO()!=null && measureUnitDTO.getCompanyDTO().getId()!=null)){
+				measureUnitBean.save(measureUnitDTO);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
-				status= 400;
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
 			}
 		} catch (PersistenceException e) {
-			status=500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
 		} catch (Exception e){
-			status= 500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
 		}
-		
 		response.setMessage(message);
-
-		return Response.status(status).entity(response).build();
+		
+		return Response.status(message.getCode()).entity(response).build();
 	}
 	
+	@SuppressWarnings("unused")
 	@POST
-	@Path("getProductByCompany")
+	@Path("getMeasureUnitByCompany")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProductByCompany(@FormParam("companyId") Integer companyId){
-		ProductResponse response = new ProductResponse();
-		@SuppressWarnings("unused")
-		List<ProductDTO> productDTOLst= null;
-		Message message= new Message();
-		logger.info("getProductByCompany");
+	public Response getMeasureUnitByCompany(@FormParam("companyId") Integer companyId){
+		MeasureUnitResponse response = new MeasureUnitResponse();
+		List<MeasureUnitDTO> measureUnitDTOLst = null;
+		Message message = new Message();
 		
 		try{
-			if(companyId!= null){
-				productDTOLst = new ArrayList<ProductDTO>();
-				productDTOLst= productBean.getAllByCompany(companyId);
+			if(companyId!=null){
+				measureUnitDTOLst = new ArrayList<MeasureUnitDTO>();
+				measureUnitDTOLst = measureUnitBean.getAllByCompany(companyId);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
 				message.setCode(400);
 				message.setMessage("error => Es requerido el id de la compañía");
-			}
+			}	
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
 		}catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
 		}
-		
 		response.setMessage(message);
+		
 		return Response.status(message.getCode()).entity(response).build();
+		
 	}
+	
+
 }

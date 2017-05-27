@@ -16,7 +16,7 @@ public class ProductBuilder extends AbstractDTOBuilder{
 
 	public BaseDTO createDTO(BaseEntity entity) {
 		final ProductDTO productDTO = new ProductDTO();
-		final Product product = new Product();
+		final Product product = (Product)entity;
 		
 		productDTO.setBarCode(product.getBarcode());
 		if(product.getCompany()!=null){

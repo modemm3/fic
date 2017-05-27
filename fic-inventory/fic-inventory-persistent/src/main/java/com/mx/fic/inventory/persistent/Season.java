@@ -1,7 +1,6 @@
 package com.mx.fic.inventory.persistent;
 
 import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,9 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table (name="season")
+@NamedQueries({
+	@NamedQuery(name="Season.getAllByCompany", query="select s from Season s where s.company.id=:id")
+})
 public class Season implements BaseEntity{
 
 	private static final long serialVersionUID = 3815829139308539664L;

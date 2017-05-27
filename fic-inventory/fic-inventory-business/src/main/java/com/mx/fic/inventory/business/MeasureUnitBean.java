@@ -5,14 +5,20 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
+import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MeasureUnitDTO;
+import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
 
 @Local
@@ -23,7 +29,23 @@ public class MeasureUnitBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public List<MeasureUnitDTO> getAllByCompany(final Integer idCompany){
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void save(final MeasureUnitDTO measureUnitDTO) throws PersistenceException{
+		final MeasureUnit measureUnit = new MeasureUnit();
+		final Company company = new Company();
+		try{
+			company.setId(measureUnit.getCompany().getId());
+			measureUnit.setName(measureUnitDTO.getName());
+			measureUnit.setDescription(measureUnitDTO.getDescription());
+			measureUnit.setCompany(company);
+			
+			entityManager.persist(measureUnit);
+		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			throw new PersistenceException("Errror al guardar las unidades de medida");
+		}
+	}
+	
+	public List<MeasureUnitDTO> getAllByCompany(final Integer idCompany) throws PersistenceException{
 		List<MeasureUnitDTO> measureUnitDTOLst= null;
 		MeasureUnitDTO measureUnitDTO= null;
 		List<MeasureUnit> measureUnitLst= new ArrayList<MeasureUnit>();

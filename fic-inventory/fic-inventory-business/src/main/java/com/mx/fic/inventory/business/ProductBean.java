@@ -40,23 +40,23 @@ public class ProductBean{
 		final Company company= new Company();
 		final Status status= new Status();
 		try{
-		measureUnit.setId(productDTO.getMeasureUnitDTO().getId());
-		measureUnit.setName(productDTO.getMeasureUnitDTO().getName());
-		company.setId(productDTO.getCompanyDTO().getId());
-		company.setName(productDTO.getCompanyDTO().getName());
-		status.setId(productDTO.getStatusDTO().getId());
-		status.setName(productDTO.getStatusDTO().getName());
-		
-		product.setCompany(company);
-		product.setMeasure(measureUnit);
-		product.setStatus(status);
-		product.setBarcode(productDTO.getBarCode());
-		product.setDescription(productDTO.getDescription());
-		product.setMaximumStock(productDTO.getMaximumStock());
-		product.setMinimumStock(productDTO.getMinimunStock());
-		product.setName(productDTO.getName());
-		
-		entityManager.persist(product);
+			measureUnit.setId(productDTO.getMeasureUnitDTO().getId());
+			measureUnit.setName(productDTO.getMeasureUnitDTO().getName());
+			company.setId(productDTO.getCompanyDTO().getId());
+			company.setName(productDTO.getCompanyDTO().getName());
+			status.setId(productDTO.getStatusDTO().getId());
+			status.setName(productDTO.getStatusDTO().getName());
+			
+			product.setCompany(company);
+			product.setMeasure(measureUnit);
+			product.setStatus(status);
+			product.setBarcode(productDTO.getBarCode());
+			product.setDescription(productDTO.getDescription());
+			product.setMaximumStock(productDTO.getMaximumStock());
+			product.setMinimumStock(productDTO.getMinimunStock());
+			product.setName(productDTO.getName());
+			
+			entityManager.persist(product);
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
 			throw new PersistenceException("Errror al guardar en la tabla de productos");
 		}

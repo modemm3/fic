@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
+import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.StatusDTO;
+import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 
 @Local
@@ -21,7 +27,25 @@ public class StatusBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public List<StatusDTO> getAllByCompany(final Integer idCompany){		
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void save(final StatusDTO statusDTO) throws PersistenceException{
+		final Status status = new Status();
+		final Company company= new Company();
+		
+		try{
+			company.setId(statusDTO.getId());
+			status.setCompany(company);
+			status.setDescription(statusDTO.getDescription());;
+			status.setName(statusDTO.getName());
+			
+			entityManager.persist(status);
+			
+		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			throw new PersistenceException("Erro al guardar los estatus");
+		}
+	}
+	
+	public List<StatusDTO> getAllByCompany(final Integer idCompany) throws PersistenceException{		
 		List<StatusDTO> statusDTOLst=null;
 		StatusDTO statusDTO= null;
 		List<Status> statusLst= new ArrayList<Status>();
