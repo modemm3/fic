@@ -1,5 +1,8 @@
 package com.mx.fic.inventory.endpoint.ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -65,12 +68,13 @@ public class ProductWS {
 		return Response.status(status).entity(response).build();
 	}
 	
-	@Post
+	@POST
 	@Path("authenticate")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProduct(@FormParam("ProductDTO") final ProductDTO productDTO){
 		ProductResponse response = new ProductResponse();
+		@SuppressWarnings("unused")
 		List<ProductDTO> productDTOLst= null;
 		Message message= new Message();
 		int status= 200;
@@ -78,6 +82,7 @@ public class ProductWS {
 		
 		try{
 			if(productDTO.getCompanyDTO()!= null && productDTO.getCompanyDTO().getId()>0){
+				productDTOLst = new ArrayList<ProductDTO>();
 				productDTOLst= productBean.getAllByCompany(productDTO.getCompanyDTO().getId());
 				message.setCode(200);
 				message.setMessage("exito");
@@ -90,7 +95,7 @@ public class ProductWS {
 			status = 500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStrackTrace();
+			e.printStackTrace();
 		}catch (Exception e){
 			status= 500;
 			message.setCode(500);
@@ -99,6 +104,6 @@ public class ProductWS {
 		}
 		
 		response.setMessage(message);
-		return Response.status(status).entity(response.build());
+		return Response.status(status).entity(response).build();
 	}
 }

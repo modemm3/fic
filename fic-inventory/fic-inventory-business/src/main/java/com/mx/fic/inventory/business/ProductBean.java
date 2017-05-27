@@ -14,9 +14,11 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
+import javax.persistence.TypedQuery;
 
 import org.eclipse.persistence.exceptions.TransactionException;
 
+import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.persistent.Company;
@@ -64,7 +66,7 @@ public class ProductBean{
 		}
 	}
 	
-	public List<ProductDTO> getAllByCompany(final Integer idCompany){
+	public List<ProductDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
 		List<ProductDTO> productDTOLst = new ArrayList<ProductDTO>();
 		List<Product> productLst= new ArrayList<Product>();
 		ProductDTO productDTO = null;
@@ -74,13 +76,20 @@ public class ProductBean{
 		
 		productLst = queryProduct.getResultList();
 		
+		if(productLst!= null && productLst.size()>0){
+			productDTOLst = new ArrayList<ProductDTO>();
+			for(Product p: productLst){
+				productDTO=TransferObjectAssembler.getInstance().assembleTO(productDTO.getClass(), p);
+				productDTOLst.add(productDTO);
+			}
+		}
 		
 		
 		return productDTOLst;
 	}
 	
-	public List<ProductDTO> deleteProductByCompany(final ProductDTO productDTO){
+	/*public List<ProductDTO> deleteProductByCompany(final ProductDTO productDTO){
 		
-	}
+	}*/
 
 }
