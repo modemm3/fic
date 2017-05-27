@@ -2,20 +2,15 @@ package com.mx.fic.inventory.endpoint.ws;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mx.fic.inventory.business.ProductBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProductDTO;
@@ -29,10 +24,10 @@ public class ProductWS {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductWS.class);
 
 	@POST
-	@Path("authenticate")
+	@Path("saveProduct")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveProduct(@FormParam("productDTO") final ProductDTO productDTO){
+	public Response saveProduct(ProductDTO productDTO){
 		ProductResponse response = new ProductResponse();
 		Message message = new Message();
 		int status=200;
@@ -69,10 +64,10 @@ public class ProductWS {
 	}
 	
 	@POST
-	@Path("authenticate")
+	@Path("getProduct")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getProduct(@FormParam("ProductDTO") final ProductDTO productDTO){
+	public Response getProduct(ProductDTO productDTO){
 		ProductResponse response = new ProductResponse();
 		@SuppressWarnings("unused")
 		List<ProductDTO> productDTOLst= null;

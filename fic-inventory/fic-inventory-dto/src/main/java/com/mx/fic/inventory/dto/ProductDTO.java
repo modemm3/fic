@@ -13,8 +13,11 @@ public class ProductDTO implements BaseDTO {
 	private Double minimunStock;
 	private Double maximumStock;
 	private CompanyDTO companyDTO;
-	private PaginationDTO paginationDTO;		
+	private PaginationDTO paginationDTO;	
 	
+	public ProductDTO() {
+		super();
+	}
 	public Integer getId() {
 		return id;
 	}
