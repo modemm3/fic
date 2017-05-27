@@ -11,7 +11,12 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import com.mx.fic.inventory.endpoint.filter.CORSResponseFilter;
+import com.mx.fic.inventory.endpoint.ws.MeasureUnitWS;
+import com.mx.fic.inventory.endpoint.ws.PricesWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
+import com.mx.fic.inventory.endpoint.ws.SeasonWS;
+import com.mx.fic.inventory.endpoint.ws.StatusWS;
+import com.mx.fic.inventory.endpoint.ws.TypePriceWS;
 
 /**
  * */
@@ -26,7 +31,13 @@ public class ApplicationConfig extends Application {
 	}
 	private void addRestResourceClasses(final Set<Class<?>> resources) {
 		resources.add(ProductWS.class);
+		resources.add(MeasureUnitWS.class);
+		resources.add(PricesWS.class);
+		resources.add(SeasonWS.class);
+		resources.add(StatusWS.class);
+		resources.add(TypePriceWS.class);
 		resources.add(CORSResponseFilter.class);
+		
 	}
     
 
