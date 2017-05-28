@@ -37,8 +37,7 @@ public class TypePriceWS {
 		
 		try{
 			if((typePriceDTO!=null && typePriceDTO.getName()!=null) && 
-					(typePriceDTO.getStatusDTO()!=null && typePriceDTO.getStatusDTO().getId()!=null)
-					&& (typePriceDTO.getCompanyDTO()!=null && typePriceDTO.getCompanyDTO().getId()!=null)){
+					(typePriceDTO.getId()!=null && typePriceDTO.getId()!=null)){
 				typePriceBean.save(typePriceDTO);
 				message.setCode(200);
 				message.setMessage("exito");

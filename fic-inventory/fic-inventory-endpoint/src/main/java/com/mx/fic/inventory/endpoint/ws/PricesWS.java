@@ -36,9 +36,8 @@ public class PricesWS {
 		logger.info("savePrice");
 		
 		try{
-			if((pricesDTO.getPrice()!=null && pricesDTO.getCompanyDTO()!=null) && 
-					(pricesDTO.getProductDTO()!=null && pricesDTO.getSeasonDTO()!=null)
-					&& (pricesDTO.getStatusDTO()!=null && pricesDTO.getTypePriceDTO()!=null)){
+			if((pricesDTO.getPrice()!=null && pricesDTO.getCompanyId()!=null) && (pricesDTO.getProductId()!=null && pricesDTO.getSeasonId()!=null)
+					&& (pricesDTO.getStatusId()!=null && pricesDTO.getTypePriceId()!=null)){
 				pricesBean.save(pricesDTO);
 				message.setCode(200);
 				message.setMessage("exito");				
