@@ -36,9 +36,8 @@ public class ProductWS {
 		
 		try {
 			if((productDTO.getName()!=null && !productDTO.getName().equals("")) &&
-					(productDTO.getMeasureUnitDTO()!= null && productDTO.getMeasureUnitDTO().getId()!=null)
-					&& (productDTO.getCompanyDTO()!=null && productDTO.getCompanyDTO().getId()!=null)
-					&& productDTO.getStatusDTO()!= null && productDTO.getStatusDTO().getId()!=null){
+					(productDTO.getId()!=null && productDTO.getId()!=null)
+					&& productDTO.getId()!=null){
 				productBean.save(productDTO);
 				message.setCode(200);
 				message.setMessage("exito");

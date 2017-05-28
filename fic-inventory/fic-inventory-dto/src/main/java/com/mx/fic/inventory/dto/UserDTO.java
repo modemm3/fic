@@ -107,14 +107,39 @@ public class UserDTO implements BaseDTO{
 	}
 	
 	public String toString() {
-		return "UserDTO [id=" + id + ", userDetail=" + userDetail + ", name=" + name + ", password=" + password
-				+ ", active=" + active + ", creationDate=" + creationDate + ", modificationDate=" + modificationDate
-				+ ", modifyBy=" + modifyBy + ", lastAccess=" + lastAccess + ", passwordChangeDate=" + passwordChangeDate
-				+ ", passwordChangeEnable=" + passwordChangeEnable + ", secretQuestionDTO=" + secretQuestionDTO
-				+ ", responseSecret=" + responseSecret + ", passwordChangeNotification=" + passwordChangeNotification
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDTO [id=");
+		builder.append(id);
+		builder.append(", userDetail=");
+		builder.append(userDetail);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", password=");
+		builder.append(password);
+		builder.append(", active=");
+		builder.append(active);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", modificationDate=");
+		builder.append(modificationDate);
+		builder.append(", modifyBy=");
+		builder.append(modifyBy);
+		builder.append(", lastAccess=");
+		builder.append(lastAccess);
+		builder.append(", passwordChangeDate=");
+		builder.append(passwordChangeDate);
+		builder.append(", passwordChangeEnable=");
+		builder.append(passwordChangeEnable);
+		builder.append(", secretQuestionDTO=");
+		builder.append(secretQuestionDTO);
+		builder.append(", responseSecret=");
+		builder.append(responseSecret);
+		builder.append(", passwordChangeNotification=");
+		builder.append(passwordChangeNotification);
+		builder.append("]");
+		return builder.toString();
 	}
-
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

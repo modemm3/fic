@@ -38,7 +38,7 @@ public class ValuationTypeWS {
 		
 		try{
 		if(valuationTypeDTO!=null &&(valuationTypeDTO.getName()!=null && valuationTypeDTO.getKeyValuation()!=null)
-				&& valuationTypeDTO.getCompanyDTO()!=null){
+				&& valuationTypeDTO.getCompanyId()!=null){
 			valuationTypeBean.save(valuationTypeDTO);
 			message.setCode(200);
 			message.setMessage("exitos");

@@ -7,8 +7,8 @@ public class TypePriceDTO implements BaseDTO{
 	private Integer id;
 	private String name;
 	private String description;
-	private StatusDTO statusDTO;
-	private CompanyDTO companyDTO;
+	private Integer statusId;
+	private Integer companyId;
 	
 	public Integer getId() {
 		return id;
@@ -28,32 +28,27 @@ public class TypePriceDTO implements BaseDTO{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public StatusDTO getStatusDTO() {
-		return statusDTO;
+	public Integer getStatusId() {
+		return statusId;
 	}
-	public void setStatusDTO(StatusDTO statusDTO) {
-		this.statusDTO = statusDTO;
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
-	public CompanyDTO getCompanyDTO() {
-		return companyDTO;
+	public Integer getCompanyId() {
+		return companyId;
 	}
-	public void setCompanyDTO(CompanyDTO companyDTO) {
-		this.companyDTO = companyDTO;
-	}
-
-	public String toString() {
-		return "TypePriceDTO [id=" + id + ", name=" + name + ", description=" + description + ", statusDTO=" + statusDTO
-				+ ", companyDTO=" + companyDTO + "]";
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
 	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((companyDTO == null) ? 0 : companyDTO.hashCode());
+		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((statusDTO == null) ? 0 : statusDTO.hashCode());
+		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		return result;
 	}
 	
@@ -65,10 +60,10 @@ public class TypePriceDTO implements BaseDTO{
 		if (getClass() != obj.getClass())
 			return false;
 		TypePriceDTO other = (TypePriceDTO) obj;
-		if (companyDTO == null) {
-			if (other.companyDTO != null)
+		if (companyId == null) {
+			if (other.companyId != null)
 				return false;
-		} else if (!companyDTO.equals(other.companyDTO))
+		} else if (!companyId.equals(other.companyId))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -85,12 +80,28 @@ public class TypePriceDTO implements BaseDTO{
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (statusDTO == null) {
-			if (other.statusDTO != null)
+		if (statusId == null) {
+			if (other.statusId != null)
 				return false;
-		} else if (!statusDTO.equals(other.statusDTO))
+		} else if (!statusId.equals(other.statusId))
 			return false;
 		return true;
 	}
 	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TypePriceDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

@@ -2,9 +2,7 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
 import com.mx.fic.inventory.dto.ValuationTypeDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.ValuationType;
@@ -22,7 +20,8 @@ public class ValuationTypeBuilder extends AbstractDTOBuilder{
 		valuationTypeDTO.setName(valuationType.getName());
 		
 		if(valuationType.getCompany()!=null){
-			valuationTypeDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, valuationType.getCompany()));
+			valuationTypeDTO.setCompanyId(valuationType.getCompany().getId());
+			//valuationTypeDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, valuationType.getCompany()));
 		}
 		
 		return valuationTypeDTO;

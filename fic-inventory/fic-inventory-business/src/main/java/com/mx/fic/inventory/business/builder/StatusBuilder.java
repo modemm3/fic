@@ -2,9 +2,7 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
 import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.Status;
@@ -19,9 +17,12 @@ public class StatusBuilder extends AbstractDTOBuilder {
 		statusDTO.setId(status.getId());
 		statusDTO.setName(status.getName());
 		statusDTO.setDescription(status.getDescription());
+		
 		if(status.getCompany()!=null){
-			statusDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, status.getCompany()));
+			statusDTO.setCompanyId(status.getCompany().getId());
+			//statusDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, status.getCompany()));
 		}
+		
 		return statusDTO;
 	}
 

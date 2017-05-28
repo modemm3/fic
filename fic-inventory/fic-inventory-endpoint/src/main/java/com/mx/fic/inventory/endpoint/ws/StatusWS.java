@@ -33,7 +33,7 @@ public class StatusWS {
 		
 		try{
 			if((statusDTO!= null && statusDTO.getName()!= null) && 
-					(statusDTO.getCompanyDTO()!= null && statusDTO.getCompanyDTO().getId()!=null)){
+					statusDTO.getId()!=null){
 				statusBean.save(statusDTO);
 				message.setCode(200);
 				message.setMessage("exito");

@@ -39,15 +39,15 @@ public class ProductBean{
 		final Company company= new Company();
 		final Status status= new Status();
 		try{
-			measureUnit.setId(productDTO.getMeasureUnitDTO().getId());
-			measureUnit.setName(productDTO.getMeasureUnitDTO().getName());
-			company.setId(productDTO.getCompanyDTO().getId());
-			company.setName(productDTO.getCompanyDTO().getName());
-			status.setId(productDTO.getStatusDTO().getId());
-			status.setName(productDTO.getStatusDTO().getName());
+			measureUnit.setId(productDTO.getId());
+			measureUnit.setName(productDTO.getName());
+			company.setId(productDTO.getId());
+			company.setName(productDTO.getName());
+			status.setId(productDTO.getId());
+			status.setName(productDTO.getName());
 			
 			product.setCompany(company);
-			product.setMeasure(measureUnit);
+			product.setMeasureUnit(measureUnit);
 			product.setStatus(status);
 			product.setBarcode(productDTO.getBarCode());
 			product.setDescription(productDTO.getDescription());
