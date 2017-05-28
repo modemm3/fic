@@ -57,7 +57,6 @@ public class StatusWS {
 	@Path("getStatusByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")	
 	public Response getStatusByCompany(@PathParam("companyId") Integer companyId){
 		StatusResponse response = new StatusResponse();
 		List<StatusDTO> statusDTOLst= null;
@@ -66,6 +65,7 @@ public class StatusWS {
 		try{
 			if(companyId!= null ){
 				statusDTOLst= statusBean.getAllByCompany(companyId);
+				response.setStatusDTOLst(statusDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{

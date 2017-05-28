@@ -63,7 +63,6 @@ public class PricesWS {
 	@Path("getPricesByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")	
 	public Response getPricesByCompany(@PathParam("companyId") Integer companyId){
 		PricesResponse response = new PricesResponse();
 		List<PricesDTO> pricesDTOLst = null;
@@ -73,6 +72,7 @@ public class PricesWS {
 		if(companyId!=null){
 			pricesDTOLst = new ArrayList<PricesDTO>();
 			pricesDTOLst= pricesBean.getAllByCompany(companyId);
+			response.setPricesDTOLst(pricesDTOLst);
 			message.setCode(200);
 			message.setMessage("exito");
 			

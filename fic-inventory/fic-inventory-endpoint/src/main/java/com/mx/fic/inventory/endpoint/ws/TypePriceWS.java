@@ -59,7 +59,6 @@ public class TypePriceWS {
 		return Response.status(message.getCode()).entity(response).build();
 	}
 	
-	@SuppressWarnings("unused")
 	@POST
 	@Path("getTypePriceByCompany")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -73,6 +72,7 @@ public class TypePriceWS {
 			if(companyId!= null){
 				typePriceDTOLst = new ArrayList<TypePriceDTO>();
 				typePriceDTOLst= typePriceBean.getAllByCompany(companyId);
+				response.setTypePriceDTOLst(typePriceDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{

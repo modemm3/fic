@@ -59,7 +59,6 @@ public class MeasureUnitWS {
 	@Path("getMeasureUnitByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")	
 	public Response getMeasureUnitByCompany(@PathParam("companyId") Integer companyId){
 		MeasureUnitResponse response = new MeasureUnitResponse();
 		List<MeasureUnitDTO> measureUnitDTOLst = null;
@@ -69,6 +68,7 @@ public class MeasureUnitWS {
 			if(companyId!=null){
 				measureUnitDTOLst = new ArrayList<MeasureUnitDTO>();
 				measureUnitDTOLst = measureUnitBean.getAllByCompany(companyId);
+				response.setMeasureUnitDTOLst(measureUnitDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
