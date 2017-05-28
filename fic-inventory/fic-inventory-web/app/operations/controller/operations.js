@@ -3,6 +3,7 @@
  */
 'use strict';
 angular.module('app.controller').
-controller('operationController', ['$scope',function($scope){
+controller('operationController', ['$scope','OperationServices',function($scope,OperationServices){
 	$scope.measureUnity=['Kilo','Litros'];
+	OperationServices.OperationList(1);
 }]);
