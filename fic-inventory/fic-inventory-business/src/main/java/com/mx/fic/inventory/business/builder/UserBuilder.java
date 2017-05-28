@@ -21,7 +21,7 @@ public class UserBuilder extends AbstractDTOBuilder{
 		userDTO.setId(user.getId());
 		userDTO.setLastAccess(user.getLastAccess());
 		userDTO.setModificationDate(user.getModificationDate());
-		if(user.getModifyBy()!=null){
+		if(user.getModifyBy()!=null){			
 			userDTO.setModifyBy(TransferObjectAssembler.getInstance().assembleTO(UserDTO.class, user.getModifyBy()));
 		}
 		userDTO.setName(user.getName());

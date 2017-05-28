@@ -84,9 +84,31 @@ public class UserDetailDTO implements BaseDTO {
 	}
 	
 	public String toString() {
-		return "UserDetailDTO [id=" + id + ", shortName=" + shortName + ", name=" + name + ", lastName=" + lastName
-				+ ", surName=" + surName + ", telephone=" + telephone + ", address=" + address + ", curp=" + curp
-				+ ", rfc=" + rfc + ", lastAccess=" + lastAccess + ", email=" + email + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserDetailDTO [id=");
+		builder.append(id);
+		builder.append(", shortName=");
+		builder.append(shortName);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", lastName=");
+		builder.append(lastName);
+		builder.append(", surName=");
+		builder.append(surName);
+		builder.append(", telephone=");
+		builder.append(telephone);
+		builder.append(", address=");
+		builder.append(address);
+		builder.append(", curp=");
+		builder.append(curp);
+		builder.append(", rfc=");
+		builder.append(rfc);
+		builder.append(", lastAccess=");
+		builder.append(lastAccess);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	public int hashCode() {

@@ -2,9 +2,7 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
 import com.mx.fic.inventory.dto.TimeUnitDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.TimeUnit;
@@ -20,7 +18,8 @@ public class TimeUnitBuilder extends AbstractDTOBuilder{
 		timeUnitDTO.setName(timeUnit.getName());
 		
 		if(timeUnit.getCompany()!=null){
-			timeUnitDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, timeUnit.getCompany()));
+			timeUnitDTO.setCompanyId(timeUnit.getCompany().getId());
+			//timeUnitDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, timeUnit.getCompany()));
 		}
 		
 		return timeUnitDTO;

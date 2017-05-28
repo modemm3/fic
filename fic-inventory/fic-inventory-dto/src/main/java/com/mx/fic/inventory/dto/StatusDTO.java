@@ -7,7 +7,8 @@ public class StatusDTO implements BaseDTO{
 	private Integer id;
 	private String name;
 	private String description;
-	private CompanyDTO companyDTO;
+	private Integer companyId;
+
 	public Integer getId() {
 		return id;
 	}
@@ -26,20 +27,17 @@ public class StatusDTO implements BaseDTO{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public CompanyDTO getCompanyDTO() {
-		return companyDTO;
+	public Integer getCompanyId() {
+		return companyId;
 	}
-	public void setCompanyDTO(CompanyDTO companyDTO) {
-		this.companyDTO = companyDTO;
-	}
-	public String toString() {
-		return "StatusDTO [id=" + id + ", name=" + name + ", description=" + description + ", company=" + companyDTO + "]";
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
 	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((companyDTO == null) ? 0 : companyDTO.hashCode());
+		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -54,10 +52,10 @@ public class StatusDTO implements BaseDTO{
 		if (getClass() != obj.getClass())
 			return false;
 		StatusDTO other = (StatusDTO) obj;
-		if (companyDTO == null) {
-			if (other.companyDTO != null)
+		if (companyId == null) {
+			if (other.companyId != null)
 				return false;
-		} else if (!companyDTO.equals(other.companyDTO))
+		} else if (!companyId.equals(other.companyId))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -75,6 +73,20 @@ public class StatusDTO implements BaseDTO{
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("StatusDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

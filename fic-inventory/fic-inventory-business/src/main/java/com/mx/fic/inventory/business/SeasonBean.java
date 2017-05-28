@@ -32,7 +32,7 @@ public class SeasonBean {
 		final Company company = new Company();
 		
 		try{
-			company.setId(seasonDTO.getCompanydto().getId());
+			company.setId(seasonDTO.getId());
 			season.setDescription(seasonDTO.getDescription());
 			season.setEndDate(seasonDTO.getEndDate());
 			season.setName(seasonDTO.getName());

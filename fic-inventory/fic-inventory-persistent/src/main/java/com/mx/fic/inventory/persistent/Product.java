@@ -32,7 +32,7 @@ public class Product implements BaseEntity {
 	private String barcode;
 	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="measure_unit_id")
-	private MeasureUnit measure;
+	private MeasureUnit measureUnit;
 	@JoinColumn(name="status_id", referencedColumnName="id")
 	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	private Status status;
@@ -68,12 +68,6 @@ public class Product implements BaseEntity {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	public MeasureUnit getMeasure() {
-		return measure;
-	}
-	public void setMeasure(MeasureUnit measure) {
-		this.measure = measure;
-	}
 	public Double getMinimumStock() {
 		return minimumStock;
 	}
@@ -98,11 +92,11 @@ public class Product implements BaseEntity {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", barcode=" + barcode
-				+ ", measureUnit=" + measure + ", status=" + status + ", minimumStock=" + minimumStock
-				+ ", maximumStock=" + maximumStock + ", company=" + company + "]";
+	public MeasureUnit getMeasureUnit() {
+		return measureUnit;
+	}
+	public void setMeasureUnit(MeasureUnit measureUnit) {
+		this.measureUnit = measureUnit;
 	}
 	
 	public int hashCode() {
@@ -113,7 +107,7 @@ public class Product implements BaseEntity {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((maximumStock == null) ? 0 : maximumStock.hashCode());
-		result = prime * result + ((measure == null) ? 0 : measure.hashCode());
+		result = prime * result + ((measureUnit == null) ? 0 : measureUnit.hashCode());
 		result = prime * result + ((minimumStock == null) ? 0 : minimumStock.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -153,10 +147,10 @@ public class Product implements BaseEntity {
 				return false;
 		} else if (!maximumStock.equals(other.maximumStock))
 			return false;
-		if (measure== null) {
-			if (other.measure != null)
+		if (measureUnit == null) {
+			if (other.measureUnit != null)
 				return false;
-		} else if (!measure.equals(other.measure))
+		} else if (!measureUnit.equals(other.measureUnit))
 			return false;
 		if (minimumStock == null) {
 			if (other.minimumStock != null)
@@ -176,4 +170,27 @@ public class Product implements BaseEntity {
 		return true;
 	}
 	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Product [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", barcode=");
+		builder.append(barcode);
+		builder.append(", measureUnit=");
+		builder.append(measureUnit);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", minimumStock=");
+		builder.append(minimumStock);
+		builder.append(", maximumStock=");
+		builder.append(maximumStock);
+		builder.append(", company=");
+		builder.append(company);
+		builder.append("]");
+		return builder.toString();
+	}
 }

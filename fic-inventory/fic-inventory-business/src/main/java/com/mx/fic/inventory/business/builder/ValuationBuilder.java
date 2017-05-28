@@ -13,7 +13,28 @@ public class ValuationBuilder extends AbstractDTOBuilder {
 	public BaseDTO createDTO(BaseEntity entity) {
 		ValuationDTO valuationDTO= new ValuationDTO();
 		Valuation valuation= (Valuation) entity;
-		return null;
+		
+		valuationDTO.setDateEnd(valuation.getDateEnd());
+		valuationDTO.setDateStart(valuation.getDateStart());
+		valuationDTO.setExerciseFiscal(valuation.getExerciseFiscal());
+		valuationDTO.setSerialId(valuation.getSerialId());
+		
+		if(valuation.getCompany()!=null){
+			valuationDTO.setCompanyId(valuation.getCompany().getId());
+			//valuationDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, valuation.getCompany()));
+		}
+		
+		if(valuation.getStatus()!=null){
+			valuationDTO.setStatusId(valuation.getStatus().getId());
+			//valuationDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, valuation.getStatus()));
+		}
+		
+		if(valuation.getValuationType()!= null){
+			valuationDTO.setValuationTypeId(valuation.getValuationType().getId());
+			//valuationDTO.setValuationTypeDTO(TransferObjectAssembler.getInstance().assembleTO(ValuationTypeDTO.class, valuation.getValuationType()));
+		}
+		
+		return valuationDTO;
 	}
 
 }

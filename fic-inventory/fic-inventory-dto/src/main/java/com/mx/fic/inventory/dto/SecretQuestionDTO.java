@@ -20,10 +20,6 @@ public class SecretQuestionDTO implements BaseDTO {
 		this.question = question;
 	}
 	
-	public String toString() {
-		return "SecretQuestionDTO [id=" + id + ", question=" + question + "]";
-	}
-	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -51,6 +47,16 @@ public class SecretQuestionDTO implements BaseDTO {
 		} else if (!question.equals(other.question))
 			return false;
 		return true;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SecretQuestionDTO [id=");
+		builder.append(id);
+		builder.append(", question=");
+		builder.append(question);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

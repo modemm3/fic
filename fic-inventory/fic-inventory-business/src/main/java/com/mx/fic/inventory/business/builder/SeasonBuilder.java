@@ -2,9 +2,7 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
 import com.mx.fic.inventory.dto.SeasonDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.Season;
@@ -21,7 +19,8 @@ public class SeasonBuilder extends AbstractDTOBuilder{
 		seasonDTO.setName(season.getName());
 		seasonDTO.setStartDate(season.getStartDate());
 		if(season.getCompany()!=null){
-			seasonDTO.setCompanydto(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, season.getCompany()));
+			seasonDTO.setCompanyId(season.getCompany().getId());
+			//seasonDTO.setCompanydto(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, season.getCompany()));
 		}
 		return seasonDTO;
 	}

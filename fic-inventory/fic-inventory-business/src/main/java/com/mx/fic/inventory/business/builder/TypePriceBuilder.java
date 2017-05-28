@@ -2,10 +2,7 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
-import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.dto.TypePriceDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.TypePrice;
@@ -20,12 +17,17 @@ public class TypePriceBuilder extends AbstractDTOBuilder {
 		typePriceDTO.setId(typePrice.getId());
 		typePriceDTO.setName(typePrice.getName());
 		typePriceDTO.setDescription(typePrice.getDescription());
+		
 		if(typePrice.getStatus()!=null){
-			typePriceDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, typePrice.getStatus()));
+			typePriceDTO.setStatusId(typePrice.getStatus().getId());
+			//typePriceDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, typePrice.getStatus()));
 		}
+		
 		if(typePrice.getCompany()!=null){
-			typePriceDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, typePrice.getCompany()));
+			typePriceDTO.setCompanyId(typePrice.getCompany().getId());
+			//typePriceDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, typePrice.getCompany()));
 		}
+		
 		return typePriceDTO;
 	}
 

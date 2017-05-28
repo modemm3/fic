@@ -2,12 +2,8 @@ package com.mx.fic.inventory.business.builder;
 
 import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
-import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.BaseDTO;
-import com.mx.fic.inventory.dto.CompanyDTO;
-import com.mx.fic.inventory.dto.MeasureUnitDTO;
 import com.mx.fic.inventory.dto.ProductDTO;
-import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.Product;
 
@@ -19,20 +15,27 @@ public class ProductBuilder extends AbstractDTOBuilder{
 		final Product product = (Product)entity;
 		
 		productDTO.setBarCode(product.getBarcode());
-		if(product.getCompany()!=null){
-			productDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, product.getCompany()));
-		}
+		productDTO.setName(product.getName());
 		productDTO.setDescription(product.getDescription());
 		productDTO.setId(product.getId());
 		productDTO.setMaximumStock(product.getMaximumStock());
 		productDTO.setMinimunStock(product.getMinimumStock());
-		if(product.getMeasure()!=null){
-			productDTO.setMeasureUnitDTO(TransferObjectAssembler.getInstance().assembleTO(MeasureUnitDTO.class, product.getMeasure()));
+		
+		if(product.getCompany()!=null){
+			productDTO.setCompanyId(product.getCompany().getId());
+			//productDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, product.getCompany()));
 		}
-		productDTO.setName(product.getName());
+		
+		if(product.getMeasureUnit()!=null){
+			productDTO.setMeasureUnitId(product.getMeasureUnit().getId());
+			//productDTO.setMeasureUnitDTO(TransferObjectAssembler.getInstance().assembleTO(MeasureUnitDTO.class, product.getMeasure()));
+		}
+		
 		if(product.getStatus()!=null){
-			productDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, product.getStatus()));
+			productDTO.setStatusId(product.getStatus().getId());
+			//productDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, product.getStatus()));
 		}
+		
 		return productDTO;
 	}
 

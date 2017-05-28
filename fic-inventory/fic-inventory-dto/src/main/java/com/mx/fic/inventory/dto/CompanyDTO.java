@@ -11,7 +11,7 @@ public class CompanyDTO implements BaseDTO{
 	private String reasonSocial;
 	private String rfc;
 	private String email;
-	private StatusDTO statusDTO;
+	private Integer statusId;
 	private String contactName;
 	private Timestamp creationDate;
 	private Timestamp modifyDate;
@@ -46,11 +46,11 @@ public class CompanyDTO implements BaseDTO{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public StatusDTO getStatusDTO() {
-		return statusDTO;
+	public Integer getStatusId() {
+		return statusId;
 	}
-	public void setStatusDTO(StatusDTO statusDTO) {
-		this.statusDTO = statusDTO;
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 	public String getContactName() {
 		return contactName;
@@ -71,12 +71,6 @@ public class CompanyDTO implements BaseDTO{
 		this.modifyDate = modifyDate;
 	}
 	
-	public String toString() {
-		return "CompanyDTO [id=" + id + ", name=" + name + ", reasonSocial=" + reasonSocial + ", rfc=" + rfc
-				+ ", email=" + email + ", statusDTO=" + statusDTO + ", contactName=" + contactName + ", creationDate="
-				+ creationDate + ", modifyDate=" + modifyDate + "]";
-	}
-	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -88,7 +82,7 @@ public class CompanyDTO implements BaseDTO{
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((reasonSocial == null) ? 0 : reasonSocial.hashCode());
 		result = prime * result + ((rfc == null) ? 0 : rfc.hashCode());
-		result = prime * result + ((statusDTO == null) ? 0 : statusDTO.hashCode());
+		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		return result;
 	}
 	
@@ -140,12 +134,36 @@ public class CompanyDTO implements BaseDTO{
 				return false;
 		} else if (!rfc.equals(other.rfc))
 			return false;
-		if (statusDTO == null) {
-			if (other.statusDTO != null)
+		if (statusId == null) {
+			if (other.statusId != null)
 				return false;
-		} else if (!statusDTO.equals(other.statusDTO))
+		} else if (!statusId.equals(other.statusId))
 			return false;
 		return true;
 	}
-
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CompanyDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", reasonSocial=");
+		builder.append(reasonSocial);
+		builder.append(", rfc=");
+		builder.append(rfc);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", contactName=");
+		builder.append(contactName);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", modifyDate=");
+		builder.append(modifyDate);
+		builder.append("]");
+		return builder.toString();
+	}	
+	
 }

@@ -8,11 +8,11 @@ public class ProductDTO implements BaseDTO {
 	private String name;
 	private String description;
 	private String barCode;
-	private MeasureUnitDTO measureUnitDTO;
-	private StatusDTO statusDTO;
+	private Integer measureUnitId;
+	private Integer statusId;
 	private Double minimunStock;
 	private Double maximumStock;
-	private CompanyDTO companyDTO;
+	private Integer companyId;
 	private PaginationDTO paginationDTO;	
 	
 	public ProductDTO() {
@@ -42,18 +42,6 @@ public class ProductDTO implements BaseDTO {
 	public void setBarCode(String barCode) {
 		this.barCode = barCode;
 	}
-	public MeasureUnitDTO getMeasureUnitDTO() {
-		return measureUnitDTO;
-	}
-	public void setMeasureUnitDTO(MeasureUnitDTO measureUnitDTO) {
-		this.measureUnitDTO = measureUnitDTO;
-	}
-	public StatusDTO getStatusDTO() {
-		return statusDTO;
-	}
-	public void setStatusDTO(StatusDTO statusDTO) {
-		this.statusDTO = statusDTO;
-	}
 	public Double getMinimunStock() {
 		return minimunStock;
 	}
@@ -66,37 +54,44 @@ public class ProductDTO implements BaseDTO {
 	public void setMaximumStock(Double maximumStock) {
 		this.maximumStock = maximumStock;
 	}
-	public CompanyDTO getCompanyDTO() {
-		return companyDTO;
+	public Integer getMeasureUnitId() {
+		return measureUnitId;
 	}
-	public void setCompanyDTO(CompanyDTO companyDTO) {
-		this.companyDTO = companyDTO;
+	public void setMeasureUnitId(Integer measureUnitId) {
+		this.measureUnitId = measureUnitId;
 	}
-	
+	public Integer getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
+	}
+	public Integer getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
+	}
 	public PaginationDTO getPaginationDTO() {
 		return paginationDTO;
 	}
 	public void setPaginationDTO(PaginationDTO paginationDTO) {
 		this.paginationDTO = paginationDTO;
 	}
-	public String toString() {
-		return "ProductDTO [id=" + id + ", name=" + name + ", description=" + description + ", barCode=" + barCode
-				+ ", measureUnitDTO=" + measureUnitDTO + ", statusDTO=" + statusDTO + ", minimunStock=" + minimunStock
-				+ ", maximumStock=" + maximumStock + ", companyDTO=" + companyDTO + "]";
-	}
 	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((barCode == null) ? 0 : barCode.hashCode());
-		result = prime * result + ((companyDTO == null) ? 0 : companyDTO.hashCode());
+		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((maximumStock == null) ? 0 : maximumStock.hashCode());
-		result = prime * result + ((measureUnitDTO == null) ? 0 : measureUnitDTO.hashCode());
+		result = prime * result + ((measureUnitId == null) ? 0 : measureUnitId.hashCode());
 		result = prime * result + ((minimunStock == null) ? 0 : minimunStock.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((statusDTO == null) ? 0 : statusDTO.hashCode());
+		result = prime * result + ((paginationDTO == null) ? 0 : paginationDTO.hashCode());
+		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		return result;
 	}
 	
@@ -113,10 +108,10 @@ public class ProductDTO implements BaseDTO {
 				return false;
 		} else if (!barCode.equals(other.barCode))
 			return false;
-		if (companyDTO == null) {
-			if (other.companyDTO != null)
+		if (companyId == null) {
+			if (other.companyId != null)
 				return false;
-		} else if (!companyDTO.equals(other.companyDTO))
+		} else if (!companyId.equals(other.companyId))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -133,10 +128,10 @@ public class ProductDTO implements BaseDTO {
 				return false;
 		} else if (!maximumStock.equals(other.maximumStock))
 			return false;
-		if (measureUnitDTO == null) {
-			if (other.measureUnitDTO != null)
+		if (measureUnitId == null) {
+			if (other.measureUnitId != null)
 				return false;
-		} else if (!measureUnitDTO.equals(other.measureUnitDTO))
+		} else if (!measureUnitId.equals(other.measureUnitId))
 			return false;
 		if (minimunStock == null) {
 			if (other.minimunStock != null)
@@ -148,12 +143,42 @@ public class ProductDTO implements BaseDTO {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (statusDTO == null) {
-			if (other.statusDTO != null)
+		if (paginationDTO == null) {
+			if (other.paginationDTO != null)
 				return false;
-		} else if (!statusDTO.equals(other.statusDTO))
+		} else if (!paginationDTO.equals(other.paginationDTO))
+			return false;
+		if (statusId == null) {
+			if (other.statusId != null)
+				return false;
+		} else if (!statusId.equals(other.statusId))
 			return false;
 		return true;
 	}
 	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ProductDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", barCode=");
+		builder.append(barCode);
+		builder.append(", measureUnitId=");
+		builder.append(measureUnitId);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", minimunStock=");
+		builder.append(minimunStock);
+		builder.append(", maximumStock=");
+		builder.append(maximumStock);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append(", paginationDTO=");
+		builder.append(paginationDTO);
+		builder.append("]");
+		return builder.toString();
+	}
 }
