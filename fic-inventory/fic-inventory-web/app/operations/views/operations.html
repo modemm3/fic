@@ -24,7 +24,10 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
-							<li ng-repeat="unity in measureUnity"><a href="">{{unity}}</a></li>
+							<li ng-repeat="unity in measureUnits" id="{{unity.id}}">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Unidad de medida</button>
+<!-- 								<a href="" ng-click="selectUnit(id);" >{{unity.name}}</a> -->
+							</li>
 						</ul>
 					</div>
 				</div>
