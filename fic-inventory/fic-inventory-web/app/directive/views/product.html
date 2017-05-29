@@ -1,0 +1,14 @@
+		<div class="tag">
+			<div ng-repeat="(idx, tag) in tags" class="dropdown-menu tag label label-success">
+<!-- 				<a class="close" href ng-click="remove(idx)">×</a> -->
+			</div>
+		</div>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Agregar Producto" 
+				ng-model="newValue" />
+				<span class="input-group-btn">
+			 		<a class="btn btn-default" ng-click="add()">
+			 			Buscar
+			 		</a>
+			 	</span>
+		</div>
