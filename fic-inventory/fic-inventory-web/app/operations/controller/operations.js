@@ -4,14 +4,23 @@
 'use strict';
 angular.module('app.controller').
 controller('operationController', ['$scope','OperationServices',function($scope,OperationServices){
+	
 	$scope.unit={
 			id:'-1',
-			name:'Unidad de Medida',
+			name:'Gramo',
 			description:''
 	};
-	$scope.product=[{
+	$scope.product={
 			name:'hola product',
-			description:'',
+			description:'test de description',
+			measureUnit:$scope.unit,
+			stockMin:'1',
+			stockMax:'1',
+			stock:'1'
+	};
+	$scope.products=[{
+			name:'hola product',
+			description:'hola product',
 			measureUnit:$scope.unit,
 			stockMin:'1',
 			stockMax:'1',
@@ -19,7 +28,7 @@ controller('operationController', ['$scope','OperationServices',function($scope,
 	},
 	{
 		name:'Product',
-		description:'',
+		description:'Product',
 		measureUnit:$scope.unit,
 		stockMin:'1',
 		stockMax:'1',
@@ -27,7 +36,7 @@ controller('operationController', ['$scope','OperationServices',function($scope,
 },
 {
 	name:'que tal',
-	description:'',
+	description:'que tal',
 	measureUnit:$scope.unit,
 	stockMin:'1',
 	stockMax:'1',

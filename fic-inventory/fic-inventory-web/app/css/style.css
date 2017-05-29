@@ -236,13 +236,14 @@
 
 .tags {
    margin-bottom: 5px;
+   background: red;
 } 
 
 .tags .tag {
    display: inline-block;
    margin-right: 5px;
    font-size: 13px;
-   background: red;
+   background-color: red;
 }
   
 .tag .close {

@@ -17,7 +17,7 @@ angular.module('app.directive').directive('product',function(){
     return {
         restrict: 'E',
         scope: {
-          tags: '=',
+          tag: '=',
           autocomplete: '=autocomplete'
         },
         templateUrl:'directive/views/product.html',
@@ -69,13 +69,27 @@ angular.module('app.directive').directive('product',function(){
                   
 
              // adds the new tag to the array
-//            $scope.add = function() {
-//  				// if not dupe, add it
-//  				if ($scope.tags.indexOf($scope.newValue)==-1){
-//                	$scope.tags.push( $scope.newValue );
+            $scope.add = function() {
+  				// if not dupe, add it
+//  				if ($scope.tags.name.indexOf($scope.newValue)==-1){
+//                	$scope.tags.name.push( $scope.newValue.name );
+            		
+            	
+            	
+  					$scope.tag.name=$scope.newValue;
+//  					$scope.tag.description=$scope.tag.description;
+  					
+  					angular.forEach($scope.autocomplete, function(value, key) {
+//  					  this.push(key + ': ' + value);
+  					  if(value.name==$scope.newValue){
+  						  $scope.tag=value;
+  						  $scope.tag.measureUnit.name='Kilo';
+  					  }
+  					});
+  					
 //                }
 //                $scope.newValue = "";
-//            };
+            };
             
             // remove an item
 //            $scope.remove = function ( idx ) {

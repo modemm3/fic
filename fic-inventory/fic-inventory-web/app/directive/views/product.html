@@ -1,6 +1,6 @@
-		<div class="tag">
-			<div ng-repeat="(idx, tag) in tags" class="dropdown-menu tag label label-success">
-<!-- 				<a class="close" href ng-click="remove(idx)">×</a> -->
+		<div class="tags">
+			<div class="tag label label-success">
+				{{tag.name}} <a class="close" href ng-click="remove(idx)">×</a>
 			</div>
 		</div>
 		<div class="input-group">
