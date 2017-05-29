@@ -2,6 +2,8 @@ package com.mx.fic.inventory.business;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
@@ -18,6 +20,7 @@ public class UserBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(UserDTO userDTO){
 		User user = new User();
 		

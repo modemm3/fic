@@ -1,44 +1,50 @@
 package com.mx.fic.inventory.endpoint.ws;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.slf4j.Logger;
-import javax.ws.rs.POST;
-import javax.ws.rs.Consumes;
-import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.StatusBean;
-import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.StatusDTO;
-import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.StatusResponse;
 
-@Path("/status")
-public class StatusWS {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mx.fic.inventory.business.AddressBean;
+import com.mx.fic.inventory.business.exception.PersistenceException;
+import com.mx.fic.inventory.dto.AddressDTO;
+import com.mx.fic.inventory.endpoint.response.AddressResponse;
+import com.mx.fic.inventory.endpoint.response.Message;
+
+@Path("/address")
+public class AddressWS {
+
+	@EJB(mappedName="AddressBean")
+	private AddressBean addressBean;
 	
-	@EJB(mappedName="StatusBean")
-	private StatusBean statusBean;
-	
-	private static final Logger logger = LoggerFactory.getLogger(StatusWS.class);
+	private static final Logger logger = LoggerFactory.getLogger(AddressWS.class);
 	
 	@POST
-	@Path("saveStatus")
+	@Path("saveAddress")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveStatus(StatusDTO statusDTO){
-		StatusResponse response = new StatusResponse();
+	public Response saveAddress(final AddressDTO addressDTO){
+		AddressResponse response = new AddressResponse();
 		Message message = new Message();
 		
+		logger.info("saveAddress");
+		
 		try{
-			if((statusDTO!= null && statusDTO.getName()!= null) && 
-					statusDTO.getId()!=null){
-				statusBean.save(statusDTO);
+			if((addressDTO.getStatusId()!=null && addressDTO.getTypeAddressId()!=null) 
+					&& addressDTO.getCompanyId()!=null){
+				addressBean.save(addressDTO);
 				message.setCode(200);
-				message.setMessage("exito");
+				message.setMessage("exito");				
 			}else{
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
@@ -56,35 +62,35 @@ public class StatusWS {
 	}
 	
 	@POST
-	@Path("getStatusByCompany/{companyId}")
+	@Path("getAddressByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getStatusByCompany(@PathParam("companyId") Integer companyId){
-		StatusResponse response = new StatusResponse();
-		List<StatusDTO> statusDTOLst= null;
+	public Response getAddressByCompany(@PathParam("companyId") Integer companyId){
+		AddressResponse response = new AddressResponse();
+		List<AddressDTO> addressDTOLst = null;
 		Message message = new Message();
 		
 		try{
-			if(companyId!= null ){
-				statusDTOLst= statusBean.getAllByCompany(companyId);
-				response.setStatusDTOLst(statusDTOLst);
-				message.setCode(200);
-				message.setMessage("exito");
-			}else{
-				message.setCode(400);
-				message.setMessage("error => Es requerido el id de la compañía");
-			}
+		if(companyId!=null){
+			addressDTOLst = new ArrayList<AddressDTO>();
+			addressDTOLst = addressBean.getAllByCompany(companyId);
+			response.setAddressDTOLst(addressDTOLst);
+			message.setCode(200);
+			message.setMessage("exito");
+		}else{
+			message.setCode(400);
+			message.setMessage("error => Es requerido el id de la compañía");			
+		}
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-		}catch(Exception e){
-			logger.error("error al obtener los estatus por compañía");
+		}catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 		}
-		
 		response.setMessage(message);
+		
 		return Response.status(message.getCode()).entity(response).build();
+		
 	}
-
 }

@@ -50,7 +50,7 @@ public class MeasureUnitBean {
 		MeasureUnitDTO measureUnitDTO= null;
 		List<MeasureUnit> measureUnitLst= new ArrayList<MeasureUnit>();
 		
-		TypedQuery<MeasureUnit> query= entityManager.createNamedQuery("MeasureUnit.getAll", MeasureUnit.class);
+		TypedQuery<MeasureUnit> query= entityManager.createNamedQuery("MeasureUnit.getAllByCompany", MeasureUnit.class);
 		query.setParameter("id", idCompany);
 		measureUnitLst = query.getResultList();
 		
