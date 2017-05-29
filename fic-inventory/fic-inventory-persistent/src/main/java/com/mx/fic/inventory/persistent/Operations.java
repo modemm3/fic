@@ -10,10 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="operations")
+@NamedQueries({
+	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id")
+})
 public class Operations implements BaseEntity{
 
 	private static final long serialVersionUID = -4660754422148475290L;
@@ -36,8 +41,9 @@ public class Operations implements BaseEntity{
 	private Integer stocks;
 	@Column(name="folio_document")
 	private String folioDocument;
-	@Column(name="time_unit_id")
-	private Integer timeUnitId;
+	@JoinColumn(name="time_unit_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private TimeUnit timeUnit;
 	@Column(name="delivery_time")
 	private Integer deliveryTime;
 	@JoinColumn(name="provider_id", referencedColumnName="id")
@@ -89,11 +95,11 @@ public class Operations implements BaseEntity{
 	public void setFolioDocument(String folioDocument) {
 		this.folioDocument = folioDocument;
 	}
-	public Integer getTimeUnitId() {
-		return timeUnitId;
+	public TimeUnit getTimeUnit() {
+		return timeUnit;
 	}
-	public void setTimeUnitId(Integer timeUnitId) {
-		this.timeUnitId = timeUnitId;
+	public void setTimeUnit(TimeUnit timeUnit) {
+		this.timeUnit = timeUnit;
 	}
 	public Integer getDeliveryTime() {
 		return deliveryTime;
@@ -113,13 +119,7 @@ public class Operations implements BaseEntity{
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
-	public String toString() {
-		return "Operations [id=" + id + ", product=" + product + ", movementType=" + movementType + ", status=" + status
-				+ ", creationDate=" + creationDate + ", stocks=" + stocks + ", folioDocument=" + folioDocument
-				+ ", timeUnitId=" + timeUnitId + ", deliveryTime=" + deliveryTime + ", company=" + company + "]";
-	}
-	
+
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -130,12 +130,41 @@ public class Operations implements BaseEntity{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((movementType == null) ? 0 : movementType.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
+		result = prime * result + ((provider == null) ? 0 : provider.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
-		result = prime * result + ((timeUnitId == null) ? 0 : timeUnitId.hashCode());
+		result = prime * result + ((timeUnit == null) ? 0 : timeUnit.hashCode());
 		return result;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Operations [id=");
+		builder.append(id);
+		builder.append(", product=");
+		builder.append(product);
+		builder.append(", movementType=");
+		builder.append(movementType);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", stocks=");
+		builder.append(stocks);
+		builder.append(", folioDocument=");
+		builder.append(folioDocument);
+		builder.append(", timeUnit=");
+		builder.append(timeUnit);
+		builder.append(", deliveryTime=");
+		builder.append(deliveryTime);
+		builder.append(", provider=");
+		builder.append(provider);
+		builder.append(", company=");
+		builder.append(company);
+		builder.append("]");
+		return builder.toString();
+	}
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -179,6 +208,11 @@ public class Operations implements BaseEntity{
 				return false;
 		} else if (!product.equals(other.product))
 			return false;
+		if (provider == null) {
+			if (other.provider != null)
+				return false;
+		} else if (!provider.equals(other.provider))
+			return false;
 		if (status == null) {
 			if (other.status != null)
 				return false;
@@ -189,10 +223,10 @@ public class Operations implements BaseEntity{
 				return false;
 		} else if (!stocks.equals(other.stocks))
 			return false;
-		if (timeUnitId == null) {
-			if (other.timeUnitId != null)
+		if (timeUnit == null) {
+			if (other.timeUnit != null)
 				return false;
-		} else if (!timeUnitId.equals(other.timeUnitId))
+		} else if (!timeUnit.equals(other.timeUnit))
 			return false;
 		return true;
 	}

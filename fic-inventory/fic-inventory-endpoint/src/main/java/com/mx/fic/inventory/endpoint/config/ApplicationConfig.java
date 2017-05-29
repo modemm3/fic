@@ -7,19 +7,23 @@
 package com.mx.fic.inventory.endpoint.config;
 
 import java.util.Set;
-
 import javax.ws.rs.core.Application;
-
 import com.mx.fic.inventory.endpoint.filter.CORSResponseFilter;
+import com.mx.fic.inventory.endpoint.ws.AddressWS;
 import com.mx.fic.inventory.endpoint.ws.LoginWS;
 import com.mx.fic.inventory.endpoint.ws.MeasureUnitWS;
+import com.mx.fic.inventory.endpoint.ws.MovementConceptWS;
+import com.mx.fic.inventory.endpoint.ws.MovementTypeWS;
 import com.mx.fic.inventory.endpoint.ws.PricesWS;
+import com.mx.fic.inventory.endpoint.ws.TypeAddressWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
+import com.mx.fic.inventory.endpoint.ws.ProviderWS;
 import com.mx.fic.inventory.endpoint.ws.SeasonWS;
 import com.mx.fic.inventory.endpoint.ws.StatusWS;
 import com.mx.fic.inventory.endpoint.ws.TimeUnitWS;
 import com.mx.fic.inventory.endpoint.ws.TypePriceWS;
 import com.mx.fic.inventory.endpoint.ws.ValuationTypeWS;
+import com.mx.fic.inventory.endpoint.ws.ValuationWS;
 
 /**
  * */
@@ -42,6 +46,13 @@ public class ApplicationConfig extends Application {
 		resources.add(TimeUnitWS.class);
 		resources.add(ValuationTypeWS.class);
 		resources.add(CORSResponseFilter.class);
+		resources.add(MovementConceptWS.class);
+		resources.add(MovementTypeWS.class);
+		resources.add(TypeAddressWS.class);
+		resources.add(AddressWS.class);
+		resources.add(ProviderWS.class);
+		resources.add(ValuationTypeWS.class);
+		resources.add(ValuationWS.class);
 		resources.add(LoginWS.class);
 
 	}

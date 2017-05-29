@@ -3,13 +3,22 @@ package com.mx.fic.inventory.persistent;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+@Entity
+@Table (name="valuation")
+@NamedQueries ({
+	@NamedQuery (name="Valuation.getAllByCompany", query="select val from Valuation val where val.company.id=:id")
+})
 public class Valuation implements BaseEntity{
 
 	private static final long serialVersionUID = 8823162178216896791L;

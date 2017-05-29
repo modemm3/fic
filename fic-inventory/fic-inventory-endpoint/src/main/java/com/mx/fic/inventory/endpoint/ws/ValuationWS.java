@@ -1,52 +1,60 @@
 package com.mx.fic.inventory.endpoint.ws;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.slf4j.Logger;
-import javax.ws.rs.POST;
-import javax.ws.rs.Consumes;
-import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.StatusBean;
-import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.StatusDTO;
-import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.StatusResponse;
 
-@Path("/status")
-public class StatusWS {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mx.fic.inventory.business.ValuationBean;
+import com.mx.fic.inventory.business.exception.PersistenceException;
+import com.mx.fic.inventory.dto.ValuationDTO;
+import com.mx.fic.inventory.endpoint.response.Message;
+import com.mx.fic.inventory.endpoint.response.ValuationResponse;
+
+@Path("/valuation")
+public class ValuationWS {
+	@EJB(mappedName="ValuationBean")
+	ValuationBean valuationBean;
 	
-	@EJB(mappedName="StatusBean")
-	private StatusBean statusBean;
-	
-	private static final Logger logger = LoggerFactory.getLogger(StatusWS.class);
+	private static final Logger logger = LoggerFactory.getLogger(ValuationWS.class);
 	
 	@POST
-	@Path("saveStatus")
+	@Path("saveValuation")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveStatus(StatusDTO statusDTO){
-		StatusResponse response = new StatusResponse();
+	public Response saveValuation(ValuationDTO valuationDTO){
+		ValuationResponse response = new ValuationResponse();
 		Message message = new Message();
 		
+		logger.info("saveValuation");
+		
 		try{
-			if((statusDTO!= null && statusDTO.getName()!= null) && 
-					statusDTO.getId()!=null){
-				statusBean.save(statusDTO);
+			if((valuationDTO!=null && valuationDTO.getCompanyId()!=null) &&
+					(valuationDTO.getDateEnd()!=null && valuationDTO.getDateStart()!=null) &&
+					(valuationDTO.getExerciseFiscal()!=null && valuationDTO.getSerialId()!=null &&
+					valuationDTO.getStatusId()!=null && valuationDTO.getValuationTypeId()!=null)){
+				valuationBean.saveValuation(valuationDTO);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
+				
 			}
-		}catch(PersistenceException e){
+		} catch (PersistenceException e) {
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-		}catch(Exception e){
+		} catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 		}
@@ -56,18 +64,19 @@ public class StatusWS {
 	}
 	
 	@POST
-	@Path("getStatusByCompany/{companyId}")
+	@Path("getValuarionByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getStatusByCompany(@PathParam("companyId") Integer companyId){
-		StatusResponse response = new StatusResponse();
-		List<StatusDTO> statusDTOLst= null;
+	public Response getValuationByCompany(@PathParam("companyId") Integer companyId){
+		ValuationResponse response = new ValuationResponse();
+		List<ValuationDTO> valuationDTOLst = null;
 		Message message = new Message();
 		
 		try{
-			if(companyId!= null ){
-				statusDTOLst= statusBean.getAllByCompany(companyId);
-				response.setStatusDTOLst(statusDTOLst);
+			if(companyId != null){
+				valuationDTOLst = new ArrayList<ValuationDTO>();
+				valuationDTOLst = valuationBean.getAllByCompany(companyId);
+				response.setValuationDTOLst(valuationDTOLst);
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
@@ -77,14 +86,13 @@ public class StatusWS {
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-		}catch(Exception e){
-			logger.error("error al obtener los estatus por compañía");
+		}catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 		}
-		
 		response.setMessage(message);
+		
 		return Response.status(message.getCode()).entity(response).build();
+		
 	}
-
 }

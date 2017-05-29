@@ -11,41 +11,45 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.ValuationTypeBean;
+import com.mx.fic.inventory.business.MovementTypeBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.ValuationTypeDTO;
+import com.mx.fic.inventory.dto.MovementTypeDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.ValuationTypeResponse;
+import com.mx.fic.inventory.endpoint.response.MovementTypeResponse;
 
-@Path("/valuationType")
-public class ValuationTypeWS {
-	@EJB(mappedName="ValuationTypeBean")
-	private ValuationTypeBean valuationTypeBean;
-	private static final Logger logger = LoggerFactory.getLogger(ValuationTypeWS.class);
+@Path("/movementType")
+public class MovementTypeWS {
+	@EJB(mappedName="MovementTypeBean")
+	private MovementTypeBean movementTypeBean;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MovementTypeWS.class);
 	
 	@POST
-	@Path("saveValuationType")
+	@Path("saveMovementType")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveValuationType(ValuationTypeDTO valuationTypeDTO){
-		ValuationTypeResponse response = new ValuationTypeResponse();
+	public Response saveMovementType(MovementTypeDTO movementTypeDTO){
+		MovementTypeResponse response = new MovementTypeResponse();
 		Message message = new Message();
 		
-		logger.info("saveValuationType");
+		logger.info("saveMovementType");
 		
 		try{
-		if(valuationTypeDTO!=null &&(valuationTypeDTO.getName()!=null && valuationTypeDTO.getKeyValuation()!=null)
-				&& valuationTypeDTO.getCompanyId()!=null){
-			valuationTypeBean.save(valuationTypeDTO);
-			message.setCode(200);
-			message.setMessage("exitos");
-		}else{
-			message.setCode(400);
-			message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");			
-		}
+			if((movementTypeDTO!=null && movementTypeDTO.getName()!=null) &&
+					(movementTypeDTO.getCompanyId()!=null && movementTypeDTO.getMovementConceptId()!=null) 
+					&& movementTypeDTO.getStatusId()!=null){
+				movementTypeBean.save(movementTypeDTO);
+				message.setCode(200);
+				message.setMessage("exito");
+			}else{
+				message.setCode(400);
+				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");			
+			}
+			
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
@@ -56,30 +60,28 @@ public class ValuationTypeWS {
 		response.setMessage(message);
 		
 		return Response.status(message.getCode()).entity(response).build();
-	
 	}
 	
 	@POST
-	@Path("getValuationTypeByCompany/{companyId}")
+	@Path("getMovementTypeByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getValuationTypeByCompany(@PathParam("companyId") final Integer companyId){
-		ValuationTypeResponse response = new ValuationTypeResponse();
-		List<ValuationTypeDTO> valuationTypeDTOLst = null;
+	public Response getMovementTypeByCompany(@PathParam("companyId") Integer companyId){
+		List<MovementTypeDTO> movementTypeDTOLst = null;
+		MovementTypeResponse response = new MovementTypeResponse();
 		Message message = new Message();
 		
 		try{
 			if(companyId!=null){
-				valuationTypeDTOLst = new ArrayList<ValuationTypeDTO>();
-				valuationTypeDTOLst = valuationTypeBean.getAllByCompany(companyId);
+				movementTypeDTOLst = new ArrayList<MovementTypeDTO>();
+				movementTypeDTOLst = movementTypeBean.getAllByCompany(companyId);
 				message.setCode(200);
 				message.setMessage("exito");
-				response.setValuationTypeLst(valuationTypeDTOLst);
+				response.setMovementTypeDTOLst(movementTypeDTOLst);				
 			}else{
 				message.setCode(400);
-				message.setMessage("error => Es requerido el id de la compañía");			
+				message.setMessage("error => Es requerido el id de la compañía");						
 			}
-		
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");

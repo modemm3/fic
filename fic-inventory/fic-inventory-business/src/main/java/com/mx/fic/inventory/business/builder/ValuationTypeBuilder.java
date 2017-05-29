@@ -21,7 +21,6 @@ public class ValuationTypeBuilder extends AbstractDTOBuilder{
 		
 		if(valuationType.getCompany()!=null){
 			valuationTypeDTO.setCompanyId(valuationType.getCompany().getId());
-			//valuationTypeDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, valuationType.getCompany()));
 		}
 		
 		return valuationTypeDTO;

@@ -21,17 +21,14 @@ public class ValuationBuilder extends AbstractDTOBuilder {
 		
 		if(valuation.getCompany()!=null){
 			valuationDTO.setCompanyId(valuation.getCompany().getId());
-			//valuationDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, valuation.getCompany()));
 		}
 		
 		if(valuation.getStatus()!=null){
 			valuationDTO.setStatusId(valuation.getStatus().getId());
-			//valuationDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, valuation.getStatus()));
 		}
 		
 		if(valuation.getValuationType()!= null){
 			valuationDTO.setValuationTypeId(valuation.getValuationType().getId());
-			//valuationDTO.setValuationTypeDTO(TransferObjectAssembler.getInstance().assembleTO(ValuationTypeDTO.class, valuation.getValuationType()));
 		}
 		
 		return valuationDTO;

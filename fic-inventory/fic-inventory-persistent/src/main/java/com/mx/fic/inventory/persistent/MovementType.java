@@ -8,10 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="movement_type")
+@NamedQueries({
+	@NamedQuery(name="MovementType.getAllByCompany", query = "select mt from MovementType mt where mt.company.id=:id")
+})
 public class MovementType implements BaseEntity {
 
 	private static final long serialVersionUID = -7004668452945870833L;
