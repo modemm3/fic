@@ -74,18 +74,18 @@ angular.module('app.directive').directive('product',function(){
 //  				if ($scope.tags.name.indexOf($scope.newValue)==-1){
 //                	$scope.tags.name.push( $scope.newValue.name );
             		
+					angular.forEach($scope.autocomplete, function(value, key) {
+//					  this.push(key + ': ' + value);
+					  if(value.name==$scope.newValue){
+						  $scope.tag=value;
+//						  $scope.tag.measureUnit.name='Kilo';
+					  }
+					});            	
             	
-            	
-  					$scope.tag.name=$scope.newValue;
+//  					$scope.tag.name=$scope.newValue;
 //  					$scope.tag.description=$scope.tag.description;
   					
-  					angular.forEach($scope.autocomplete, function(value, key) {
-//  					  this.push(key + ': ' + value);
-  					  if(value.name==$scope.newValue){
-  						  $scope.tag=value;
-  						  $scope.tag.measureUnit.name='Kilo';
-  					  }
-  					});
+
   					
 //                }
 //                $scope.newValue = "";
