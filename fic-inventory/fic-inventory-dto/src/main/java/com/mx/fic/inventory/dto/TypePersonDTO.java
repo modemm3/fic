@@ -1,6 +1,8 @@
 package com.mx.fic.inventory.dto;
 
-public class TypePersonDTO {
+public class TypePersonDTO implements BaseDTO{
+	
+	private static final long serialVersionUID = 8611277385594021309L;
 	private Integer id;
 	private String name;
 	private String description;

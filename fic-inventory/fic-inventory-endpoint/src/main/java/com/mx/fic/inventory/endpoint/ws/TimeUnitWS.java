@@ -36,7 +36,8 @@ public class TimeUnitWS {
 		logger.info("saveTimeUnit");
 
 		try{
-			if((timeUnitDTO!= null && timeUnitDTO.getName()!=null) && timeUnitDTO.getId()!=null){
+			if((timeUnitDTO!= null && timeUnitDTO.getName()!=null) && 
+					timeUnitDTO.getCompanyId()!=null){
 				timeUnitBean.save(timeUnitDTO);
 				message.setCode(200);
 				message.setMessage("exito");

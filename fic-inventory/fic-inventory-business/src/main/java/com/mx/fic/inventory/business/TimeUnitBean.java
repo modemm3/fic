@@ -36,7 +36,7 @@ public class TimeUnitBean {
 		try{
 			timeUnit.setDescription(timeUnitDTO.getDescription());
 			timeUnit.setName(timeUnitDTO.getName());
-			company.setId(timeUnitDTO.getId());
+			company.setId(timeUnitDTO.getCompanyId());
 			timeUnit.setCompany(company);
 			
 			entityManager.persist(timeUnit);
