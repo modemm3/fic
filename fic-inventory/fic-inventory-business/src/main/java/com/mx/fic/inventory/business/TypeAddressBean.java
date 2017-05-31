@@ -39,6 +39,7 @@ public class TypeAddressBean {
 			company.setId(typeAddressDTO.getCompanyId());
 			typeAddress.setDescription(typeAddressDTO.getDescription());
 			typeAddress.setName(typeAddressDTO.getName());
+			typeAddress.setCompany(company);
 			
 			entityManager.persist(typeAddress);
 			
@@ -52,7 +53,7 @@ public class TypeAddressBean {
 		TypeAddressDTO typeAddresDTO = null;
 		List<TypeAddress> typeAddresLst = new ArrayList<TypeAddress>();
 		
-		TypedQuery<TypeAddress> query = entityManager.createNamedQuery("ypeAddress.getAllByCompany", TypeAddress.class);
+		TypedQuery<TypeAddress> query = entityManager.createNamedQuery("TypeAddress.getAllByCompany", TypeAddress.class);
 		query.setParameter("id", companyId);
 		typeAddresLst = query.getResultList();
 		
