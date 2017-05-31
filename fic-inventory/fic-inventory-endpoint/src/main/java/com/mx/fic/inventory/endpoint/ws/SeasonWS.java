@@ -35,7 +35,7 @@ public class SeasonWS {
 		
 		try{
 			if((seasonDTO!=null && seasonDTO.getName()!=null) &&
-					seasonDTO.getId()!=null){
+					seasonDTO.getCompanyId()!=null){
 				seasonBean.save(seasonDTO);
 				message.setCode(200);
 				message.setMessage("exito");

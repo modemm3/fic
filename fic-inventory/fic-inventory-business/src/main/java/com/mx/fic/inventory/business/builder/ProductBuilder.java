@@ -23,17 +23,14 @@ public class ProductBuilder extends AbstractDTOBuilder{
 		
 		if(product.getCompany()!=null){
 			productDTO.setCompanyId(product.getCompany().getId());
-			//productDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, product.getCompany()));
 		}
 		
 		if(product.getMeasureUnit()!=null){
 			productDTO.setMeasureUnitId(product.getMeasureUnit().getId());
-			//productDTO.setMeasureUnitDTO(TransferObjectAssembler.getInstance().assembleTO(MeasureUnitDTO.class, product.getMeasure()));
 		}
 		
 		if(product.getStatus()!=null){
 			productDTO.setStatusId(product.getStatus().getId());
-			//productDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, product.getStatus()));
 		}
 		
 		return productDTO;
