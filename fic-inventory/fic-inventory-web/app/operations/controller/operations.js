@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('app.controller').
-controller('operationController', ['$scope','OperationServices',function($scope,OperationServices){
+controller('operationController', ['$scope','OperationServices','ProductServices',function($scope,OperationServices,ProductServices){
 	
 	$scope.unit={
 			id:'-1',
@@ -18,33 +18,13 @@ controller('operationController', ['$scope','OperationServices',function($scope,
 			stockMax:'1',
 			stock:'1'
 	};
-	$scope.products=[{
-			name:'hola product',
-			description:'hola product',
-			measureUnit:$scope.unit,
-			stockMin:'1',
-			stockMax:'1',
-			stock:'1'
-	},
-	{
-		name:'Product',
-		description:'Product',
-		measureUnit:$scope.unit,
-		stockMin:'1',
-		stockMax:'1',
-		stock:'1'
-},
-{
-	name:'que tal',
-	description:'que tal',
-	measureUnit:$scope.unit,
-	stockMin:'1',
-	stockMax:'1',
-	stock:'1'
-}];
+	$scope.products=[];
 	$scope.name="hola name";
 	OperationServices.OperationList(1).success(function(responseDTO){
 		$scope.measureUnits = responseDTO.measureUnitDTOLst;
+	});
+	ProductServices.getProducts(1).success(function(responseDTO){
+		$scope.products = responseDTO.productDTOLst;
 	});
 	$scope.selectUnit=function(){
 		$scope.unit.name=this.unity.name;
