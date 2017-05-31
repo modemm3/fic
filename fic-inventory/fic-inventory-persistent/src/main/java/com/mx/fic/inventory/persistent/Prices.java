@@ -2,6 +2,7 @@ package com.mx.fic.inventory.persistent;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class Prices implements BaseEntity{
 	@JoinColumn(name="product_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Product product;
+	@Column(name="creation_date")
 	private Timestamp creationDate;
 	@JoinColumn(name="season_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
