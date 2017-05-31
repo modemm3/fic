@@ -59,10 +59,10 @@ public class ProductBean{
 	}
 	
 	public List<ProductDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
-		List<ProductDTO> productDTOLst = new ArrayList<ProductDTO>();
+		List<ProductDTO> productDTOLst = null;
 		List<Product> productLst= new ArrayList<Product>();
 		ProductDTO productDTO = null;
-		
+																		
 		TypedQuery<Product> queryProduct= entityManager.createNamedQuery("Product.getAllByCompany",Product.class);
 		queryProduct.setParameter("id", idCompany );
 		
@@ -71,7 +71,7 @@ public class ProductBean{
 		if(productLst!= null && productLst.size()>0){
 			productDTOLst = new ArrayList<ProductDTO>();
 			for(Product p: productLst){
-				productDTO=TransferObjectAssembler.getInstance().assembleTO(productDTO.getClass(), p);
+				productDTO=TransferObjectAssembler.getInstance().assembleTO(ProductDTO.class, p);
 				productDTOLst.add(productDTO);
 			}
 		}

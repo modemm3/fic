@@ -12,7 +12,7 @@ public class ProductBuilder extends AbstractDTOBuilder{
 
 	public BaseDTO createDTO(BaseEntity entity) {
 		final ProductDTO productDTO = new ProductDTO();
-		final Product product = (Product)entity;
+		final Product product = (Product) entity;
 		
 		productDTO.setBarCode(product.getBarcode());
 		productDTO.setName(product.getName());
