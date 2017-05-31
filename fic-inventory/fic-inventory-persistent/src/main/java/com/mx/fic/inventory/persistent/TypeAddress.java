@@ -17,6 +17,11 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="TypeAddress.getAllByCompany", query="select ta from TypeAddress ta where ta.company.id=:id")
 })
+/**
+ * SE prueba type address
+ * @author developer
+ *
+ */
 public class TypeAddress implements BaseEntity{
 	
 	private static final long serialVersionUID = 2591414529345181521L;
