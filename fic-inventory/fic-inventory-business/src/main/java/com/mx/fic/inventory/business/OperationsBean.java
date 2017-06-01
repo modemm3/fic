@@ -45,23 +45,23 @@ public class OperationsBean {
 		
 		try{
 		
-			company.setId(operations.getCompany().getId());
+			company.setId(operationsDTO.getCompanyId());
 			operations.setCompany(company);
 			
 			operations.setCreationDate(operationsDTO.getCreationDate());
 			operations.setDeliveryTime(operationsDTO.getDeliveryTime());
 			operations.setFolioDocument(operationsDTO.getFolioDocument());
 			
-			movementType.setId(operations.getMovementType().getId());
+			movementType.setId(operationsDTO.getMovementTypeId());
 			operations.setMovementType(movementType);
 			
-			product.setId(operations.getProduct().getId());
+			product.setId(operationsDTO.getProductId());
 			operations.setProduct(product);
 			
-			provider.setId(operations.getProvider().getId());
+			provider.setId(operationsDTO.getProviderId());
 			operations.setProvider(provider);
 			
-			status.setId(operations.getStatus().getId());
+			status.setId(operationsDTO.getStatusId());
 			operations.setStatus(status);
 			
 			operations.setStocks(operationsDTO.getStocks());

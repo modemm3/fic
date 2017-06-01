@@ -42,8 +42,12 @@ public class ValuationBean {
 			valuation.setDateStart(valuationDTO.getDateStart());
 			valuation.setExerciseFiscal(valuationDTO.getExerciseFiscal());
 			valuation.setSerialId(valuationDTO.getSerialId());
+			
+			status.setId(valuationDTO.getStatusId());
 			valuation.setStatus(status);
+			company.setId(valuationDTO.getCompanyId());
 			valuation.setCompany(company);
+			valuationType.setId(valuationDTO.getValuationTypeId());
 			valuation.setValuationType(valuationType);
 			entityManager.persist(valuation);
 

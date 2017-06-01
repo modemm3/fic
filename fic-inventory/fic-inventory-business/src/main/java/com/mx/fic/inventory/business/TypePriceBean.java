@@ -35,8 +35,8 @@ public class TypePriceBean {
 		final Status status = new Status();
 		
 		try{
-			company.setId(typePriceDTO.getId());
-			status.setId(typePriceDTO.getId());
+			company.setId(typePriceDTO.getCompanyId());
+			status.setId(typePriceDTO.getStatusId());
 			typePrice.setCompany(company);
 			typePrice.setStatus(status);
 			typePrice.setDescription(typePriceDTO.getDescription());

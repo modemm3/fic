@@ -44,11 +44,11 @@ public class PricesBean {
 		final Product product = new Product();
 		
 		try{
-			company.setId(pricesDTO.getId());
-			season.setId(pricesDTO.getId());
-			typePrice.setId(pricesDTO.getId());
-			status.setId(pricesDTO.getId());
-			product.setId(pricesDTO.getId());
+			company.setId(pricesDTO.getCompanyId());
+			season.setId(pricesDTO.getSeasonId());
+			typePrice.setId(pricesDTO.getTypePriceId());
+			status.setId(pricesDTO.getStatusId());
+			product.setId(pricesDTO.getProductId());
 			price.setCompany(company);
 			price.setProduct(product);
 			price.setSeason(season);

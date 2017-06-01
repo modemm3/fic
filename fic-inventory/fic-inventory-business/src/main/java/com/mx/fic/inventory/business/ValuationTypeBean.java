@@ -34,7 +34,7 @@ public class ValuationTypeBean {
 		final Company company= new Company();
 		
 		try{
-			company.setId(valuationTypeDTO.getId());
+			company.setId(valuationTypeDTO.getCompanyId());
 
 			valuationType.setCompany(company);
 			valuationType.setDescription(valuationTypeDTO.getDescription());
