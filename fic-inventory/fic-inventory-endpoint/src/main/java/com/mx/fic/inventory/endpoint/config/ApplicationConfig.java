@@ -17,6 +17,7 @@ import com.mx.fic.inventory.endpoint.ws.MovementTypeWS;
 import com.mx.fic.inventory.endpoint.ws.OperationsWS;
 import com.mx.fic.inventory.endpoint.ws.PricesWS;
 import com.mx.fic.inventory.endpoint.ws.TypeAddressWS;
+import com.mx.fic.inventory.endpoint.ws.TypePersonWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
 import com.mx.fic.inventory.endpoint.ws.ProviderWS;
 import com.mx.fic.inventory.endpoint.ws.SeasonWS;
@@ -55,6 +56,7 @@ public class ApplicationConfig extends Application {
 		resources.add(ValuationTypeWS.class);
 		resources.add(ValuationWS.class);
 		resources.add(OperationsWS.class);
+		resources.add(TypePersonWS.class);
 		resources.add(LoginWS.class);
 
 	}
