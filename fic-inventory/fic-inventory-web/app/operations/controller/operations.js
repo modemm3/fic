@@ -60,6 +60,7 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 		$scope.operation.deliverTime="5";
 		$scope.operation.providerId="1";
 		$scope.operation.companyId=1;
+		$scope.operation.creationDate='2017-05-20T18:25:43.511Z';
 		OperationServices.saveOperation($scope.operation);
 	}
 }]);
