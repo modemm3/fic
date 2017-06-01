@@ -8,10 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="type_person")
+@NamedQueries({
+	@NamedQuery( name ="TypePerson.getAllByCompany" , query = "select tp from TypePerson tp where tp.company.id=:id")
+})
 public class TypePerson implements BaseEntity{
 	
 	private static final long serialVersionUID = 7292119354341748554L;

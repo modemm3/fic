@@ -31,7 +31,6 @@ public class ProductWS {
 	public Response saveProduct(ProductDTO productDTO){
 		ProductResponse response = new ProductResponse();
 		Message message = new Message();
-		int status=200;
 		logger.info("saveProduct");
 		
 		try {
@@ -42,25 +41,22 @@ public class ProductWS {
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
-				status= 400;
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
 			}
 		} catch (PersistenceException e) {
-			status=500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
+			logger.error("Persistence=> " + e);						
 		} catch (Exception e){
-			status= 500;
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
+			logger.error("Exception => " + e);						
 		}
 		
 		response.setMessage(message);
 
-		return Response.status(status).entity(response).build();
+		return Response.status(message.getCode()).entity(response).build();
 	}
 	
 	@POST
@@ -87,11 +83,11 @@ public class ProductWS {
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
+			logger.error("Persistence=> " + e);			
 		}catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			e.printStackTrace();
+			logger.error("Exception => " + e);			
 		}
 		
 		response.setMessage(message);
