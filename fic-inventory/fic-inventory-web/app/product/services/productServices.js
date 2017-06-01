@@ -8,6 +8,10 @@
 				getProducts:function(companyId){
 					return $http({method: 'POST',url:urlBase+'product/getProductByCompany/'+companyId,
 						headers:{'Content-Type':'application/json'}})
+					},
+				saveProducts:function(productDTO){
+					return $http({method: 'POST',url:urlBase+'product/getProductByCompany/'+companyId,
+						headers:{'Content-Type':'application/json'},productDTO})
 					}
 				};
 		}]);

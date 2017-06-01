@@ -11,12 +11,25 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 			description:''
 	};
 	$scope.product={
+			id:"",
 			name:'hola product',
 			description:'test de description',
 			measureUnit:$scope.unit,
 			stockMin:'1',
 			stockMax:'1',
 			stock:'1'
+	};
+	$scope.operation={
+			productId:"",
+			movementTypeId:"",
+			statusId:"",
+			creationDate:"",
+			stocks:"",
+			folioDocument:"",
+			timeUnitId:"",
+			deliverTime:"",
+			providerId:"",
+			companyId:""
 	};
 	$scope.products=[];
 	$scope.name="hola name";
@@ -37,5 +50,16 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 			console.log('buscar');
 		}
 	}
-	
+	$scope.save = function(){
+		$scope.operation.productId=$scope.product.id;
+		$scope.operation.movementTypeId=1;
+		$scope.operation.statusId=1;
+		$scope.operation.stock=$scope.product.stock;
+		$scope.operation.folioDocument="";
+		$scope.operation.timeUnitId="3";
+		$scope.operation.deliverTime="5";
+		$scope.operation.providerId="";
+		$scope.operation.companyId=1;
+		OperationServices.saveOperation($scope.operation);
+	}
 }]);
