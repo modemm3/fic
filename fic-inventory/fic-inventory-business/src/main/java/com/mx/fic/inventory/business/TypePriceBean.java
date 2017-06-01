@@ -61,7 +61,7 @@ public class TypePriceBean {
 		if(typePriceLst!= null && typePriceLst.size()>0){
 			typePriceDTOLst= new ArrayList<TypePriceDTO>();
 			for(TypePrice tp: typePriceLst){
-				typePryceDTO= TransferObjectAssembler.getInstance().assembleTO(typePryceDTO.getClass(), tp);
+				typePryceDTO= TransferObjectAssembler.getInstance().assembleTO(TypePriceDTO.class, tp);
 				typePriceDTOLst.add(typePryceDTO);
 			}
 		}
