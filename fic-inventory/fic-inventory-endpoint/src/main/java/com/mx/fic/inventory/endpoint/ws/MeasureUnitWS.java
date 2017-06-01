@@ -35,7 +35,7 @@ public class MeasureUnitWS {
 		
 		try{
 			if((measureUnitDTO!=null && measureUnitDTO.getName()!=null) &&
-					measureUnitDTO.getId()!=null){
+					measureUnitDTO.getCompanyId()!=null){
 				measureUnitBean.save(measureUnitDTO);
 				message.setCode(200);
 				message.setMessage("exito");

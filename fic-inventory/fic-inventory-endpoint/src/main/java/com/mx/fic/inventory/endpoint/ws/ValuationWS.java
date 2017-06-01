@@ -41,8 +41,8 @@ public class ValuationWS {
 		try{
 			if((valuationDTO!=null && valuationDTO.getCompanyId()!=null) &&
 					(valuationDTO.getDateEnd()!=null && valuationDTO.getDateStart()!=null) &&
-					(valuationDTO.getExerciseFiscal()!=null && valuationDTO.getSerialId()!=null &&
-					valuationDTO.getStatusId()!=null && valuationDTO.getValuationTypeId()!=null)){
+					(valuationDTO.getExerciseFiscal()!=null && valuationDTO.getSerialId()!=null) &&
+					(valuationDTO.getStatusId()!=null && valuationDTO.getValuationTypeId()!=null)){
 				valuationBean.saveValuation(valuationDTO);
 				message.setCode(200);
 				message.setMessage("exito");

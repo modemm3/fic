@@ -33,7 +33,7 @@ public class StatusBean {
 		final Company company= new Company();
 		
 		try{
-			company.setId(statusDTO.getId());
+			company.setId(statusDTO.getCompanyId());
 			status.setCompany(company);
 			status.setDescription(statusDTO.getDescription());;
 			status.setName(statusDTO.getName());

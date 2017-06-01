@@ -20,6 +20,7 @@ import com.mx.fic.inventory.dto.MovementConceptDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
 import com.mx.fic.inventory.endpoint.response.MovementConceptResponse;
 
+@Path("/movementConcept")
 public class MovementConceptWS {
 
 	@EJB(mappedName="MovementConceptBean")
