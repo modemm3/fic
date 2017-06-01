@@ -20,12 +20,10 @@ public class TypePriceBuilder extends AbstractDTOBuilder {
 		
 		if(typePrice.getStatus()!=null){
 			typePriceDTO.setStatusId(typePrice.getStatus().getId());
-			//typePriceDTO.setStatusDTO(TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, typePrice.getStatus()));
 		}
 		
 		if(typePrice.getCompany()!=null){
 			typePriceDTO.setCompanyId(typePrice.getCompany().getId());
-			//typePriceDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, typePrice.getCompany()));
 		}
 		
 		return typePriceDTO;

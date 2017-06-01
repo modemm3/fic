@@ -19,7 +19,7 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePriceDTO;
 import com.mx.fic.inventory.endpoint.response.TypePriceResponse;
 
-@Path("/status")
+@Path("/typePrice")
 public class TypePriceWS {
 	@EJB(mappedName= "TypePriceBean")
 	private TypePriceBean typePriceBean;

@@ -14,6 +14,7 @@ import com.mx.fic.inventory.endpoint.ws.LoginWS;
 import com.mx.fic.inventory.endpoint.ws.MeasureUnitWS;
 import com.mx.fic.inventory.endpoint.ws.MovementConceptWS;
 import com.mx.fic.inventory.endpoint.ws.MovementTypeWS;
+import com.mx.fic.inventory.endpoint.ws.OperationsWS;
 import com.mx.fic.inventory.endpoint.ws.PricesWS;
 import com.mx.fic.inventory.endpoint.ws.TypeAddressWS;
 import com.mx.fic.inventory.endpoint.ws.ProductWS;
@@ -53,6 +54,7 @@ public class ApplicationConfig extends Application {
 		resources.add(ProviderWS.class);
 		resources.add(ValuationTypeWS.class);
 		resources.add(ValuationWS.class);
+		resources.add(OperationsWS.class);
 		resources.add(LoginWS.class);
 
 	}
