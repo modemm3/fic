@@ -11,7 +11,7 @@
 				},
 				saveOperation:function(operationDTO){
 					return $http({method: 'POST',url:urlBase+'operations/saveOperations/',
-						headers:{'Content-Type':'application/json'},operationDTO})
+						headers:{'Content-Type':'application/json'},data:operationDTO})
 				}
 				};
 		}]);

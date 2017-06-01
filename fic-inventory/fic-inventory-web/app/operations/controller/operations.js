@@ -54,11 +54,11 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 		$scope.operation.productId=$scope.product.id;
 		$scope.operation.movementTypeId=1;
 		$scope.operation.statusId=1;
-		$scope.operation.stock=$scope.product.stock;
+		$scope.operation.stocks=$scope.product.stock;
 		$scope.operation.folioDocument="";
 		$scope.operation.timeUnitId="3";
 		$scope.operation.deliverTime="5";
-		$scope.operation.providerId="";
+		$scope.operation.providerId="0";
 		$scope.operation.companyId=1;
 		OperationServices.saveOperation($scope.operation);
 	}

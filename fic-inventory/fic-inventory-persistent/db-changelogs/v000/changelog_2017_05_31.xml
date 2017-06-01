@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+	<changeSet author="mode" id="15">
+		<insert tableName="provider">
+			<column name="id" value="0"></column>
+			<column name="name" value="FIC SA DE CV"></column>
+			<column name="last_name" value="FIC SA DE CV"></column>
+			<column name="surname" value="fic"></column>
+			<column name="reason_social" value="FIC SA DE CV"></column>
+			<column name="rfc" value="12345678"></column>
+			<column name="email" value="test@fic.com"></column>
+			<column name="type_person_id" value="2"></column>
+			<column name="status_id" value="1"></column>
+			<column name="company_id" value="1"></column>
+		</insert>
+	</changeSet>
+
+	<changeSet id="16" author="mode">
+		<addDefaultValue columnName="provider_id" tableName="operations" defaultValue="0"/>
+	</changeSet>
+	<changeSet id="17" author="mode">
+		<addDefaultValue columnName="creation_date" tableName="operations" defaultValue="now()"/>
+	</changeSet>
+</databaseChangeLog>
