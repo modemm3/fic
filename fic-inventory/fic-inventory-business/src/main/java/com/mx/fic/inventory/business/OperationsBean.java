@@ -2,6 +2,8 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -31,6 +33,9 @@ public class OperationsBean {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@EJB (mappedName="ProductBean")
+	private ProductBean productBean;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final OperationsDTO operationsDTO) throws PersistenceException{
@@ -55,8 +60,10 @@ public class OperationsBean {
 			movementType.setId(operationsDTO.getMovementTypeId());
 			operations.setMovementType(movementType);
 			
-			product.setId(operationsDTO.getProductId());
-			operations.setProduct(product);
+			if(operationsDTO.getProductDTO() != null){
+				product.setId(operationsDTO.getProductDTO().getId());
+				operations.setProduct(product);
+			}
 			
 			provider.setId(operationsDTO.getProviderId());
 			operations.setProvider(provider);

@@ -80,8 +80,20 @@ public class ProductBean{
 		return productDTOLst;
 	}
 	
-	/*public List<ProductDTO> deleteProductByCompany(final ProductDTO productDTO){
+	public boolean productExists(final ProductDTO productDTO) throws PersistenceException {
+		List<Product> prodLst = new ArrayList<Product>();
+		boolean indicateExists = false;
 		
-	}*/
+		TypedQuery<Product> queryProduct = entityManager.createNamedQuery("Product.findByName", Product.class);
+		queryProduct.setParameter("name", productDTO.getName());
+		queryProduct.setParameter("companyId", productDTO.getCompanyId());
+		
+		prodLst = queryProduct.getResultList();
+		
+		if(prodLst!=null && prodLst.size()>0){
+			
+		}
+		return true;
+	}
 
 }

@@ -38,10 +38,11 @@ public class OperationsWS {
 		logger.info("saveOperations");
 		
 		try{
-			if((operationsDTO!=null && operationsDTO.getProviderId()!=null && operationsDTO.getCompanyId()!=null) 
-					&& (operationsDTO.getMovementTypeId()!=null && operationsDTO.getProductId()!=null)
-					&& (operationsDTO.getStatusId()!=null && operationsDTO.getTimeUnitId()!=null)
-					&& operationsDTO.getStocks()!=null){
+			if((operationsDTO!=null && operationsDTO.getProviderId()!=null) && 
+					(operationsDTO.getCompanyId()!=null && operationsDTO.getMovementTypeId()!=null) && 
+						(operationsDTO.getStatusId()!=null && operationsDTO.getTimeUnitId()!=null) && 
+							(operationsDTO.getStocks()!=null && operationsDTO.getProductDTO()!=null) &&
+								operationsDTO.getProductDTO().getId()!=null){
 				operationsBean.save(operationsDTO);
 				message.setCode(200);
 				message.setMessage("exito");

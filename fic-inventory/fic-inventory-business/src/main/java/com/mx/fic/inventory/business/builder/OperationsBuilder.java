@@ -4,6 +4,7 @@ import com.mx.fic.inventory.business.builder.config.AbstractDTOBuilder;
 import com.mx.fic.inventory.business.builder.config.BuilderConfiguration;
 import com.mx.fic.inventory.dto.BaseDTO;
 import com.mx.fic.inventory.dto.OperationsDTO;
+import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.persistent.BaseEntity;
 import com.mx.fic.inventory.persistent.Operations;
 
@@ -12,6 +13,7 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 
 	public BaseDTO createDTO(BaseEntity entity) {
 		final OperationsDTO operationsDTO = new OperationsDTO();
+		final ProductDTO productDTO = new ProductDTO();
 		final Operations operations = (Operations) entity;
 		
 		if(operations.getCompany() != null){
@@ -28,7 +30,8 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 		}
 		
 		if(operations.getProduct() != null){
-			operationsDTO.setProductId(operations.getProduct().getId());
+			productDTO.setId(operations.getProduct().getId());			
+			operationsDTO.setProductDTO(productDTO);
 		}
 		
 		if(operations.getProvider() != null){

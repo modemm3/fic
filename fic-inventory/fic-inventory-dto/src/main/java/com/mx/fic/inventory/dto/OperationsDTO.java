@@ -6,7 +6,7 @@ public class OperationsDTO implements BaseDTO{
 	
 	private static final long serialVersionUID = 4854466677134336550L;
 	private Integer id;
-	private Integer productId;
+	private ProductDTO productDTO;
 	private Integer movementTypeId;
 	private Integer statusId;
 	private Timestamp creationDate;
@@ -22,12 +22,6 @@ public class OperationsDTO implements BaseDTO{
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Integer getProductId() {
-		return productId;
-	}
-	public void setProductId(Integer productId) {
-		this.productId = productId;
 	}
 	public Integer getMovementTypeId() {
 		return movementTypeId;
@@ -83,4 +77,11 @@ public class OperationsDTO implements BaseDTO{
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
+	
 }

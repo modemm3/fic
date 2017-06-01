@@ -15,7 +15,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="product")
 @NamedQueries({
-	@NamedQuery(name="Product.getAllByCompany", query="select p from Product p where p.company.id=:id")
+	@NamedQuery(name="Product.getAllByCompany", query="select p from Product p where p.company.id=:id"), 
+	@NamedQuery(name="Product.findByName", query="select p from Product p where p.name=:name and p.company.id=:companyId")
 })
 public class Product implements BaseEntity {
 	
