@@ -6,7 +6,7 @@ public class TypePersonDTO implements BaseDTO{
 	private Integer id;
 	private String name;
 	private String description;
-	private CompanyDTO company;
+	private Integer companyId;
 	
 	public Integer getId() {
 		return id;
@@ -26,13 +26,11 @@ public class TypePersonDTO implements BaseDTO{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public CompanyDTO getCompany() {
-		return company;
+	public Integer getCompanyId() {
+		return companyId;
 	}
-	public void setCompany(CompanyDTO company) {
-		this.company = company;
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
 	}
-	
-	
 
 }

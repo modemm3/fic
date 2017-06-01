@@ -11,6 +11,16 @@ import com.mx.fic.inventory.persistent.TypePerson;
 public class TypePersonBuilder extends AbstractDTOBuilder {
 
 	public BaseDTO createDTO(BaseEntity entity) {
+		final TypePersonDTO typePersonDTO = new TypePersonDTO();
+		final TypePerson typePerson = (TypePerson) entity;
+		
+		typePersonDTO.setName(typePerson.getName());
+		typePersonDTO.setDescription(typePerson.getDescription());
+		
+		if(typePerson.getCompany()!=null){
+			typePersonDTO.setCompanyId(typePerson.getCompany().getId());
+		}
+		
 		return null;
 	}
 

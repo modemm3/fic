@@ -2,6 +2,7 @@ package com.mx.fic.inventory.endpoint.ws;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -12,91 +13,85 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.PricesBean;
+import com.mx.fic.inventory.business.TypePersonBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
-import com.mx.fic.inventory.dto.PricesDTO;
+import com.mx.fic.inventory.dto.TypePersonDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.PricesResponse;
+import com.mx.fic.inventory.endpoint.response.TypePersonResponse;
 
-@Path("/prices")
-public class PricesWS {
-	@EJB(mappedName="PricesBean")
-	private PricesBean pricesBean;
-	
-	private static final Logger logger = LoggerFactory.getLogger(PricesWS.class);
+@Path("/typePerson")
+public class TypePersonWS {
+
+	@EJB(mappedName ="TypePersonBean")
+	private TypePersonBean typePersonBean;
+	private static final Logger logger = LoggerFactory.getLogger(TypePersonWS.class);
 	
 	@POST
-	@Path("savePrice")
+	@Path("saveTypePerson")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response savePrice(PricesDTO pricesDTO){
-		PricesResponse response = new PricesResponse();
+	public Response saveTypePerson(TypePersonDTO typePersonDTO){
+		TypePersonResponse response = new TypePersonResponse();
 		Message message = new Message();
 		
-		logger.info("savePrice");
+		logger.info("saveTypePerson");
 		
 		try{
-			if((pricesDTO.getPrice()!=null && pricesDTO.getCompanyId()!=null) && (pricesDTO.getProductId()!=null && pricesDTO.getSeasonId()!=null)
-					&& (pricesDTO.getStatusId()!=null && pricesDTO.getTypePriceId()!=null)){
-				pricesBean.save(pricesDTO);
+			if((typePersonDTO!=null && typePersonDTO.getCompanyId()!=null) && 
+					(typePersonDTO.getName()!=null && !typePersonDTO.getName().equals(""))){
+				typePersonBean.save(typePersonDTO);
 				message.setCode(200);
-				message.setMessage("exito");				
+				message.setMessage("exito");
 			}else{
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
 			}
-			
-		} catch (PersistenceException e) {
+		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 			logger.error("Persistence=> " + e);						
-		} catch (Exception e){
+		}catch(Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
 			logger.error("Exception => " + e);						
 		}
+		
 		response.setMessage(message);
 		
 		return Response.status(message.getCode()).entity(response).build();
 	}
 	
 	@POST
-	@Path("getPricesByCompany/{companyId}")
+	@Path("getTypePersonByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getPricesByCompany(@PathParam("companyId") Integer companyId){
-		PricesResponse response = new PricesResponse();
-		List<PricesDTO> pricesDTOLst = null;
+	public Response getTypePersonByCompany(@PathParam("companyId") final Integer companyId){
+		TypePersonResponse response = new TypePersonResponse();
 		Message message = new Message();
+		List<TypePersonDTO> typePersonDTOLst = null;
 		
 		try{
-		if(companyId!=null){
-			pricesDTOLst = new ArrayList<PricesDTO>();
-			pricesDTOLst= pricesBean.getAllByCompany(companyId);
-			response.setPricesDTOLst(pricesDTOLst);
-			message.setCode(200);
-			message.setMessage("exito");
-			
-		}else{
-			message.setCode(400);
-			message.setMessage("error => Es requerido el id de la compañía");
-		}
+			if(companyId != null){
+				typePersonDTOLst = new ArrayList<TypePersonDTO>();
+				typePersonDTOLst = typePersonBean.getAllByCompany(companyId);
+				response.setTypePersonDTOLst(typePersonDTOLst);
+				message.setCode(200);
+				message.setMessage("exito");
+			}else{
+				message.setCode(400);
+				message.setMessage("error => Es requerido el id de la compañía");			
+			}
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			logger.error("Persistence=> " + e);						
+			logger.error("Persistence=> " + e);
 		}catch (Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
-			logger.error("Exception => " + e);						
+			logger.error("Exception => " + e);
 		}
 		response.setMessage(message);
 		
 		return Response.status(message.getCode()).entity(response).build();
-		
 	}
-	
-	
-	
-
 }

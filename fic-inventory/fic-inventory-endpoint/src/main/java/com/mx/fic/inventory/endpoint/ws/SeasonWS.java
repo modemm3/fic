@@ -46,9 +46,11 @@ public class SeasonWS {
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Persistence=> " + e);						
 		}catch(Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Exception => " + e);						
 		}
 		
 		response.setMessage(message);
@@ -77,10 +79,11 @@ public class SeasonWS {
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Persistence=> " + e);						
 		}catch(Exception e){
-			logger.error("error al obtener los estatus por compañía");
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Exception => " + e);						
 		}
 		response.setMessage(message);
 		return Response.status(message.getCode()).entity(response).build();		

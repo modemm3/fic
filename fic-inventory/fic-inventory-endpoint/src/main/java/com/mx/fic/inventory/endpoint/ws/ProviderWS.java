@@ -51,9 +51,11 @@ public class ProviderWS {
 		}catch(PersistenceException e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Persistence=> " + e);						
 		}catch(Exception e){
 			message.setCode(500);
 			message.setMessage("error => Error interno");
+			logger.error("Exception => " + e);			
 		}
 		
 		response.setMessage(message);
