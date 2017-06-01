@@ -24,4 +24,17 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
 	<changeSet id="17" author="mode">
 		<addDefaultValue columnName="creation_date" tableName="operations" defaultValue="now()"/>
 	</changeSet>
+	<changeSet id="18" author="mode">
+		<insert tableName="provider">
+			<column name="name" value="FIC SA DE CV"></column>
+			<column name="last_name" value="FIC SA DE CV"></column>
+			<column name="surname" value="fic"></column>
+			<column name="reason_social" value="FIC SA DE CV"></column>
+			<column name="rfc" value="12345678"></column>
+			<column name="email" value="test@fic.com"></column>
+			<column name="type_person_id" value="2"></column>
+			<column name="status_id" value="1"></column>
+			<column name="company_id" value="1"></column>
+		</insert>
+	</changeSet>
 </databaseChangeLog>
