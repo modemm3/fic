@@ -58,7 +58,7 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 		$scope.operation.folioDocument="";
 		$scope.operation.timeUnitId="3";
 		$scope.operation.deliverTime="5";
-		$scope.operation.providerId="0";
+		$scope.operation.providerId="1";
 		$scope.operation.companyId=1;
 		OperationServices.saveOperation($scope.operation);
 	}

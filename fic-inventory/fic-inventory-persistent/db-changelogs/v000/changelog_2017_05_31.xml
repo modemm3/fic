@@ -37,4 +37,8 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
 			<column name="company_id" value="1"></column>
 		</insert>
 	</changeSet>
+	<changeSet id="19" author="mode">
+		<addDefaultValue columnName="creation_date" tableName="operations" defaultValueDate="now();"/>
+	</changeSet>
+	
 </databaseChangeLog>
