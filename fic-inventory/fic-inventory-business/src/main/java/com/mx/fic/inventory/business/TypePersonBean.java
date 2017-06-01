@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityExistsException;
@@ -27,6 +29,7 @@ public class TypePersonBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TypePersonDTO typePersonDTO) throws PersistenceException{
 		final TypePerson typePerson = new TypePerson();
 		final Company company = new Company();

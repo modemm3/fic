@@ -16,12 +16,13 @@ public class TypePersonBuilder extends AbstractDTOBuilder {
 		
 		typePersonDTO.setName(typePerson.getName());
 		typePersonDTO.setDescription(typePerson.getDescription());
+		typePersonDTO.setId(typePerson.getId());
 		
 		if(typePerson.getCompany()!=null){
 			typePersonDTO.setCompanyId(typePerson.getCompany().getId());
 		}
 		
-		return null;
+		return typePersonDTO;
 	}
 
 }
