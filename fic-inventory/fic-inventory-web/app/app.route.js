@@ -23,7 +23,6 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	 views:{
 		 'header':{
 			 templateUrl :'layout/views/header.html'
-//			 controller  :"HeaderController"
 		 },
 		 'sideLeft':{
 			 templateUrl :'layout/views/sideLeft.html'
@@ -39,13 +38,24 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   });
   $stateProvider.state('operations',{
 	  url:"/operations",
+	  
 	  views:{
 		  'content':{
 			  templateUrl:'operations/views/operations.html',
 			  controller: 'operationController'
+			 }
+	  }
+  });
+  $stateProvider.state('typeAddress',{
+	  url:"/typeAddress",
+	  
+	  views:{
+		  'content':{
+			  templateUrl:'typeAddress/views/typeAddress.html',
+			  controller: 'typeAddressController'
 		  }
 	  }
-  })
+  });
   
 //	$translateProvider.useStaticFilesLoader({
 //		prefix : 'assets/locale/',
