@@ -30,7 +30,7 @@ public class ProductBean{
 	private EntityManager entityManager;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(final ProductDTO productDTO) throws PersistenceException {
+	public Integer save(final ProductDTO productDTO) throws PersistenceException {
 		/*
 		 * Agregar la fecha de creacion del producto
 		 * */
@@ -53,9 +53,13 @@ public class ProductBean{
 			product.setName(productDTO.getName());
 			
 			entityManager.persist(product);
+			entityManager.flush();
+			
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
 			throw new PersistenceException("Errror al guardar en la tabla de productos");
 		}
+		
+		return product.getId();
 	}
 	
 	public List<ProductDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
@@ -91,9 +95,9 @@ public class ProductBean{
 		prodLst = queryProduct.getResultList();
 		
 		if(prodLst!=null && prodLst.size()>0){
-			
+			indicateExists = true;
 		}
-		return true;
+		return indicateExists;
 	}
 
 }

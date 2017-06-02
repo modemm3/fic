@@ -15,6 +15,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.OperationsDTO;
@@ -36,6 +40,9 @@ public class OperationsBean {
 	
 	@EJB (mappedName="ProductBean")
 	private ProductBean productBean;
+	
+	private static final Logger logger = LoggerFactory.getLogger(OperationsBean.class);
+
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final OperationsDTO operationsDTO) throws PersistenceException{
@@ -46,39 +53,61 @@ public class OperationsBean {
 		final Status status = new Status();
 		final Company company = new Company();
 		final TimeUnit timeUnit = new TimeUnit();
+		boolean existProduct = false;
+		Integer productId = 0;
 		
 		
 		try{
-		
-			company.setId(operationsDTO.getCompanyId());
-			operations.setCompany(company);
 			
-			operations.setCreationDate(operationsDTO.getCreationDate());
-			operations.setDeliveryTime(operationsDTO.getDeliveryTime());
-			operations.setFolioDocument(operationsDTO.getFolioDocument());
-			
-			movementType.setId(operationsDTO.getMovementTypeId());
-			operations.setMovementType(movementType);
-			
-			if(operationsDTO.getProductDTO() != null){
-				product.setId(operationsDTO.getProductDTO().getId());
-				operations.setProduct(product);
+			if(operationsDTO.getProductDTO().getId()== null || operationsDTO.getProductDTO().getId()==0){
+				
+				existProduct = productBean.productExists(operationsDTO.getProductDTO());
+				
+				if(existProduct){
+					logger.info("error=> el producto ya existe, no puede ser insertado nuevamente");
+					throw new PersistenceException("error=> el producto ya existe, no puede ser insertado nuevamente");
+				}else{
+					productId= productBean.save(operationsDTO.getProductDTO());
+				}
+				
+			}else{
+				productId = operationsDTO.getProductDTO().getId();
 			}
-			
-			provider.setId(operationsDTO.getProviderId());
-			operations.setProvider(provider);
-			
-			status.setId(operationsDTO.getStatusId());
-			operations.setStatus(status);
-			
-			operations.setStocks(operationsDTO.getStocks());
-			
-			timeUnit.setId(operationsDTO.getTimeUnitId());			
-			operations.setTimeUnit(timeUnit);
-			
-			entityManager.persist(operations);
+			if(productId!=0){
+				company.setId(operationsDTO.getCompanyId());
+				operations.setCompany(company);
+				
+				operations.setCreationDate(operationsDTO.getCreationDate());
+				operations.setDeliveryTime(operationsDTO.getDeliveryTime());
+				operations.setFolioDocument(operationsDTO.getFolioDocument());
+				
+				movementType.setId(operationsDTO.getMovementTypeId());
+				operations.setMovementType(movementType);
+				
+				if(operationsDTO.getProductDTO() != null){
+					product.setId(productId);
+					operations.setProduct(product);
+				}
+				
+				provider.setId(operationsDTO.getProviderId());
+				operations.setProvider(provider);
+				
+				status.setId(operationsDTO.getStatusId());
+				operations.setStatus(status);
+				
+				operations.setStocks(operationsDTO.getStocks());
+				
+				timeUnit.setId(operationsDTO.getTimeUnitId());			
+				operations.setTimeUnit(timeUnit);
+				
+				
+				entityManager.persist(operations);
+			}else{
+				logger.info("error => El id del producto es 0");
+				throw new PersistenceException("error => El id del producto es 0");
+			}
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
-			throw new PersistenceException("Erro al guardar las operaciones");
+			throw new PersistenceException("Error al guardar las operaciones");
 		}
 	}
 	
