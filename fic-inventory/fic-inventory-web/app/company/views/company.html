@@ -7,54 +7,84 @@
 		<div class="panel-body">
 			<form class="form">
 				<div class="form-group">
+					<label class="col-lg-1">Nombre</label>
+					<div class="col-lg-5">
+							<input type="text" class="form-control" ng-model="company.name" placeholder="Nombre de la compañia"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Raz&oacuten social</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="company.reason" placeholder="Razon social"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Rfc</label>
+					<div class="btn-group col-lg-5">
+						<input type="text" class="form-control" ng-model="company.rfc" placeholder="Rfc de la compañia"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Email</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="company.email"  placeholder="Correo electronico"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Nombre de contacto</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control"  ng-model="company.contactName" placeholder="Nombre de contacto"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Codigo Postal</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control"  ng-model="company.address.zipCode" placeholder="Codigo postal"></input>
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="col-lg-1">Calle</label>
 					<div class="col-lg-5">
-							<product tag="product" name="product.name" autocomplete="products"></product>
+						<input type="text" class="form-control"  ng-model="company.address.street" placeholder="Calle"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-1">Descripcion</label>
-					<div class="col-lg-5">
-						<input type="text" class="form-control" ng-model="product.description" placeholder="Descripcion del producto"></input>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-1">Medida</label>
-					<div class="btn-group col-lg-5">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{unit.name}}
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li ng-repeat="unity in measureUnits" id="{{unity.id}}">
-								<a class="button" href="" ng-click="selectUnit();" >{{unity.name}}</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2">Cantidad M&iacutenima</label>
+					<label class="col-lg-2">Numero exterior</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control btn btn-default" ng-model="product.minimunStock"  placeholder="Cantidad"></input>
+						<input type="text" class="form-control"  ng-model="company.address.exteriorNumber" placeholder="Numero exterior"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2">Cantidad m&aacutexima</label>
+					<label class="col-lg-2">Numero interior</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control"  ng-model="product.maximumStock" placeholder="Cantidad"></input>
+						<input type="text" class="form-control"  ng-model="company.address.interiorNumber" placeholder="Numero interior"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-1">Cantidad</label>
+					<label class="col-lg-1">Colonia</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control" ng-model="product.stock"  placeholder="Cantidad a Registrar"></input>
+						<input type="text" class="form-control"  ng-model="company.address.town" placeholder="Colonia"></input>
 					</div>
-				</div>				
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class="col-lg-2">Cantidad a Registrar</label> -->
-<!-- 					<div class="col-lg-3"> -->
-<!-- 						<input type="text" class="form-control"  placeholder="Cantidad"></input> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Ciudad</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  ng-model="company.address.city" placeholder="Ciudad"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Estado</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  ng-model="company.address.state" placeholder="Estado"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Tipo de direccion</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  ng-model="company.address.typeAddress" placeholder="Tipo de direccion"></input>
+					</div>
+				</div>
+
 			</form>
 		</div>
 		<div class="panel-footer">
