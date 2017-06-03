@@ -29,6 +29,7 @@ public class SeasonWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveSeason(SeasonDTO seasonDTO){
+		logger.info("Entra a guardar la tempora => "+ seasonDTO);
 		SeasonResponse response = new SeasonResponse();
 		Message message = new Message();
 		logger.info("saveSeason");
@@ -62,6 +63,7 @@ public class SeasonWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getseasonByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener la temporada de la compañía => "+ companyId);
 		SeasonResponse response = new SeasonResponse();
 		Message message = new Message();
 		List<SeasonDTO> seasonDTOLst= null;

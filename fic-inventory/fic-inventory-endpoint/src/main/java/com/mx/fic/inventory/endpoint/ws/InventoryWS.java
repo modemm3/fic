@@ -34,11 +34,10 @@ public class InventoryWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveInventory(InventoryDTO inventoryDTO){
+		logger.info("Entra a guardar el inventario => "+ inventoryDTO);
 		InventoryResponse response = new InventoryResponse();
 		Message message = new Message();
-		
-		logger.info("saveInventory");
-		
+				
 		try{
 			if(inventoryDTO.getCompanyId()!=null){
 				inventoryBean.save(inventoryDTO);
@@ -67,6 +66,7 @@ public class InventoryWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getInventoryByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener el inventario por compañía => "+ companyId);
 		InventoryResponse response = new InventoryResponse();
 		Message message = new Message();
 		List<InventoryDTO> inventoryDTOLst = null;
@@ -98,6 +98,7 @@ public class InventoryWS {
 	}
 	
 	public Response getInventoryByProdAndComp(ProductDTO productDTO){
+		logger.info("Entra a obtener el inventario por producto-compañía => "+ productDTO);
 		InventoryResponse response = new InventoryResponse();
 		Message message = new Message();
 		List<InventoryDTO> inventoryDTOLst = new ArrayList<InventoryDTO>();

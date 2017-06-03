@@ -40,4 +40,20 @@ public class MovementConceptDTO implements BaseDTO {
 		this.companyId = companyId;
 	}
 	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MovementConceptDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 }

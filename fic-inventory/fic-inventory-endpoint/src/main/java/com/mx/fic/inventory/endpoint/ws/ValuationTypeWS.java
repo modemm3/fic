@@ -31,6 +31,7 @@ public class ValuationTypeWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveValuationType(ValuationTypeDTO valuationTypeDTO){
+		logger.info("Entra a guardar el tipo de valuación => "+ valuationTypeDTO);
 		ValuationTypeResponse response = new ValuationTypeResponse();
 		Message message = new Message();
 		
@@ -65,6 +66,7 @@ public class ValuationTypeWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getAllValuationType(){
+		logger.info("Entra a obtener los tipos de valuaciones existentes");
 		ValuationTypeResponse response = new ValuationTypeResponse();
 		List<ValuationTypeDTO> valuationTypeDTOLst = null;
 		Message message = new Message();

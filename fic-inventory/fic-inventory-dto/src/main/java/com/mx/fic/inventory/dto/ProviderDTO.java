@@ -74,5 +74,31 @@ public class ProviderDTO implements BaseDTO {
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ProviderDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", lastName=");
+		builder.append(lastName);
+		builder.append(", surName=");
+		builder.append(surName);
+		builder.append(", reasonSocial=");
+		builder.append(reasonSocial);
+		builder.append(", rfc=");
+		builder.append(rfc);
+		builder.append(", email=");
+		builder.append(email);
+		builder.append(", typePersonId=");
+		builder.append(typePersonId);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }

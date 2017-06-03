@@ -32,5 +32,19 @@ public class TypePersonDTO implements BaseDTO{
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TypePersonDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }

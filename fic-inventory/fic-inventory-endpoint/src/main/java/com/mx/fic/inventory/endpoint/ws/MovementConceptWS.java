@@ -33,11 +33,10 @@ public class MovementConceptWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveMovementConcept(MovementConceptDTO movementConceptDTO){
+		logger.info("Entra a guardar el concepto movimiento => "+ movementConceptDTO);
 		MovementConceptResponse response = new MovementConceptResponse();
 		Message message = new Message();
 		
-		logger.info("saveMovementConcept");
-
 		try{
 			if((movementConceptDTO!=null && movementConceptDTO.getName()!=null) 
 					&& (movementConceptDTO.getCompanyId()!=null && movementConceptDTO.getStatusId()!=null)){
@@ -67,6 +66,7 @@ public class MovementConceptWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getMovementConcetpByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener el concepto movimiento por compañía => "+ companyId);
 		MovementConceptResponse response = new MovementConceptResponse();
 		Message message = new Message();
 		List<MovementConceptDTO> movementConceptDTOLst = null;

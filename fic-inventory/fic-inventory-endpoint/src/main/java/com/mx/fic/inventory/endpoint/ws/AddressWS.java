@@ -34,6 +34,7 @@ public class AddressWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveAddress(final AddressDTO addressDTO){
+		logger.info("Entra a guardar la dirección => "+ addressDTO);
 		AddressResponse response = new AddressResponse();
 		Message message = new Message();
 		
@@ -68,6 +69,7 @@ public class AddressWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getAddressByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener la dirección por la compañía => "+ companyId);
 		AddressResponse response = new AddressResponse();
 		List<AddressDTO> addressDTOLst = null;
 		Message message = new Message();

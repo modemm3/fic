@@ -30,6 +30,7 @@ public class TypeAddressWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveTypeAddress(TypeAddressDTO typeAddressDTO){
+		logger.info("Entra a guardar el tipo de dirección => "+ typeAddressDTO);
 		TypeAddressResponse response = new TypeAddressResponse();
 		Message message = new Message();
 		
@@ -64,6 +65,7 @@ public class TypeAddressWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getTypeAddressByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener el tipo de dirección de la compañía => "+ companyId);
 		final TypeAddressResponse response = new TypeAddressResponse();
 		List<TypeAddressDTO> typeAddresDTOLst = null;
 		Message message = new Message();

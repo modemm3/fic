@@ -33,11 +33,10 @@ public class MovementTypeWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveMovementType(MovementTypeDTO movementTypeDTO){
+		logger.info("Entra a guardar el tipo de movimiento => "+ movementTypeDTO);
 		MovementTypeResponse response = new MovementTypeResponse();
 		Message message = new Message();
-		
-		logger.info("saveMovementType");
-		
+				
 		try{
 			if((movementTypeDTO!=null && movementTypeDTO.getName()!=null) &&
 					(movementTypeDTO.getCompanyId()!=null && movementTypeDTO.getMovementConceptId()!=null) 
@@ -67,6 +66,7 @@ public class MovementTypeWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getMovementTypeByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener el tipo de movimiento de la compañía => "+ companyId);
 		List<MovementTypeDTO> movementTypeDTOLst = null;
 		MovementTypeResponse response = new MovementTypeResponse();
 		Message message = new Message();

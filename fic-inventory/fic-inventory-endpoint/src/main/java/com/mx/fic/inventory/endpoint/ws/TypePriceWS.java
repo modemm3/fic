@@ -30,6 +30,7 @@ public class TypePriceWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveTypePrice(TypePriceDTO typePriceDTO){
+		logger.info("Entra a guardar el tipo de precio => "+ typePriceDTO);
 		TypePriceResponse response = new TypePriceResponse();
 		Message message = new Message();
 		
@@ -65,6 +66,7 @@ public class TypePriceWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getTypePriceByCompany(@PathParam("companyId") final Integer companyId){
+		logger.info("Entra a obtener el tipo de precio de la compañía => "+ companyId);
 		TypePriceResponse response = new TypePriceResponse();
 		List<TypePriceDTO> typePriceDTOLst= null;
 		Message message = new Message();
