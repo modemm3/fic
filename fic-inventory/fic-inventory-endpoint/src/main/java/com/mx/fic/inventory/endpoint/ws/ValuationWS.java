@@ -41,7 +41,7 @@ public class ValuationWS {
 		try{
 			if((valuationDTO!=null && valuationDTO.getCompanyId()!=null) &&
 					(valuationDTO.getDateEnd()!=null && valuationDTO.getDateStart()!=null) &&
-					(valuationDTO.getExerciseFiscal()!=null && valuationDTO.getSerialId()!=null) &&
+					valuationDTO.getExerciseFiscal()!=null &&
 					(valuationDTO.getStatusId()!=null && valuationDTO.getValuationTypeId()!=null)){
 				valuationBean.saveValuation(valuationDTO);
 				message.setCode(200);
@@ -66,7 +66,7 @@ public class ValuationWS {
 	}
 	
 	@POST
-	@Path("getValuarionByCompany/{companyId}")
+	@Path("getValuationByCompany/{companyId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getValuationByCompany(@PathParam("companyId") Integer companyId){

@@ -57,7 +57,7 @@ public class StatusBean {
 		if(statusLst!=null && statusLst.size()>0){
 			statusDTOLst=new ArrayList<StatusDTO>();
 			for(Status s: statusLst){
-				statusDTO= TransferObjectAssembler.getInstance().assembleTO(statusDTO.getClass(), s);
+				statusDTO= TransferObjectAssembler.getInstance().assembleTO(StatusDTO.class, s);
 				statusDTOLst.add(statusDTO);
 			}	
 		}

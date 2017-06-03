@@ -19,7 +19,6 @@ public class TimeUnitBuilder extends AbstractDTOBuilder{
 		
 		if(timeUnit.getCompany()!=null){
 			timeUnitDTO.setCompanyId(timeUnit.getCompany().getId());
-			//timeUnitDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, timeUnit.getCompany()));
 		}
 		
 		return timeUnitDTO;

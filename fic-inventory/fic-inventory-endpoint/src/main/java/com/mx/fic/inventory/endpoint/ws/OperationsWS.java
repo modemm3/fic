@@ -16,7 +16,6 @@ import com.mx.fic.inventory.business.OperationsBean;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.OperationsDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
-import com.mx.fic.inventory.endpoint.response.MovementTypeResponse;
 import com.mx.fic.inventory.endpoint.response.OperationsResponse;
 
 @Path("/operations")
@@ -32,7 +31,7 @@ public class OperationsWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveOperations(OperationsDTO operationsDTO){
-		MovementTypeResponse response = new MovementTypeResponse();
+		OperationsResponse response = new OperationsResponse();
 		Message message = new Message();
 		
 		logger.info("saveOperations");
@@ -41,7 +40,8 @@ public class OperationsWS {
 			if((operationsDTO!=null && operationsDTO.getProviderId()!=null) && 
 					(operationsDTO.getCompanyId()!=null && operationsDTO.getMovementTypeId()!=null) && 
 						(operationsDTO.getStatusId()!=null && operationsDTO.getTimeUnitId()!=null) && 
-							(operationsDTO.getStocks()!=null && operationsDTO.getProductDTO()!=null)){
+							(operationsDTO.getStocks()!=null && operationsDTO.getProductDTO()!=null) &&
+							(operationsDTO.getUnitPrice()!=null && operationsDTO.getUnitPrice()>0)){
 				operationsBean.save(operationsDTO);
 				message.setCode(200);
 				message.setMessage("exito");

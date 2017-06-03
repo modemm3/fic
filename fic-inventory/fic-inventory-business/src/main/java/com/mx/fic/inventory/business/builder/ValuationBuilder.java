@@ -17,7 +17,7 @@ public class ValuationBuilder extends AbstractDTOBuilder {
 		valuationDTO.setDateEnd(valuation.getDateEnd());
 		valuationDTO.setDateStart(valuation.getDateStart());
 		valuationDTO.setExerciseFiscal(valuation.getExerciseFiscal());
-		valuationDTO.setSerialId(valuation.getSerialId());
+		valuationDTO.setId(valuation.getId());
 		
 		if(valuation.getCompany()!=null){
 			valuationDTO.setCompanyId(valuation.getCompany().getId());

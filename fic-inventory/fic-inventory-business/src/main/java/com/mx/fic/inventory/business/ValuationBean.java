@@ -11,6 +11,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
@@ -27,6 +28,7 @@ import com.mx.fic.inventory.persistent.ValuationType;
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class ValuationBean {
 	
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@TransactionAttribute (TransactionAttributeType.REQUIRED)
@@ -41,7 +43,7 @@ public class ValuationBean {
 			valuation.setDateEnd(valuationDTO.getDateEnd());
 			valuation.setDateStart(valuationDTO.getDateStart());
 			valuation.setExerciseFiscal(valuationDTO.getExerciseFiscal());
-			valuation.setSerialId(valuationDTO.getSerialId());
+			valuation.setId(valuationDTO.getId());
 			
 			status.setId(valuationDTO.getStatusId());
 			valuation.setStatus(status);
@@ -60,9 +62,9 @@ public class ValuationBean {
 		List<Valuation> valuationLst = new ArrayList<Valuation>();
 		List<ValuationDTO> valuationDTOLst = null;
 		ValuationDTO valuationDTO = null;
-		
+
 		TypedQuery<Valuation> query = entityManager.createNamedQuery("Valuation.getAllByCompany", Valuation.class);
-		
+		query.setParameter("id", companyId);
 		valuationLst = query.getResultList();
 		
 		if(valuationLst!= null && valuationLst.size()>0){

@@ -20,7 +20,6 @@ public class MeasureUnitBuilder extends AbstractDTOBuilder{
 		
 		if(measureUnit.getCompany()!=null){
 			measureUnitDTO.setCompanyId(measureUnit.getCompany().getId());
-			//measureUnitDTO.setCompanyDTO(TransferObjectAssembler.getInstance().assembleTO(CompanyDTO.class, measureUnit.getCompany()));
 		}
 		return measureUnitDTO;
 	}

@@ -17,7 +17,6 @@ import javax.persistence.TypedQuery;
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ValuationTypeDTO;
-import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.ValuationType;
 
 @Local
@@ -31,12 +30,12 @@ public class ValuationTypeBean {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final ValuationTypeDTO valuationTypeDTO) throws PersistenceException{
 		final ValuationType valuationType = new ValuationType();
-		final Company company= new Company();
+		//final Company company= new Company();
 		
 		try{
-			company.setId(valuationTypeDTO.getCompanyId());
+			//company.setId(valuationTypeDTO.getCompanyId());
 
-			valuationType.setCompany(company);
+			//valuationType.setCompany(company);
 			valuationType.setDescription(valuationTypeDTO.getDescription());
 			valuationType.setKeyValuation(valuationTypeDTO.getKeyValuation());
 			valuationType.setName(valuationTypeDTO.getName());
@@ -48,19 +47,18 @@ public class ValuationTypeBean {
 		}
 	}
 	
-	public List<ValuationTypeDTO> getAllByCompany(final Integer idCompany) throws PersistenceException{		
+	public List<ValuationTypeDTO> getAll() throws PersistenceException{		
 		List<ValuationTypeDTO> valuationTypeDTOLst=null;
 		ValuationTypeDTO valuationTypeDTO= null;
 		List<ValuationType> valuationTypeLst= new ArrayList<ValuationType>();
 		
-		TypedQuery<ValuationType> query= entityManager.createNamedQuery("ValuationType.getAllByCompany", ValuationType.class);
-		query.setParameter("id", idCompany);
+		TypedQuery<ValuationType> query= entityManager.createNamedQuery("ValuationType.getAll", ValuationType.class);
 		valuationTypeLst= query.getResultList();
 		
 		if(valuationTypeLst!=null && valuationTypeLst.size()>0){
 			valuationTypeDTOLst=new ArrayList<ValuationTypeDTO>();
 			for(ValuationType vt: valuationTypeLst){
-				valuationTypeDTO= TransferObjectAssembler.getInstance().assembleTO(valuationTypeDTO.getClass(), vt);
+				valuationTypeDTO= TransferObjectAssembler.getInstance().assembleTO(ValuationTypeDTO.class, vt);
 				valuationTypeDTOLst.add(valuationTypeDTO);
 			}	
 		}

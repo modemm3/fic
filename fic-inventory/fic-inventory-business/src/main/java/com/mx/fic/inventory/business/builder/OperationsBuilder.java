@@ -23,6 +23,7 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 		operationsDTO.setCreationDate(operations.getCreationDate());
 		operationsDTO.setDeliveryTime(operations.getDeliveryTime());
 		operationsDTO.setFolioDocument(operations.getFolioDocument());
+		operationsDTO.setUnitPrice(operations.getUnitPrice());
 		operationsDTO.setId(operations.getId());
 		
 		if(operations.getMovementType() != null){
