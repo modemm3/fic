@@ -18,6 +18,7 @@ angular.module('app.directive').directive('product',function(){
         restrict: 'E',
         scope: {
           tag: '=',
+          name: '=',
           autocomplete: '=autocomplete'
         },
         templateUrl:'directive/views/product.html',
@@ -75,6 +76,8 @@ angular.module('app.directive').directive('product',function(){
 //                	$scope.tags.name.push( $scope.newValue.name );
             		
 					angular.forEach($scope.autocomplete, function(value, key) {
+						$scope.name=$scope.newValue;
+//						$scope.name=$scope.newValue;
 //					  this.push(key + ': ' + value);
 					  if(value.name==$scope.newValue){
 						  $scope.tag=value;
@@ -92,14 +95,15 @@ angular.module('app.directive').directive('product',function(){
             };
             
             // remove an item
-//            $scope.remove = function ( idx ) {
+            $scope.remove = function ( idx ) {
 //                $scope.tags.splice( idx, 1 );
-//            };
+            	$scope.name='';
+            };
 //            
             // capture keypresses
             input.bind( 'keypress', function ( event ) {
                 // enter was pressed
-                if ( event.keyCode == 13 ) {
+                if ( event.keyCode == 13  || event.code==9) {
                     $scope.$apply( $scope.add );
                 }
             });

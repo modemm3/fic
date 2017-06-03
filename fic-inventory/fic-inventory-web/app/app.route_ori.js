@@ -9,57 +9,50 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   $compileProvider.commentDirectivesEnabled(false);
   $compileProvider.cssClassDirectivesEnabled(false);
   $urlRouterProvider.otherwise('/login');
-  $stateProvider.state('base',{
-	 abstract:true,
-	 url:'',
-	 templateUrl:'view/base.html'
-  });
   $stateProvider.state('log',{
 	  url:"/login",
-	  parent:'base',
-	  templateUrl :'login.html'	  
+	  views:{
+		  'login':{
+			  templateUrl :'login.html'
+		  }
+	  }
+  });
+  $stateProvider
+  .state('base', {
+    abstract: true,
+    url: '',
+    templateUrl: 'view/base.html'
   });
   $stateProvider.state('dashboard',{
 	 url:"/dashboard",
 	 parent:'base',
-	 templateUrl:'view/dashboard.html'
+	 views:{
+		 'header':{
+			 templateUrl :'layout/views/header.html'
+//			 controller  :"HeaderController"
+		 },
+		 'sideLeft':{
+			 templateUrl :'layout/views/sideLeft.html'
+		 },
+		 'content':{
+			 templateUrl :'layout/views/content.html'
+		 },
+		 'footer':{
+			 templateUrl :'layout/views/footer.html'
+		 }
+		 
+	 }
   });
   $stateProvider.state('operations',{
 	  url:"/operations",
-	  parent:'dashboard',
-	  templateUrl:'operations/views/operations.html',
-	  controller: 'operationController'
-//	  views:{
-//		  'content':{
-//			  templateUrl:'operations/views/operations.html',
-//			  controller: 'operationController'
-//			 }
-//	  }
-  });
-  $stateProvider.state('typeAddress',{
-	  url:"/typeAddress",
-	  parent:'dashboard',
-	  templateUrl:'typeAddress/views/typeAddress.html',
-	  controller: 'typeAddressController'
-
-  });
-  $stateProvider.state('company',{
-	  url:"/company",
-	  parent:'dashboard',
-	  templateUrl:'company/views/company.html',
-	  controller: 'addressController'
-		  
-  });
-//  $stateProvider.state('typeAddress',{
-//	  url:"/typeAddress",
-//	  
-//	  views:{
-//		  'content':{
-//			  templateUrl:'typeAddress/views/typeAddress.html',
-//			  controller: 'typeAddressController'
-//		  }
-//	  }
-//  });
+	  views:{
+		  'content':{
+			  parent:'dashboard',
+			  templateUrl:'operations/views/operations.html',
+			  controller: 'operationController'
+		  }
+	  }
+  })
   
 //	$translateProvider.useStaticFilesLoader({
 //		prefix : 'assets/locale/',
