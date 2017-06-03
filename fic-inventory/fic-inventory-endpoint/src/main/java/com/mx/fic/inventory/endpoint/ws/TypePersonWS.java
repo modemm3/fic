@@ -31,6 +31,7 @@ public class TypePersonWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveTypePerson(TypePersonDTO typePersonDTO){
+		logger.info("Entra a guardar el tipo de persona => "+ typePersonDTO);
 		TypePersonResponse response = new TypePersonResponse();
 		Message message = new Message();
 		
@@ -66,6 +67,7 @@ public class TypePersonWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getTypePersonByCompany(@PathParam("companyId") final Integer companyId){
+		logger.info("Entra a obtener el tipo de persona de la compañía => "+ companyId);
 		TypePersonResponse response = new TypePersonResponse();
 		Message message = new Message();
 		List<TypePersonDTO> typePersonDTOLst = null;

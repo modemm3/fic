@@ -31,10 +31,9 @@ public class OperationsWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveOperations(OperationsDTO operationsDTO){
+		logger.info("saveOperations inicia save operation => "+ operationsDTO);
 		OperationsResponse response = new OperationsResponse();
 		Message message = new Message();
-		
-		logger.info("saveOperations");
 		
 		try{
 			if((operationsDTO!=null && operationsDTO.getProviderId()!=null) && 
@@ -67,6 +66,7 @@ public class OperationsWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getOperationsByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a eliminar la operacion de la compañía => "+ companyId);
 		List<OperationsDTO> operationsDTOLst = null;
 		OperationsResponse response = new OperationsResponse();
 		Message message = new Message();

@@ -1,9 +1,7 @@
 package com.mx.fic.inventory.dto;
 
 public class MovementTypeDTO implements BaseDTO{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3770771049611562485L;
 	private Integer id;
 	private String name;
@@ -47,6 +45,24 @@ public class MovementTypeDTO implements BaseDTO{
 	}
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MovementTypeDTO [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", movementConceptId=");
+		builder.append(movementConceptId);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

@@ -30,6 +30,7 @@ public class StatusWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveStatus(StatusDTO statusDTO){
+		logger.info("Entra a guardar el estatus => "+ statusDTO);
 		StatusResponse response = new StatusResponse();
 		Message message = new Message();
 		
@@ -62,6 +63,7 @@ public class StatusWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getStatusByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener el estatus de la compañía => "+ companyId);
 		StatusResponse response = new StatusResponse();
 		List<StatusDTO> statusDTOLst= null;
 		Message message = new Message();

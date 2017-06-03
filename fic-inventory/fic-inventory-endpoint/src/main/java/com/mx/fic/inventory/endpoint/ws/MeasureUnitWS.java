@@ -29,6 +29,7 @@ public class MeasureUnitWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveMeasureUnit(MeasureUnitDTO measureUnitDTO){
+		logger.info("Entra a guardar la unidad de medida => "+ measureUnitDTO);
 		MeasureUnitResponse response = new MeasureUnitResponse();
 		Message message = new Message();
 		logger.info("saveMeasureUnit");
@@ -62,6 +63,7 @@ public class MeasureUnitWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getMeasureUnitByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener la unidad de medida de la compañía => "+ companyId);
 		MeasureUnitResponse response = new MeasureUnitResponse();
 		List<MeasureUnitDTO> measureUnitDTOLst = null;
 		Message message = new Message();

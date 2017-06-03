@@ -30,6 +30,7 @@ public class PricesWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response savePrice(PricesDTO pricesDTO){
+		logger.info("Entr a guardar el precio => "+ pricesDTO);
 		PricesResponse response = new PricesResponse();
 		Message message = new Message();
 		
@@ -65,6 +66,7 @@ public class PricesWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getPricesByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener los precios de la compañía => "+ companyId);
 		PricesResponse response = new PricesResponse();
 		List<PricesDTO> pricesDTOLst = null;
 		Message message = new Message();

@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 import com.mx.fic.inventory.endpoint.filter.CORSResponseFilter;
 import com.mx.fic.inventory.endpoint.ws.AddressWS;
+import com.mx.fic.inventory.endpoint.ws.InventoryWS;
 import com.mx.fic.inventory.endpoint.ws.LoginWS;
 import com.mx.fic.inventory.endpoint.ws.MeasureUnitWS;
 import com.mx.fic.inventory.endpoint.ws.MovementConceptWS;
@@ -57,6 +58,7 @@ public class ApplicationConfig extends Application {
 		resources.add(ValuationWS.class);
 		resources.add(OperationsWS.class);
 		resources.add(TypePersonWS.class);
+		resources.add(InventoryWS.class);
 		resources.add(LoginWS.class);
 
 	}

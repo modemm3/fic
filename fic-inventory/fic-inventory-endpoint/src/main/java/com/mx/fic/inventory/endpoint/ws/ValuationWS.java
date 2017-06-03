@@ -33,6 +33,7 @@ public class ValuationWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveValuation(ValuationDTO valuationDTO){
+		logger.info("Entra a guardar la valuación => "+ valuationDTO);
 		ValuationResponse response = new ValuationResponse();
 		Message message = new Message();
 		
@@ -70,6 +71,7 @@ public class ValuationWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getValuationByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener la valuación de la compañía => "+ companyId);
 		ValuationResponse response = new ValuationResponse();
 		List<ValuationDTO> valuationDTOLst = null;
 		Message message = new Message();

@@ -34,6 +34,7 @@ public class ProviderWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveProvider(final ProviderDTO providerDTO){
+		logger.info("Entra a guardar el proveedor => "+ providerDTO);
 		ProviderResponse response = new ProviderResponse();
 		Message message = new Message();
 		
@@ -68,6 +69,7 @@ public class ProviderWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getProviderByCompany(@PathParam("companyId") final Integer companyId){
+		logger.info("Entra a obtener el proveedor de la companía => "+ companyId);
 		ProviderResponse response = new ProviderResponse();
 		List<ProviderDTO> providerDTOLst = null;
 		Message message = new Message();

@@ -30,6 +30,7 @@ public class TimeUnitWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveTimeUnit(final TimeUnitDTO timeUnitDTO) throws PersistenceException{
+		logger.info("Entra a guardar la unidad de tiempo => "+ timeUnitDTO);
 		TimeUnitResponse response = new TimeUnitResponse();
 		Message message = new Message();
 		
@@ -65,6 +66,7 @@ public class TimeUnitWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getTimeUnitByCompany(@PathParam("companyId") Integer companyId){
+		logger.info("Entra a obtener la unidad de tiempo de la compañía => "+ companyId);
 		TimeUnitResponse response = new TimeUnitResponse();
 		List<TimeUnitDTO> timeUnitDTOLst = null;
 		Message message = new Message();

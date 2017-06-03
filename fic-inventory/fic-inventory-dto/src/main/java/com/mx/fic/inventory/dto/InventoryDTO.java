@@ -41,5 +41,21 @@ public class InventoryDTO implements BaseDTO{
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("InventoryDTO [id=");
+		builder.append(id);
+		builder.append(", currentStock=");
+		builder.append(currentStock);
+		builder.append(", productDTO=");
+		builder.append(productDTO);
+		builder.append(", modificationDate=");
+		builder.append(modificationDate);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }

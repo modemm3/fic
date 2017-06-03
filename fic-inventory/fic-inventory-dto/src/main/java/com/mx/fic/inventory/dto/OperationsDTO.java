@@ -90,5 +90,35 @@ public class OperationsDTO implements BaseDTO{
 	public void setUnitPrice(Double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OperationsDTO [id=");
+		builder.append(id);
+		builder.append(", productDTO=");
+		builder.append(productDTO);
+		builder.append(", movementTypeId=");
+		builder.append(movementTypeId);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", stocks=");
+		builder.append(stocks);
+		builder.append(", folioDocument=");
+		builder.append(folioDocument);
+		builder.append(", timeUnitId=");
+		builder.append(timeUnitId);
+		builder.append(", deliveryTime=");
+		builder.append(deliveryTime);
+		builder.append(", providerId=");
+		builder.append(providerId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append(", unitPrice=");
+		builder.append(unitPrice);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 }
