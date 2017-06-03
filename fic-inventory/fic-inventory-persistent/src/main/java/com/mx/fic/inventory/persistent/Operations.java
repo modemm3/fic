@@ -17,7 +17,9 @@ import javax.persistence.Table;
 @Entity
 @Table (name="operations")
 @NamedQueries({
-	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id")
+	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id"),
+	@NamedQuery (name="Operations.getMovementConcept", query="select mc from MovementType as mt inner join mt.movementConcept as mc "+
+			"where mt.id=:movementTypeId")
 })
 public class Operations implements BaseEntity{
 
@@ -38,7 +40,7 @@ public class Operations implements BaseEntity{
 	@Column(name="creation_date")
 	private Timestamp creationDate;
 	@Column(name="stocks")
-	private Integer stocks;
+	private Double stocks;
 	@Column(name="folio_document")
 	private String folioDocument;
 	@JoinColumn(name="time_unit_id", referencedColumnName="id")
@@ -52,7 +54,9 @@ public class Operations implements BaseEntity{
 	@JoinColumn(name="company_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Company company;
-	
+	@Column(name="unit_price")
+	private Double unitPrice;
+
 	public Integer getId() {
 		return id;
 	}
@@ -83,10 +87,10 @@ public class Operations implements BaseEntity{
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Integer getStocks() {
+	public Double getStocks() {
 		return stocks;
 	}
-	public void setStocks(Integer stocks) {
+	public void setStocks(Double stocks) {
 		this.stocks = stocks;
 	}
 	public String getFolioDocument() {
@@ -119,7 +123,13 @@ public class Operations implements BaseEntity{
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -134,37 +144,10 @@ public class Operations implements BaseEntity{
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
 		result = prime * result + ((timeUnit == null) ? 0 : timeUnit.hashCode());
+		result = prime * result + ((unitPrice == null) ? 0 : unitPrice.hashCode());
 		return result;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Operations [id=");
-		builder.append(id);
-		builder.append(", product=");
-		builder.append(product);
-		builder.append(", movementType=");
-		builder.append(movementType);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append(", creationDate=");
-		builder.append(creationDate);
-		builder.append(", stocks=");
-		builder.append(stocks);
-		builder.append(", folioDocument=");
-		builder.append(folioDocument);
-		builder.append(", timeUnit=");
-		builder.append(timeUnit);
-		builder.append(", deliveryTime=");
-		builder.append(deliveryTime);
-		builder.append(", provider=");
-		builder.append(provider);
-		builder.append(", company=");
-		builder.append(company);
-		builder.append("]");
-		return builder.toString();
-	}
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -228,7 +211,42 @@ public class Operations implements BaseEntity{
 				return false;
 		} else if (!timeUnit.equals(other.timeUnit))
 			return false;
+		if (unitPrice == null) {
+			if (other.unitPrice != null)
+				return false;
+		} else if (!unitPrice.equals(other.unitPrice))
+			return false;
 		return true;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Operations [id=");
+		builder.append(id);
+		builder.append(", product=");
+		builder.append(product);
+		builder.append(", movementType=");
+		builder.append(movementType);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", stocks=");
+		builder.append(stocks);
+		builder.append(", folioDocument=");
+		builder.append(folioDocument);
+		builder.append(", timeUnit=");
+		builder.append(timeUnit);
+		builder.append(", deliveryTime=");
+		builder.append(deliveryTime);
+		builder.append(", provider=");
+		builder.append(provider);
+		builder.append(", company=");
+		builder.append(company);
+		builder.append(", unitPrice=");
+		builder.append(unitPrice);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

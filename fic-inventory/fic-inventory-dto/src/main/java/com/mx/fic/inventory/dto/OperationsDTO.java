@@ -10,12 +10,13 @@ public class OperationsDTO implements BaseDTO{
 	private Integer movementTypeId;
 	private Integer statusId;
 	private Timestamp creationDate;
-	private Integer stocks;
+	private Double stocks;
 	private String folioDocument;
 	private Integer timeUnitId;
 	private Integer deliveryTime;
 	private Integer providerId;
 	private Integer companyId;
+	private Double unitPrice;
 	
 	public Integer getId() {
 		return id;
@@ -41,10 +42,10 @@ public class OperationsDTO implements BaseDTO{
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Integer getStocks() {
+	public Double getStocks() {
 		return stocks;
 	}
-	public void setStocks(Integer stocks) {
+	public void setStocks(Double stocks) {
 		this.stocks = stocks;
 	}
 	public String getFolioDocument() {
@@ -82,6 +83,12 @@ public class OperationsDTO implements BaseDTO{
 	}
 	public void setProductDTO(ProductDTO productDTO) {
 		this.productDTO = productDTO;
+	}
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
 	}
 	
 }

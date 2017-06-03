@@ -23,4 +23,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
     		 	<column name="unit_price" type="numeric(9, 3)"/>
     	</addColumn> 
 	</changeSet>
+	<changeSet author="mode" id="23">
+		<addDefaultValue columnName="modification_date" tableName="inventory" defaultValueDate="now();"/>	
+	</changeSet>
 </databaseChangeLog>
