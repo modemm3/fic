@@ -9,6 +9,5 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
 	<changeSet author="mode" id="21">
 		<dropColumn tableName="valuation_type" columnName="company_id"></dropColumn>
 	</changeSet>
-
 	
 </databaseChangeLog>
