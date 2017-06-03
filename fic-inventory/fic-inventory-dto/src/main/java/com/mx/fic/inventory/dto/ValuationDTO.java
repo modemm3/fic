@@ -6,7 +6,7 @@ public class ValuationDTO implements BaseDTO{
 
 	private static final long serialVersionUID = 7734863048969078204L;
 
-	private Integer serialId;
+	private Integer id;
 	private Integer exerciseFiscal;
 	private Timestamp dateStart;
 	private Timestamp dateEnd;	
@@ -14,11 +14,11 @@ public class ValuationDTO implements BaseDTO{
 	private Integer companyId;
 	private Integer statusId;
 
-	public Integer getSerialId() {
-		return serialId;
+	public Integer getId() {
+		return id;
 	}
-	public void setSerialId(Integer serialId) {
-		this.serialId = serialId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getExerciseFiscal() {
 		return exerciseFiscal;
@@ -64,7 +64,7 @@ public class ValuationDTO implements BaseDTO{
 		result = prime * result + ((dateEnd == null) ? 0 : dateEnd.hashCode());
 		result = prime * result + ((dateStart == null) ? 0 : dateStart.hashCode());
 		result = prime * result + ((exerciseFiscal == null) ? 0 : exerciseFiscal.hashCode());
-		result = prime * result + ((serialId == null) ? 0 : serialId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((valuationTypeId == null) ? 0 : valuationTypeId.hashCode());
 		return result;
@@ -98,10 +98,10 @@ public class ValuationDTO implements BaseDTO{
 				return false;
 		} else if (!exerciseFiscal.equals(other.exerciseFiscal))
 			return false;
-		if (serialId == null) {
-			if (other.serialId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!serialId.equals(other.serialId))
+		} else if (!id.equals(other.id))
 			return false;
 		if (statusId == null) {
 			if (other.statusId != null)
@@ -119,7 +119,7 @@ public class ValuationDTO implements BaseDTO{
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ValuationDTO [serialId=");
-		builder.append(serialId);
+		builder.append(id);
 		builder.append(", exerciseFiscal=");
 		builder.append(exerciseFiscal);
 		builder.append(", dateStart=");

@@ -25,7 +25,7 @@ public class Valuation implements BaseEntity{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer serialId;
+	private Integer id;
 	@Column(name="fiscal_exercise")
 	private Integer exerciseFiscal;
 	@Column(name="start_date")
@@ -42,11 +42,11 @@ public class Valuation implements BaseEntity{
 	@ManyToOne(fetch=FetchType.LAZY)		
 	private Status status;
 	
-	public Integer getSerialId() {
-		return serialId;
+	public Integer getId() {
+		return id;
 	}
-	public void setSerialId(Integer serialId) {
-		this.serialId = serialId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public Integer getExerciseFiscal() {
 		return exerciseFiscal;

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name="movement_type")
 @NamedQueries({
-	@NamedQuery(name="MovementType.getAllByCompany", query = "select mt from MovementType mt where mt.company.id=:id")
+	@NamedQuery(name="MovementType.getAll", query = "select mt from MovementType mt")
 })
 public class MovementType implements BaseEntity {
 

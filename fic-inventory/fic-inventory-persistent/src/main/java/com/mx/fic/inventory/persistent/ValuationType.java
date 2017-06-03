@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name="valuation_type")
 @NamedQueries({
-	@NamedQuery(name = "ValuationType.getAllByCompany", query= "select vt from ValuationType vt where vt.company.id=:id")
+	@NamedQuery(name = "ValuationType.getAll", query= "select vt from ValuationType vt")
 })
 public class ValuationType implements BaseEntity {
 
@@ -30,9 +30,6 @@ public class ValuationType implements BaseEntity {
 	private String description;
 	@Column(name="key_valuation")
 	private String keyValuation;
-	@JoinColumn(name="company_id", referencedColumnName="id")
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Company company;
 	
 	public Integer getId() {
 		return id;
@@ -57,12 +54,6 @@ public class ValuationType implements BaseEntity {
 	}
 	public void setKeyValuation(String keyValuation) {
 		this.keyValuation = keyValuation;
-	}
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
 	}
 	
 }

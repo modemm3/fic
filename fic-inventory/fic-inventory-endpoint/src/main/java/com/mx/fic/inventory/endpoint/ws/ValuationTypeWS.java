@@ -37,8 +37,7 @@ public class ValuationTypeWS {
 		logger.info("saveValuationType");
 		
 		try{
-		if(valuationTypeDTO!=null &&(valuationTypeDTO.getName()!=null && valuationTypeDTO.getKeyValuation()!=null)
-				&& valuationTypeDTO.getCompanyId()!=null){
+		if(valuationTypeDTO!=null &&(valuationTypeDTO.getName()!=null && valuationTypeDTO.getKeyValuation()!=null)){
 			valuationTypeBean.save(valuationTypeDTO);
 			message.setCode(200);
 			message.setMessage("exitos");
@@ -62,25 +61,20 @@ public class ValuationTypeWS {
 	}
 	
 	@POST
-	@Path("getValuationTypeByCompany/{companyId}")
+	@Path("getAllValuationType")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getValuationTypeByCompany(@PathParam("companyId") final Integer companyId){
+	public Response getAllValuationType(){
 		ValuationTypeResponse response = new ValuationTypeResponse();
 		List<ValuationTypeDTO> valuationTypeDTOLst = null;
 		Message message = new Message();
 		
 		try{
-			if(companyId!=null){
 				valuationTypeDTOLst = new ArrayList<ValuationTypeDTO>();
-				valuationTypeDTOLst = valuationTypeBean.getAllByCompany(companyId);
+				valuationTypeDTOLst = valuationTypeBean.getAll();
 				message.setCode(200);
 				message.setMessage("exito");
 				response.setValuationTypeLst(valuationTypeDTOLst);
-			}else{
-				message.setCode(400);
-				message.setMessage("error => Es requerido el id de la compañía");			
-			}
 		
 		}catch(PersistenceException e){
 			message.setCode(500);
