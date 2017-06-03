@@ -127,9 +127,9 @@ public class InventoryBean {
 				movementConcept= query.getSingleResult();
 				
 			if(movementConcept!=null){
-					if(movementConcept.getName().equals("entradas")){
+					if(movementConcept.getName().toUpperCase().equals("ENTRADAS")){
 						newStock= inventoryDTO.getCurrentStock() + operationsDTO.getStocks();
-					}else if(movementConcept.getName().equals("salidas")){
+					}else if(movementConcept.getName().toUpperCase().equals("SALIDAS")){
 						newStock= inventoryDTO.getCurrentStock() + operationsDTO.getStocks();
 					}else{
 						newStock= operationsDTO.getStocks();
