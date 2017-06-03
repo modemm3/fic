@@ -22,7 +22,7 @@ import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.endpoint.response.InventoryResponse;
 import com.mx.fic.inventory.endpoint.response.Message;
 
-@Path("/inventoryWS")
+@Path("/inventory")
 public class InventoryWS {
 	@EJB(mappedName="InventoryBean")
 	private InventoryBean inventoryBean;
