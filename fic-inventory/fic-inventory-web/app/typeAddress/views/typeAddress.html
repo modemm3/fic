@@ -20,6 +20,10 @@
 				</div>
 			</form>
 		</div>
+		<div ng-show="show==true" class="alert alert-warning alert-dismissable">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <strong>¡Cuidado!</strong> {{typeAddressResponse.message.message}}
+		</div>
 		<div class="panel-footer">
 		  	<div class="btn-group">
 			    <button type="button" class="btn btn-default" ng-click="save()">
