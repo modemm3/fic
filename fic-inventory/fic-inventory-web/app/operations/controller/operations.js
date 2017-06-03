@@ -5,34 +5,7 @@
 angular.module('app.controller').
 controller('operationController', ['$scope','OperationServices','ProductServices',function($scope,OperationServices,ProductServices){
 	
-	$scope.unit={
-			id:'-1',
-			name:'Gramo',
-			description:''
-	};
-	$scope.product={
-			id:"",
-			name:'hola product',
-			description:'test de description',
-			measureUnit:$scope.unit,
-			stockMin:'1',
-			stockMax:'1',
-			stock:'1'
-	};
-	$scope.operation={
-			productId:"",
-			movementTypeId:"",
-			statusId:"",
-			creationDate:"",
-			stocks:"",
-			folioDocument:"",
-			timeUnitId:"",
-			deliverTime:"",
-			providerId:"",
-			companyId:""
-	};
-	$scope.products=[];
-	$scope.name="hola name";
+	
 	OperationServices.OperationList(1).success(function(responseDTO){
 		$scope.measureUnits = responseDTO.measureUnitDTOLst;
 	});
@@ -51,16 +24,63 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 		}
 	}
 	$scope.save = function(){
-		$scope.operation.productId=$scope.product.id;
+		$scope.operation.productDTO=$scope.product;
 		$scope.operation.movementTypeId=1;
 		$scope.operation.statusId=1;
+		$scope.operation.productDTO.statusId=$scope.operation.statusId;
 		$scope.operation.stocks=$scope.product.stock;
 		$scope.operation.folioDocument="";
 		$scope.operation.timeUnitId="3";
-		$scope.operation.deliverTime="5";
+		$scope.operation.deliveryTime="5";
 		$scope.operation.providerId="1";
 		$scope.operation.companyId=1;
 		$scope.operation.creationDate='2017-05-20T18:25:43.511Z';
-		OperationServices.saveOperation($scope.operation);
+		$scope.operation.productDTO.measureUnitId=$scope.unit.id;
+//		console.log(JSON.stringify($scope.operation));
+		OperationServices.saveOperation($scope.operation).success(function(operationsDTO){
+			$scope.messageResponse.code=operationsDTO.message.code;
+			if($scope.messageResponse.code===200){
+//				$scope.operation={};
+//				$scope.product={};
+//				$scope.unit={};
+				$scope.product.name='';
+			}
+		});
 	}
+	$scope.init=function(){
+		$scope.unit={
+				id:'-1',
+				name:'Gramo',
+				description:''
+		};
+		$scope.product={
+				id:"0",
+				name:'',
+				description:'',
+				measureUnit:$scope.unit,
+				minimunStock:'1',
+				maximumStock:'1',
+				stock:'1',
+				companyId:'1'
+		};
+		$scope.operation={
+				productId:"",
+				movementTypeId:"",
+				statusId:"",
+				creationDate:"",
+				stocks:"",
+				folioDocument:"",
+				timeUnitId:"",
+				deliveryTime:"",
+				providerId:"",
+				companyId:"1"
+		};	
+		$scope.products=[];
+		$scope.name="";
+		$scope.messageResponse={
+				code:'',
+				message:''
+		}
+	}
+	$scope.init();
 }]);

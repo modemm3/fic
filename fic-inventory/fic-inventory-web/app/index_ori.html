@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html style="height:100%" ng-app="app"  lang="en" class="no-js"> <!--<![endif]-->
+<html ng-app="app" lang="en" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,30 +13,32 @@
 <!--   	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" /> -->
 <!--   	<link href="assets/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
   	<link rel="shortcut icon" href="assets/img/favicon.ico"/>
-<!-- <link rel="stylesheet" type="text/css" href="css/reset.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="css/structure.css"> -->
-<link href="assets/css/skin-blue.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/structure.css">
+<link href="assets/css/skin-blue-light.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/skin-blue-light.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/bootstrap.min.css"	rel="stylesheet" type="text/css" />
-<link href="assets/css/bootstrap-theme.min.css"	rel="stylesheet" type="text/css" />
 <link href="assets/css/jquery-ui.min.css"	rel="stylesheet" type="text/css" />
-<!-- <link href="css/style.css"	rel="stylesheet" type="text/css" /> -->
+<link href="css/style.css"	rel="stylesheet" type="text/css" />
 
   	
 </head>
-<body  style="height:100%;" class="skin-blue sidebar-mini">
-      <div ui-view></div>
-<!-- 	<div class="skin-blue-light"> -->
-<!-- 		<div ui-view="login"></div> -->
-<!-- 		<div class="wrapper"> -->
-<!-- 		<div ui-view="header"></div> -->
-<!-- 		<div ui-view="sideLeft"></div> -->
-<!-- 		<div ui-view="content"></div> -->
-<!-- 		<div ui-view="footer"></div> -->
+<body>
+	<div class="skin-blue-light">
+		<div ui-view="login"></div>
+		<div class="wrapper">
+<!-- 		<div ui-view="dashboard" > -->
+		<div ui-view="header"></div>
+		<div ui-view="sideLeft"></div>
+		<div ui-view="footer"></div>
 			
+		</div>
 <!-- 		</div> -->
-<!-- 	</div> -->
+<!-- 		<div ui-view="sideLeft""></div> -->
+<!-- 		<div ui-view="content" class="content-wrapper"></div> -->
+<!-- 		<div ui-view="footer" class="main-footer"></div> -->
+	</div>
 
 	<script src="assets/js/angular.min.js"></script>
 	<script src="assets/js/angular-resource.min.js"></script>
