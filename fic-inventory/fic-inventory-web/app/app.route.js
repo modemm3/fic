@@ -47,7 +47,28 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  url:"/company",
 	  parent:'dashboard',
 	  templateUrl:'company/views/company.html',
-	  controller: 'addressController'
+	  controller: 'companyController'
+		  
+  });
+  $stateProvider.state('measure',{
+	  url:"/measure",
+	  parent:'dashboard',
+	  templateUrl:'measure/views/measure.html',
+	  controller: 'measureUnitController'
+		  
+  });
+  $stateProvider.state('movementConcept',{
+	  url:"/movementConcept",
+	  parent:'dashboard',
+	  templateUrl:'movementConcept/views/movementConcept.html',
+	  controller: 'movementConceptController'
+		  
+  });
+  $stateProvider.state('movementType',{
+	  url:"/movementType",
+	  parent:'dashboard',
+	  templateUrl:'movementType/views/movementType.html',
+	  controller: 'movementConceptController'
 		  
   });
 //  $stateProvider.state('typeAddress',{
