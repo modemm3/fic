@@ -71,6 +71,36 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  controller: 'movementConceptController'
 		  
   });
+  $stateProvider.state('typePrices',{
+	  url:"/typePrices",
+	  parent:'dashboard',
+	  templateUrl:'typePrices/views/typePrices.html',
+	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('season',{
+	  url:"/season",
+	  parent:'dashboard',
+	  templateUrl:'season/views/season.html',
+	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('typePerson',{
+	  url:"/typePerson",
+	  parent:'dashboard',
+	  templateUrl:'typePerson/views/typePerson.html'
+//	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('provider',{
+	  url:"/provider",
+	  parent:'dashboard',
+	  templateUrl:'provider/views/provider.html'
+//	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('status',{
+	  url:"/status",
+	  parent:'dashboard',
+	  templateUrl:'status/views/status.html'
+//	  controller: 'movementConceptController'
+  });
 //  $stateProvider.state('typeAddress',{
 //	  url:"/typeAddress",
 //	  
