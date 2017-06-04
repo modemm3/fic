@@ -26,4 +26,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
 	<changeSet author="mode" id="23">
 		<addDefaultValue columnName="modification_date" tableName="inventory" defaultValueDate="now();"/>	
 	</changeSet>
+	<changeSet author="mode" id="24">
+		<dropNotNullConstraint tableName="operations" columnName="creation_date"/>
+	</changeSet>	
 </databaseChangeLog>

@@ -111,15 +111,21 @@ public class OperationsBean {
 				
 				inventoryDTO = inventoryBean.getOperationInventory(operationsDTO);
 				
-				inventoryBean.save(inventoryDTO);
+				logger.info("Se obtuvo el inventario => "+ inventoryDTO);
+				
+				if(inventoryDTO!=null && inventoryDTO.getCurrentStock()!=null){
+					inventoryBean.save(inventoryDTO);
+				}
 				
 			}else{
 				logger.info("error => El id del producto es 0");
 				throw new PersistenceException("error => El id del producto es 0");
 			}
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			e.printStackTrace();
 			throw new PersistenceException("Error al guardar las operaciones");
 		}catch(Exception e){
+			e.printStackTrace();
 			throw new Exception("Ocurrió un error al guardar la operación");
 		}
 	}

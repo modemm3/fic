@@ -32,6 +32,7 @@ public class OperationsWS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveOperations(OperationsDTO operationsDTO){
 		logger.info("saveOperations inicia save operation => "+ operationsDTO);
+		System.out.println ("=> "+operationsDTO);
 		OperationsResponse response = new OperationsResponse();
 		Message message = new Message();
 		

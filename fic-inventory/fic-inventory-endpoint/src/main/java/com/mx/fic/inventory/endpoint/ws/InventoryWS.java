@@ -97,7 +97,7 @@ public class InventoryWS {
 		return Response.status(message.getCode()).entity(response).build();
 	}
 	
-	public Response getInventoryByProdAndComp(ProductDTO productDTO){
+	/*public Response getInventoryByProdAndComp(ProductDTO productDTO){
 		logger.info("Entra a obtener el inventario por producto-compañía => "+ productDTO);
 		InventoryResponse response = new InventoryResponse();
 		Message message = new Message();
@@ -131,6 +131,6 @@ public class InventoryWS {
 		
 		return Response.status(message.getCode()).entity(response).build();
 		
-	}
+	}*/
 
 }
