@@ -112,7 +112,6 @@ public class OperationsBean {
 				inventoryDTO = inventoryBean.getOperationInventory(operationsDTO);
 				
 				logger.info("Se obtuvo el inventario => "+ inventoryDTO);
-				System.out.println("iii => "+ inventoryDTO);
 				
 				if(inventoryDTO!=null && inventoryDTO.getCurrentStock()!=null){
 					inventoryBean.save(inventoryDTO);

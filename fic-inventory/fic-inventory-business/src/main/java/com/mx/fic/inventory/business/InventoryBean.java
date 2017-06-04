@@ -46,7 +46,6 @@ public class InventoryBean {
 	    final Product product = new Product();
 	    
 	    logger.info("Entra a guardar el inventoryDTO => "+ inventoryDTO);
-	    System.out.println("i => "+ inventoryDTO);
 	    
 	    try{
 	    
