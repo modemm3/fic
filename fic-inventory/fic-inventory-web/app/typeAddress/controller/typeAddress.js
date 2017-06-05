@@ -3,7 +3,7 @@
  */
 'use strict';
 angular.module('app.controller').
-controller('typeAddressController', ['$scope','typeAddressServices',function($scope,typeAddressServices){
+controller('typeAddressController', ['$scope','TypeAddressServices',function($scope,TypeAddressServices){
 	
 	$scope.typeAddress={
 			id:'',
@@ -20,7 +20,7 @@ controller('typeAddressController', ['$scope','typeAddressServices',function($sc
 	};
 	$scope.show=false;
 	$scope.save = function(){
-		typeAddressServices.saveTypeAddress($scope.typeAddress).success(function(typeAddressResponse){
+		TypeAddressServices.saveTypeAddress($scope.typeAddress).success(function(typeAddressResponse){
 			$scope.typeAddressResponse.message.code=typeAddressResponse.message.code;
 			if($scope.typeAddressResponse.message.code===200){
 				$scope.show=true;
