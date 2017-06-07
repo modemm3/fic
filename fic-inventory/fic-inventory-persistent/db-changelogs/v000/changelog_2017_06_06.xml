@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+	<changeSet author="mode" id="25">
+        <createTable remarks="resumen de inventario de tipo valuacion (PEPS u otro)" tableName="inventory_operation">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la operacion de inventario" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="inventoryoperation_pkey"/>
+            </column>
+            <column name="operation_id" remarks="id de la operación" type="integer">
+                <constraints nullable="false"/>
+            </column>            
+            <column name="movement_concept" remarks="nombre del concepto movimiento" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movement_type" remarks="tipo de movimiento" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movement_date" remarks="Fecha de movimiento" type="TIMESTAMP WITHOUT TIME ZONE">
+               <constraints nullable="false"/>
+            </column>
+            <column name="amount" remarks="cantidad del producto que entra o sale" type="numeric(9,3)">
+                <constraints nullable="false"/>
+            </column>   
+            <column name="value_unit" remarks="valor por unidad del producto" type="numeric(9,3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value_total" remarks="valor total" type="numeric(15,3)">
+                <constraints nullable="false"/>
+            </column>  
+            <column name="amount_balance" remarks="Saldo cantidad" type="numeric(9,3)">
+            </column>  
+            <column name="value_unit_balance" remarks="Saldo valor unitario" type="numeric(9,3)">
+            </column>  
+            <column name="value_total_balance" remarks="Saldo valor total" type="numeric(15,3)">
+            </column>  
+            <column name="company_id" remarks="Indica el id de la compañía a la que pertenecen los tipos de precios" type="INT4">
+                  <constraints nullable="false"/>
+            </column>  
+            <column name="product_id" remarks="Id del producto a la que pertenece la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inventory_operation_id" remarks="Id Padre de la tabla inventory_operation" type="INT4">
+                <constraints nullable="true"/>
+            </column>    
+            <column name="status" remarks="se cambia estatus si el valor ya no será tomado" type="bool" defaultValueBoolean="true">
+            </column>                     
+        </createTable>	
+	</changeSet>
+    <changeSet author="perita" id="26">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="inventory_operation" constraintName="fkInventoryOperationProduct" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="product"/>
+        <addForeignKeyConstraint baseColumnNames="operation_id" baseTableName="inventory_operation" constraintName="fkInventoryOperationOperation" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="operations"/>
+        <addForeignKeyConstraint baseColumnNames="inventory_operation_id" baseTableName="inventory_operation" constraintName="fkInventoryOperationRoot" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="inventory_operation"/>    
+    </changeSet>	
+	
+</databaseChangeLog>
