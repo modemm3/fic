@@ -3,25 +3,22 @@
  */
 'use strict';
 angular.module('app.controller').
-controller('operationController', ['$scope','OperationServices','ProductServices',function($scope,OperationServices,ProductServices){
+controller('companyController', ['$scope','CompanyServices','TypeAddressServices',function($scope,CompanyServices,TypeAddressServices){
 	
 	
-	OperationServices.OperationList(1).success(function(responseDTO){
-		$scope.measureUnits = responseDTO.measureUnitDTOLst;
+	TypeAddressServices.getTypeAddressByCompany(1).success(function(typeAddressResponse){
+		$scope.typeAddress = typeAddressResponse.typeAddressDTOLst;
 	});
-	ProductServices.getProducts(1).success(function(responseDTO){
-		$scope.products = responseDTO.productDTOLst;
-	});
+//	ProductServices.getProducts(1).success(function(responseDTO){
+//		$scope.products = responseDTO.productDTOLst;
+//	});
 	$scope.selectUnit=function(){
 		$scope.unit.name=this.unity.name;
 		$scope.unit.id=this.unity.id;
 		$scope.unit.description=this.unity.description;
-//		$scope.measureUnits=this.unity;
 	}
 	$scope.find = function(event){
-		if($scope.product.name.length>4){
-			console.log('buscar');
-		}
+
 	}
 	$scope.save = function(){
 		$scope.operation.productDTO=$scope.product;
@@ -48,36 +45,32 @@ controller('operationController', ['$scope','OperationServices','ProductServices
 		});
 	}
 	$scope.init=function(){
-		$scope.unit={
-				id:'-1',
-				name:'Gramo',
+		$scope.typeAddress={
+				id:'',
+				name:'',
 				description:''
 		};
-		$scope.product={
-				id:"0",
-				name:'',
-				description:'',
-				measureUnit:$scope.unit,
-				minimunStock:'1',
-				maximumStock:'1',
-				stock:'1',
-				companyId:'1'
-		};
-		$scope.operation={
-				productId:"",
-				movementTypeId:"",
-				statusId:"",
-				creationDate:"",
-				stocks:"",
-				folioDocument:"",
-				timeUnitId:"",
-				deliveryTime:"",
-				providerId:"",
-				companyId:"1",
-				unitPrice:''
-		};	
-		$scope.products=[];
-		$scope.name="";
+		$scope.company={
+			  	addressDTO:{
+			  		street: '',
+			  		colony: '',
+			  		exteriorNumber: '',
+			  		interiorNumber: '',
+			  		postalCode: '',
+			  		town:'',
+			  		city:'',
+			  		state:'',
+			  		typeAddressId: ''
+				},
+				companyDTO: {
+					name: '',
+				    reasonSocial: '',
+				    rfc: '',
+				    email: '',
+				    statusId: '',
+				    contactName: ''
+				}
+			};
 		$scope.messageResponse={
 				code:'',
 				message:''

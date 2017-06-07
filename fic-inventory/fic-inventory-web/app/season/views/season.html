@@ -1,0 +1,60 @@
+<div class="container center-block">
+	<button type="button" class="close" aria-hidden="true">&times;</button>
+	<div class="panel panel-primary">
+	<div class="panel-heading">Temporadas 
+	
+	</div>
+		<div class="panel-body">
+			<form class="form">
+				<div class="form-group">
+					<label class="col-lg-1">Nombre</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control" ng-model="typeAddress.name" placeholder="Tipo de precios"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Descripcion</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="typeAddress.desription"  placeholder="Descripcion"></input>
+					</div>
+				</div>
+				<div class="form-group col-lg-6">
+					<label class="col-lg-5">Inicio de temporada</label>
+	                <div class='col-lg-7 input-group date' id='datetimepicker1'>
+	                    <input type='text' class="form-control" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+				        <script type="text/javascript">
+				            $(function () {
+				                $('#datetimepicker1').datetimepicker();
+				            });
+				        </script>	                    
+	                </div>
+            	</div>
+				<div class="form-group col-lg-6">
+					<label class="col-lg-5">Fin de temporada</label>
+	                <div class='col-lg-7 input-group date' id='datetimepicker2'>
+	                    <input type='text' class="form-control" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+				        <script type="text/javascript">
+				            $(function () {
+				                $('#datetimepicker2').datetimepicker();
+				            });
+				        </script>	                
+            	</div>
+				
+			</form>
+		</div>
+		<div class="panel-footer">
+		  	<div class="btn-group">
+			    <button type="button" class="btn btn-default" ng-click="save()">
+			      <span  data-toggle="Guardar el tipo de precios" class="glyphicon glyphicon-floppy-save">Guardar</span>
+			    </button>
+		    </div>
+    	</div>		
+	</div>
+</div>

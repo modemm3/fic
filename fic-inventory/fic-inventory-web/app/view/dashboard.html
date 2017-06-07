@@ -22,7 +22,7 @@
 <!--     </div> -->
 <!-- </div> -->
 <!-- </div> -->
-	<div class="wrapper">
+	<div class="wrapper" ng-app="app">
 		<header class="main-header">
 			<a href="" class="logo">FIC</a>
 			<nav class="navbar navbar-static-top" role="navigation">
@@ -58,33 +58,60 @@
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
-<!-- 					<li class="header">Inventarios</li> -->
+					<li class="header">Inventarios</li>
 
-					<li class="active treeview">
+					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-dashboard"> </i> 
-							<span>Inventarios</span> 
-							<i class="fa fa-angle-left pull-right"></i>
+							<span>Operaciones</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
 						</a>
 						<ul class="treeview-menu">
 						    <li ng-class="{active: $state.includes('operations')}"><a ui-sref="operations">
 						    <i class="fa fa-circle-o"></i>Operation</a></li>
-                  			<li ng-class="{active: $state.includes('typeAddress')}"><a ui-sref="typeAddress">
-                  			<i class="fa fa-circle-o"></i>Tipo Direccion</a></li>
+                  			<li ng-class="{active: $state.includes('provider')}"><a ui-sref="provider">
+                  			<i class="fa fa-circle-o"></i>Provider</a></li>
                   			<li ng-class="{active: $state.includes('company')}"><a ui-sref="company">
                   			<i class="fa fa-circle-o"></i>Company</a></li>
+                  			
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-dashboard"> </i> 
+							<span>Catalogos</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+                  			<li ng-class="{active: $state.includes('typeAddress')}"><a ui-sref="typeAddress">
+                  			<i class="fa fa-circle-o"></i>Tipo Direccion</a></li>
                   			<li ng-class="{active: $state.includes('measure')}"><a ui-sref="measure">
                   			<i class="fa fa-circle-o"></i>Unidades de medida</a></li>
                   			<li ng-class="{active: $state.includes('movementConcept')}"><a ui-sref="movementConcept">
                   			<i class="fa fa-circle-o"></i>Concepto de Movimientos</a></li>
                   			<li ng-class="{active: $state.includes('movementType')}"><a ui-sref="movementType">
                   			<i class="fa fa-circle-o"></i>Tipo de movimiento</a></li>
-						</ul></li>
+                  			<li ng-class="{active: $state.includes('typePrices')}"><a ui-sref="typePrices">
+                  			<i class="fa fa-circle-o"></i>Tipo de precios</a></li>
+                  			<li ng-class="{active: $state.includes('season')}"><a ui-sref="season">
+                  			<i class="fa fa-circle-o"></i>Temporadas</a></li>
+                  			<li ng-class="{active: $state.includes('typePerson')}"><a ui-sref="typePerson">
+                  			<i class="fa fa-circle-o"></i>Tipo de Persona</a></li>
+                  			<li ng-class="{active: $state.includes('status')}"><a ui-sref="status">
+                  			<i class="fa fa-circle-o"></i>Status</a></li>
+						</ul>
+					</li>					
 				</ul>
 			</section>
 		</aside>
       <!-- Right side column. Contains the navbar and content of the page -->
-      <div class="content-wrapper">
+<!--       <div class="container-fluid" style="height: 100px;"> -->
+<!--       <div class="row"> -->
+      <div class="content-wrapper" style="height: 900px;">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -109,7 +136,7 @@
                   <p>Registro de Inventario</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="ion ion-ios-cart-outline"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
@@ -157,10 +184,15 @@
         </section><!-- /.content -->
       <div ui-view></div>
       </div><!-- /.content-wrapper -->
+      </div>
+<!--       </div> -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
           <b>Version</b> 2.0
         </div>
         <strong>Footer</strong>
       </footer>
-	</div>
+<!-- 	</div> -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>	

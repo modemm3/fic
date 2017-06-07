@@ -1,0 +1,68 @@
+<div class="container center-block">
+	<button type="button" class="close" aria-hidden="true">&times;</button>
+	<div class="panel panel-primary">
+	<div class="panel-heading">Provider 
+	
+	</div>
+		<div class="panel-body">
+			<form class="form">
+				<div class="form-group">
+					<label class="col-lg-1">Nombre</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control" ng-model="movement.name" placeholder="Nombre"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Apellido Paterno</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="movement.description"  placeholder="Apellido Paterno"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Apellido Materno</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="movement.description"  placeholder="Apellido Materno"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Raz&oacuten social</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control" ng-model="movement.description"  placeholder="Razon social"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Rfc</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control" ng-model="movement.description"  placeholder="Rfc"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Email</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control" ng-model="movement.description"  placeholder="email"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Tipo Persona</label>
+					<div class="btn-group col-lg-5">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{unit.name}}
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li ng-repeat="unity in measureUnits" id="{{unity.id}}">
+								<a class="button" href="" ng-click="selectUnit();" >{{unity.name}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>			
+			</form>
+		</div>
+		<div class="panel-footer">
+		  	<div class="btn-group">
+			    <button type="button" class="btn btn-default" ng-click="save()">
+			      <span  data-toggle="Guardar el tipo de direcci&oacuten" class="glyphicon glyphicon-floppy-save">Guardar</span>
+			    </button>
+		    </div>
+    	</div>		
+	</div>
+</div>

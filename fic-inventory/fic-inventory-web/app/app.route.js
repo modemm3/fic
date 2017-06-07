@@ -8,7 +8,7 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   $compileProvider.debugInfoEnabled(false);
   $compileProvider.commentDirectivesEnabled(false);
   $compileProvider.cssClassDirectivesEnabled(false);
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/dashboard');
   $stateProvider.state('base',{
 	 abstract:true,
 	 url:'',
@@ -54,22 +54,52 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  url:"/measure",
 	  parent:'dashboard',
 	  templateUrl:'measure/views/measure.html',
-	  controller: 'measureUnitController'
+	  controller: 'companyController'
 		  
   });
   $stateProvider.state('movementConcept',{
 	  url:"/movementConcept",
 	  parent:'dashboard',
 	  templateUrl:'movementConcept/views/movementConcept.html',
-	  controller: 'movementConceptController'
+	  controller: 'companyController'
 		  
   });
   $stateProvider.state('movementType',{
 	  url:"/movementType",
 	  parent:'dashboard',
 	  templateUrl:'movementType/views/movementType.html',
-	  controller: 'movementConceptController'
+	  controller: 'companyController'
 		  
+  });
+  $stateProvider.state('typePrices',{
+	  url:"/typePrices",
+	  parent:'dashboard',
+	  templateUrl:'typePrices/views/typePrices.html',
+	  controller: 'companyController'
+  });
+  $stateProvider.state('season',{
+	  url:"/season",
+	  parent:'dashboard',
+	  templateUrl:'season/views/season.html',
+	  controller: 'companyController'
+  });
+  $stateProvider.state('typePerson',{
+	  url:"/typePerson",
+	  parent:'dashboard',
+	  templateUrl:'typePerson/views/typePerson.html'
+//	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('provider',{
+	  url:"/provider",
+	  parent:'dashboard',
+	  templateUrl:'provider/views/provider.html'
+//	  controller: 'movementConceptController'
+  });
+  $stateProvider.state('status',{
+	  url:"/status",
+	  parent:'dashboard',
+	  templateUrl:'status/views/status.html'
+//	  controller: 'movementConceptController'
   });
 //  $stateProvider.state('typeAddress',{
 //	  url:"/typeAddress",
