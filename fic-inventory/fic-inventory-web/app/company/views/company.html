@@ -9,82 +9,100 @@
 				<div class="form-group">
 					<label class="col-lg-1">Nombre</label>
 					<div class="col-lg-5">
-							<input type="text" class="form-control" ng-model="company.name" placeholder="Nombre de la compañia"></input>
+							<input type="text" class="form-control" ng-model="company.companyDTO.name" placeholder="Nombre de la compañia"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-2">Raz&oacuten social</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control" ng-model="company.reason" placeholder="Razon social"></input>
+						<input type="text" class="form-control" ng-model="company.companyDTO.reasonSocial" placeholder="Razon social"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-1">Rfc</label>
 					<div class="btn-group col-lg-5">
-						<input type="text" class="form-control" ng-model="company.rfc" placeholder="Rfc de la compañia"></input>
+						<input type="text" class="form-control" ng-model="company.companyDTO.rfc" placeholder="Rfc de la compañia"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-2">Email</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control" ng-model="company.email"  placeholder="Correo electronico"></input>
+						<input type="text" class="form-control" ng-model="company.companyDTO.email"  placeholder="Correo electronico"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-2">Nombre de contacto</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control"  ng-model="company.contactName" placeholder="Nombre de contacto"></input>
+						<input type="text" class="form-control"  ng-model="company.companyDTO.contactName" placeholder="Nombre de contacto"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-2">Codigo Postal</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control"  ng-model="company.address.zipCode" placeholder="Codigo postal"></input>
+						<input type="text" class="form-control"  ng-model="company.addressDTO.postalCode" placeholder="Codigo postal"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-1">Calle</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control"  ng-model="company.address.street" placeholder="Calle"></input>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2">Numero exterior</label>
-					<div class="col-lg-4">
-						<input type="text" class="form-control"  ng-model="company.address.exteriorNumber" placeholder="Numero exterior"></input>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2">Numero interior</label>
-					<div class="col-lg-4">
-						<input type="text" class="form-control"  ng-model="company.address.interiorNumber" placeholder="Numero interior"></input>
+						<input type="text" class="form-control"  ng-model="company.addressDTO.street" placeholder="Calle"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-1">Colonia</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control"  ng-model="company.address.town" placeholder="Colonia"></input>
+						<input type="text" class="form-control"  ng-model="company.addressDTO.colony" placeholder="Colonia"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Numero exterior</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control"  ng-model="company.addressDTO.exteriorNumber" placeholder="Numero exterior"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-2">Numero interior</label>
+					<div class="col-lg-4">
+						<input type="text" class="form-control"  ng-model="company.addressDTO.interiorNumber" placeholder="Numero interior"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1">Colonia</label>
+					<div class="col-lg-5">
+						<input type="text" class="form-control"  ng-model="company.addressDTO.town" placeholder="Colonia"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-1">Ciudad</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control"  ng-model="company.address.city" placeholder="Ciudad"></input>
+						<input type="text" class="form-control"  ng-model="company.addressDTO.city" placeholder="Ciudad"></input>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-1">Estado</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control"  ng-model="company.address.state" placeholder="Estado"></input>
+						<input type="text" class="form-control"  ng-model="company.addressDTO.state" placeholder="Estado"></input>
 					</div>
 				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label class="col-lg-1">Tipo de direccion</label> -->
+<!-- 					<div class="col-lg-5"> -->
+<!-- 						<input type="text" class="form-control"  ng-model="company.addressDTO.typeAddressId" placeholder="Tipo de direccion"></input> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				<div class="form-group">
-					<label class="col-lg-1">Tipo de direccion</label>
-					<div class="col-lg-5">
-						<input type="text" class="form-control"  ng-model="company.address.typeAddress" placeholder="Tipo de direccion"></input>
+					<label class="col-lg-1">Tipo direccion</label>
+					<div class="btn-group col-lg-5">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{typeAddress.name}}
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li ng-repeat="typeAddress in typeAddresses" id="{{typeAddress.id}}">
+								<a class="button" href="" ng-click="selectTypeAddress();" >{{typeAddress.name}}</a>
+							</li>
+						</ul>
 					</div>
 				</div>
-
 			</form>
 		</div>
 		<div class="panel-footer">

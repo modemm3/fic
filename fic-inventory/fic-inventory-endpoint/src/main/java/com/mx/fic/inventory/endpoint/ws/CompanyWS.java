@@ -30,7 +30,7 @@ public class CompanyWS {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveCompanyAddress(CompanyRequest request){
 		Message message = new Message();
-		
+		logger.info("request:{}",request);
 		try{
 			if(request.getCompanyDTO()!=null && request.getAddressDTO()!=null){
 				companyBean.saveCompanyAddress(request);

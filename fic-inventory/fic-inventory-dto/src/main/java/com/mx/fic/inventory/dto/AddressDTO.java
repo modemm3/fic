@@ -88,5 +88,16 @@ public class AddressDTO implements BaseDTO{
 	public void setCompanyId(Integer companyId) {
 		this.companyId = companyId;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("AddressDTO [id=").append(id).append(", street=").append(street).append(", colony=")
+				.append(colony).append(", exteriorNumber=").append(exteriorNumber).append(", interiorNumber=")
+				.append(interiorNumber).append(", postalCode=").append(postalCode).append(", town=").append(town)
+				.append(", city=").append(city).append(", state=").append(state).append(", typeAddressId=")
+				.append(typeAddressId).append(", statusId=").append(statusId).append(", companyId=").append(companyId)
+				.append("]");
+		return builder.toString();
+	}
 	
 }

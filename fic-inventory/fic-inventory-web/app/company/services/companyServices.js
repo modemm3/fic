@@ -9,9 +9,9 @@
 					return $http({method: 'POST',url:urlBase+'measureUnit/getMeasureUnitByCompany/'+companyId,
 						headers:{'Content-Type':'application/json'}})
 				},
-				saveOperation:function(operationDTO){
-					return $http({method: 'POST',url:urlBase+'operations/saveOperations/',
-						headers:{'Content-Type':'application/json'},data:operationDTO})
+				saveCompany:function(company){
+					return $http({method: 'POST',url:urlBase+'company/saveCompanyAddress/',
+						headers:{'Content-Type':'application/json'},data:company})
 				}
 				};
 		}]);

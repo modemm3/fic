@@ -20,5 +20,12 @@ public class CompanyRequest {
 	public void setCompanyDTO(CompanyDTO companyDTO) {
 		this.companyDTO = companyDTO;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CompanyRequest [addressDTO=").append(addressDTO).append(", companyDTO=").append(companyDTO)
+				.append("]");
+		return builder.toString();
+	}
 
 }
