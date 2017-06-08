@@ -54,7 +54,7 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  url:"/measure",
 	  parent:'dashboard',
 	  templateUrl:'measure/views/measure.html',
-	  controller: 'companyController'
+	  controller: 'measureUnitController'
 		  
   });
   $stateProvider.state('movementConcept',{
