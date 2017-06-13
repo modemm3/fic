@@ -48,11 +48,11 @@ public class TypeAddressWS {
 			
 		}catch(PersistenceException e){
 			message.setCode(500);
-			message.setMessage("error => Error interno");
+			message.setMessage("PersistenceException => Error interno");
 			logger.error("Persistence=> " + e);						
 		}catch(Exception e){
 			message.setCode(500);
-			message.setMessage("error => Error interno");
+			message.setMessage("Exception => Error interno");
 			logger.error("Exception => " + e);						
 		}
 		response.setMessage(message);
