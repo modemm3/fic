@@ -20,11 +20,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypeAddressDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TypeAddress;
+import com.mx.fic.inventory.services.TypeAddressBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName = "TypeAddressBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TypeAddressBean {
+public class TypeAddressBean implements TypeAddressBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

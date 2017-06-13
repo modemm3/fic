@@ -20,11 +20,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePersonDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TypePerson;
+import com.mx.fic.inventory.services.TypePersonBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName = "TypePersonBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TypePersonBean {
+public class TypePersonBean implements TypePersonBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

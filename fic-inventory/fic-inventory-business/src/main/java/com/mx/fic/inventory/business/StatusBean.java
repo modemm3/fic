@@ -18,11 +18,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
+import com.mx.fic.inventory.services.StatusBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="StatusBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class StatusBean {
+public class StatusBean implements StatusBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

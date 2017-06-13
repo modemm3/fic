@@ -22,11 +22,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.MovementType;
 import com.mx.fic.inventory.persistent.Status;
+import com.mx.fic.inventory.services.MovementTypeBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName ="MovementTypeBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class MovementTypeBean {
+public class MovementTypeBean implements MovementTypeBeanLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;

@@ -1,6 +1,5 @@
 package com.mx.fic.inventory.business;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -11,11 +10,12 @@ import javax.persistence.PersistenceContext;
 
 import com.mx.fic.inventory.dto.UserDTO;
 import com.mx.fic.inventory.persistent.User;
+import com.mx.fic.inventory.services.UserBeanLocal;
 
-@LocalBean
+//@LocalBean
 @Stateless (mappedName= "UserBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class UserBean {
+public class UserBean  implements UserBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

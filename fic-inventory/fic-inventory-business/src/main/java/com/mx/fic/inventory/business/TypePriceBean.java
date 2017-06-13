@@ -19,11 +19,12 @@ import com.mx.fic.inventory.dto.TypePriceDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypePrice;
+import com.mx.fic.inventory.services.TypePriceBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "TypePriceBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TypePriceBean {
+public class TypePriceBean implements TypePriceBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

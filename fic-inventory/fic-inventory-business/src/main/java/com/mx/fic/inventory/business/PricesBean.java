@@ -24,11 +24,12 @@ import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Season;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypePrice;
+import com.mx.fic.inventory.services.PricesBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="PricesBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class PricesBean {
+public class PricesBean implements PricesBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

@@ -20,11 +20,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
 import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Status;
+import com.mx.fic.inventory.services.ProductBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="ProductBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ProductBean{
+public class ProductBean implements ProductBeanLocal {
 	//@PersistenceUnit(unitName="unit-fic")
 	@PersistenceContext
 	private EntityManager entityManager;

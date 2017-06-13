@@ -21,11 +21,12 @@ import com.mx.fic.inventory.dto.MovementConceptDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.Status;
+import com.mx.fic.inventory.services.MovementConceptBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "MovementConceptoBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class MovementConceptBean {
+public class MovementConceptBean implements MovementConceptBeanLocal{
 
 	@PersistenceContext
 	private EntityManager entityManager;

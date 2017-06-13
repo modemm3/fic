@@ -18,11 +18,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TimeUnitDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TimeUnit;
+import com.mx.fic.inventory.services.TimeUnitBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName = "TimeUnitBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TimeUnitBean {
+public class TimeUnitBean implements TimeUnitBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

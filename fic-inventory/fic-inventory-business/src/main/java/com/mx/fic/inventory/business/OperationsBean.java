@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -30,11 +29,12 @@ import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Provider;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TimeUnit;
+import com.mx.fic.inventory.services.OperationsBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "OperationsBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class OperationsBean {
+public class OperationsBean implements OperationsBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

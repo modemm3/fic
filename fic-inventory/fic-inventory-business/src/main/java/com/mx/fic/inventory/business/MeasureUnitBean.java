@@ -20,11 +20,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MeasureUnitDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
+import com.mx.fic.inventory.services.MeasureUnitBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="MeasureUnitBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class MeasureUnitBean {
+public class MeasureUnitBean implements MeasureUnitBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

@@ -2,7 +2,7 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.AddressDTO;
@@ -20,11 +21,11 @@ import com.mx.fic.inventory.persistent.Address;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypeAddress;
+import com.mx.fic.inventory.services.AddressBeanLocal;
 
-@Local
 @Stateless (mappedName = "AddressBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class AddressBean {
+public class AddressBean implements AddressBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

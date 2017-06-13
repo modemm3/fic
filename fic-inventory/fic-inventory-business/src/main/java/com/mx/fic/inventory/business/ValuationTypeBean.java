@@ -18,11 +18,12 @@ import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ValuationTypeDTO;
 import com.mx.fic.inventory.persistent.ValuationType;
+import com.mx.fic.inventory.services.ValuationTypeBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "ValuationTypeBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ValuationTypeBean {
+public class ValuationTypeBean implements ValuationTypeBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

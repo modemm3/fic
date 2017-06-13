@@ -17,11 +17,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypeAddress;
 import com.mx.fic.inventory.request.CompanyRequest;
+import com.mx.fic.inventory.services.CompanyBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "CompanyBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class CompanyBean {
+public class CompanyBean implements CompanyBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

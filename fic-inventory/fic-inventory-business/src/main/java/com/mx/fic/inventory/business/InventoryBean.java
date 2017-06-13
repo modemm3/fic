@@ -28,11 +28,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Inventory;
 import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.Product;
+import com.mx.fic.inventory.services.InventoryBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="InventoryBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class InventoryBean {
+public class InventoryBean implements InventoryBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

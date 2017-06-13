@@ -14,11 +14,12 @@ import javax.persistence.TypedQuery;
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.SecretQuestionDTO;
 import com.mx.fic.inventory.persistent.SecretQuestion;
+import com.mx.fic.inventory.services.SecretQuestionBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "SecretQuestionBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class SecretQuestionBean {
+public class SecretQuestionBean implements SecretQuestionBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

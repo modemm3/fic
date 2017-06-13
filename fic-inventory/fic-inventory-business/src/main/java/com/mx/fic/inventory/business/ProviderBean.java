@@ -22,11 +22,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Provider;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypePerson;
+import com.mx.fic.inventory.services.ProviderBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName = "ProviderBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ProviderBean {
+public class ProviderBean implements ProviderBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;

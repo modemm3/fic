@@ -22,11 +22,12 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.Valuation;
 import com.mx.fic.inventory.persistent.ValuationType;
+import com.mx.fic.inventory.services.ValuationBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName="ValuationBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ValuationBean {
+public class ValuationBean implements ValuationBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;

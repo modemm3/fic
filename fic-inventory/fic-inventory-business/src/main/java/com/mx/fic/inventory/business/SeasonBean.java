@@ -20,11 +20,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.SeasonDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Season;
+import com.mx.fic.inventory.services.SeasonBeanLocal;
 
-@Local
+//@Local
 @Stateless (mappedName= "SeasonBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class SeasonBean {
+public class SeasonBean implements SeasonBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
