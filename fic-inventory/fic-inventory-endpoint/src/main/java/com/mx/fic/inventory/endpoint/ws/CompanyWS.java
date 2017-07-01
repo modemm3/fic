@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.CompanyBean;
+import com.mx.fic.inventory.business.CompanyBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.endpoint.response.Message;
 import com.mx.fic.inventory.request.CompanyRequest;
@@ -20,7 +20,7 @@ import com.mx.fic.inventory.request.CompanyRequest;
 public class CompanyWS {
 	
 	@EJB(mappedName="CompanyBean")
-	CompanyBean companyBean;
+	CompanyBeanLocal companyBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyWS.class);
 	

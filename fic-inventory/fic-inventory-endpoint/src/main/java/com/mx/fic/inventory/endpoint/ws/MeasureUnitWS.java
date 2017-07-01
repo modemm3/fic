@@ -12,7 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.MeasureUnitBean;
+
+import com.mx.fic.inventory.business.MeasureUnitBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MeasureUnitDTO;
 import com.mx.fic.inventory.endpoint.response.MeasureUnitResponse;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.Message;
 @Path("/measureUnit")
 public class MeasureUnitWS {
 	@EJB(mappedName="MeasureUnitBean")
-	private MeasureUnitBean measureUnitBean;
+	private MeasureUnitBeanLocal measureUnitBean;
 	private static final Logger logger = LoggerFactory.getLogger(MeasureUnitWS.class);
 
 	@POST

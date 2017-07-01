@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -20,7 +19,6 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MeasureUnitDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
-import com.mx.fic.inventory.services.MeasureUnitBeanLocal;
 
 //@Local
 @Stateless (mappedName="MeasureUnitBean")
@@ -30,6 +28,10 @@ public class MeasureUnitBean implements MeasureUnitBeanLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MeasureUnitBeanLocal#save(com.mx.fic.inventory.dto.MeasureUnitDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final MeasureUnitDTO measureUnitDTO) throws PersistenceException{
 		final MeasureUnit measureUnit = new MeasureUnit();
@@ -46,6 +48,10 @@ public class MeasureUnitBean implements MeasureUnitBeanLocal {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MeasureUnitBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<MeasureUnitDTO> getAllByCompany(final Integer idCompany) throws PersistenceException{
 		List<MeasureUnitDTO> measureUnitDTOLst= null;
 		MeasureUnitDTO measureUnitDTO= null;

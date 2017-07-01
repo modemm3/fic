@@ -29,7 +29,6 @@ import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Provider;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TimeUnit;
-import com.mx.fic.inventory.services.OperationsBeanLocal;
 
 //@Local
 @Stateless (mappedName= "OperationsBean")
@@ -40,14 +39,18 @@ public class OperationsBean implements OperationsBeanLocal {
 	private EntityManager entityManager;
 	
 	@EJB (mappedName="ProductBean")
-	private ProductBean productBean;
+	private ProductBeanLocal productBean;
 	
 	@EJB (mappedName="InventoryBean")
-	private InventoryBean inventoryBean;
+	private InventoryBeanLocal inventoryBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(OperationsBean.class);
 
 
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.OperationsBeanLocal#save(com.mx.fic.inventory.dto.OperationsDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final OperationsDTO operationsDTO) throws PersistenceException, Exception{
 		final Operations operations = new Operations();
@@ -130,6 +133,10 @@ public class OperationsBean implements OperationsBeanLocal {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.OperationsBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<OperationsDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<OperationsDTO> operationsDTOLst = null;
 		OperationsDTO operationsDTO = null;

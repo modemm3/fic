@@ -11,7 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.TimeUnitBean;
+
+import com.mx.fic.inventory.business.TimeUnitBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TimeUnitDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.TimeUnitResponse;
 public class TimeUnitWS {
 	
 	@EJB(mappedName="TimeUnitBean")
-	TimeUnitBean timeUnitBean;
+	TimeUnitBeanLocal timeUnitBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TimeUnitWS.class);
 

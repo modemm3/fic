@@ -2,7 +2,7 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProductDTO;
@@ -20,7 +21,6 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MeasureUnit;
 import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Status;
-import com.mx.fic.inventory.services.ProductBeanLocal;
 
 //@Local
 @Stateless (mappedName="ProductBean")
@@ -30,6 +30,10 @@ public class ProductBean implements ProductBeanLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.ProductBeanLocal#save(com.mx.fic.inventory.dto.ProductDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Integer save(final ProductDTO productDTO) throws PersistenceException {
 		/*
@@ -63,6 +67,10 @@ public class ProductBean implements ProductBeanLocal {
 		return product.getId();
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.ProductBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<ProductDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
 		List<ProductDTO> productDTOLst = null;
 		List<Product> productLst= new ArrayList<Product>();
@@ -85,6 +93,10 @@ public class ProductBean implements ProductBeanLocal {
 		return productDTOLst;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.ProductBeanLocal#productExists(com.mx.fic.inventory.dto.ProductDTO)
+	 */
+	@Override
 	public boolean productExists(final ProductDTO productDTO) throws PersistenceException {
 		List<Product> prodLst = new ArrayList<Product>();
 		boolean indicateExists = false;

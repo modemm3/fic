@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -20,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
-
 import com.mx.fic.inventory.dto.InventoryDTO;
 import com.mx.fic.inventory.dto.OperationsDTO;
 import com.mx.fic.inventory.dto.ProductDTO;
@@ -28,7 +26,6 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Inventory;
 import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.Product;
-import com.mx.fic.inventory.services.InventoryBeanLocal;
 
 //@Local
 @Stateless (mappedName="InventoryBean")
@@ -40,6 +37,10 @@ public class InventoryBean implements InventoryBeanLocal{
 	
 	private static final Logger logger = LoggerFactory.getLogger(InventoryBean.class);
 
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.InventoryBeanLocal#save(com.mx.fic.inventory.dto.InventoryDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final InventoryDTO inventoryDTO) throws PersistenceException, Exception{
 		final Inventory inventory = new Inventory();
@@ -69,6 +70,10 @@ public class InventoryBean implements InventoryBeanLocal{
 		}  
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.InventoryBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<InventoryDTO> getAllByCompany(final Integer companyId) throws PersistenceException, Exception{
 		List<InventoryDTO> inventoryDTOLst = null;
 		InventoryDTO inventoryDTO = null;
@@ -97,6 +102,10 @@ public class InventoryBean implements InventoryBeanLocal{
 		return inventoryDTOLst;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.InventoryBeanLocal#findProductByCompany(com.mx.fic.inventory.dto.ProductDTO)
+	 */
+	@Override
 	public Inventory findProductByCompany(final ProductDTO productDTO) throws PersistenceException, Exception{
 		List<Inventory>  inventoryLst = new ArrayList<Inventory>();
 		Inventory inventoryExist= null;
@@ -124,6 +133,10 @@ public class InventoryBean implements InventoryBeanLocal{
 		return inventoryExist;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.InventoryBeanLocal#getOperationInventory(com.mx.fic.inventory.dto.OperationsDTO)
+	 */
+	@Override
 	public InventoryDTO getOperationInventory(final OperationsDTO operationsDTO) throws PersistenceException, Exception{
 		Inventory inventory = null;
 		InventoryDTO inventoryDTO = null;

@@ -1,7 +1,7 @@
 package com.mx.fic.inventory.business;
 
 import java.sql.Timestamp;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -11,13 +11,13 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
+
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.persistent.Address;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypeAddress;
 import com.mx.fic.inventory.request.CompanyRequest;
-import com.mx.fic.inventory.services.CompanyBeanLocal;
 
 //@Local
 @Stateless (mappedName= "CompanyBean")
@@ -27,6 +27,10 @@ public class CompanyBean implements CompanyBeanLocal{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.CompanyBeanLocal#saveCompanyAddress(com.mx.fic.inventory.request.CompanyRequest)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveCompanyAddress(CompanyRequest request) throws PersistenceException, Exception{
 		final Company company = new Company();

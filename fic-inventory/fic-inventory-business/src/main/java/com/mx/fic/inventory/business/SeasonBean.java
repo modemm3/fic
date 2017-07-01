@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -20,7 +19,6 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.SeasonDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Season;
-import com.mx.fic.inventory.services.SeasonBeanLocal;
 
 //@Local
 @Stateless (mappedName= "SeasonBean")
@@ -30,6 +28,10 @@ public class SeasonBean implements SeasonBeanLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.SeasonBeanLocal#save(com.mx.fic.inventory.dto.SeasonDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final SeasonDTO seasonDTO) throws PersistenceException{
 		final Season season = new Season();
@@ -49,6 +51,10 @@ public class SeasonBean implements SeasonBeanLocal {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.SeasonBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<SeasonDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<SeasonDTO> seasonDTOLst = null;
 		SeasonDTO seasonDTO = null;

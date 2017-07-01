@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 
 import com.mx.fic.inventory.dto.UserDetailDTO;
 import com.mx.fic.inventory.persistent.UserDetail;
-import com.mx.fic.inventory.services.UserDetailBeanLocal;
 
 //@Local
 @Stateless (mappedName= "UserDetailBean")
@@ -18,6 +17,10 @@ public class UserDetailBean implements UserDetailBeanLocal {
 	
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.UserDetailBeanLocal#save(com.mx.fic.inventory.dto.UserDetailDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final UserDetailDTO userDetailDTO){
 		final UserDetail userDetail= new UserDetail();

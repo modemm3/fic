@@ -2,7 +2,7 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,12 +13,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TimeUnitDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TimeUnit;
-import com.mx.fic.inventory.services.TimeUnitBeanLocal;
 
 //@Local
 @Stateless (mappedName = "TimeUnitBean")
@@ -28,6 +28,10 @@ public class TimeUnitBean implements TimeUnitBeanLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TimeUnitBeanLocal#save(com.mx.fic.inventory.dto.TimeUnitDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TimeUnitDTO timeUnitDTO) throws PersistenceException{
 		
@@ -46,6 +50,10 @@ public class TimeUnitBean implements TimeUnitBeanLocal {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TimeUnitBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<TimeUnitDTO> getAllByCompany(final Integer companyId ) throws PersistenceException{
 		List<TimeUnitDTO> timeUnitDTOLst = new ArrayList<TimeUnitDTO>();
 		List<TimeUnit> timeUnitLst = new ArrayList<TimeUnit>();

@@ -10,16 +10,19 @@ import javax.persistence.PersistenceContext;
 
 import com.mx.fic.inventory.dto.UserDTO;
 import com.mx.fic.inventory.persistent.User;
-import com.mx.fic.inventory.services.UserBeanLocal;
 
 //@LocalBean
 @Stateless (mappedName= "UserBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class UserBean  implements UserBeanLocal {
+public class UserBean implements UserBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.UserBeanLocal#save(com.mx.fic.inventory.dto.UserDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(UserDTO userDTO){
 		User user = new User();

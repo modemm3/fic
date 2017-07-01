@@ -13,7 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.TypePersonBean;
+
+import com.mx.fic.inventory.business.TypePersonBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePersonDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -23,7 +24,7 @@ import com.mx.fic.inventory.endpoint.response.TypePersonResponse;
 public class TypePersonWS {
 
 	@EJB(mappedName ="TypePersonBean")
-	private TypePersonBean typePersonBean;
+	private TypePersonBeanLocal typePersonBean;
 	private static final Logger logger = LoggerFactory.getLogger(TypePersonWS.class);
 	
 	@POST

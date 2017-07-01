@@ -21,15 +21,21 @@ import com.mx.fic.inventory.persistent.Address;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypeAddress;
-import com.mx.fic.inventory.services.AddressBeanLocal;
 
 @Stateless (mappedName = "AddressBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class AddressBean implements AddressBeanLocal{
+public class AddressBean implements AddressBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.AddressBeanLocal#save(com.mx.fic.inventory.dto.AddressDTO)
+	 */
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.AddressBeanLocal#save(com.mx.fic.inventory.dto.AddressDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final AddressDTO addressDTO) throws PersistenceException{
 		final Address address = new Address();
@@ -62,6 +68,13 @@ public class AddressBean implements AddressBeanLocal{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.AddressBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.AddressBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<AddressDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<AddressDTO> addressDTOLst = null;
 		List<Address> addressLst = null;

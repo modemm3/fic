@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.AddressBean;
+import com.mx.fic.inventory.business.AddressBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.AddressDTO;
 import com.mx.fic.inventory.endpoint.response.AddressResponse;
@@ -25,7 +25,7 @@ import com.mx.fic.inventory.endpoint.response.Message;
 public class AddressWS {
 
 	@EJB(mappedName="AddressBean")
-	private AddressBean addressBean;
+	private AddressBeanLocal addressBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AddressWS.class);
 	

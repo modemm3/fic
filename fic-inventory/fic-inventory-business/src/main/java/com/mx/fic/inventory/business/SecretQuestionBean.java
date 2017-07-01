@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -14,16 +13,19 @@ import javax.persistence.TypedQuery;
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.dto.SecretQuestionDTO;
 import com.mx.fic.inventory.persistent.SecretQuestion;
-import com.mx.fic.inventory.services.SecretQuestionBeanLocal;
 
 //@Local
 @Stateless (mappedName= "SecretQuestionBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class SecretQuestionBean implements SecretQuestionBeanLocal {
+public class SecretQuestionBean implements SecretQuestionBeanLocal  {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.SecretQuestionBeanLocal#getAll()
+	 */
+	@Override
 	public List<SecretQuestionDTO> getAll(){
 		
 		List<SecretQuestion> secretQuestionLst= new ArrayList<SecretQuestion>();

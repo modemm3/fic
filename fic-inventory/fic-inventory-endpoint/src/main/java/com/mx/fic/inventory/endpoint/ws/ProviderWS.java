@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.ProviderBean;
+import com.mx.fic.inventory.business.ProviderBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProviderDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -25,7 +25,7 @@ import com.mx.fic.inventory.endpoint.response.ProviderResponse;
 public class ProviderWS {
 	
 	@EJB(mappedName="ProviderBean")
-	private ProviderBean providerBean;
+	private ProviderBeanLocal providerBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProviderWS.class);
 	

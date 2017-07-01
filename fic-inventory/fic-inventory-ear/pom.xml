@@ -18,36 +18,36 @@
   
 <dependencies>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 			<artifactId>fic-inventory-services</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 			<type>jar</type> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 			<artifactId>fic-inventory-business</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 			<type>ejb</type> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 			<artifactId>fic-inventory-persistent</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 			<type>jar</type> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 			<artifactId>fic-inventory-dto</artifactId> -->
-<!-- 			<version>${project.version}</version> -->
-<!-- 			<type>jar</type> -->
-<!-- 		</dependency> -->
 		<dependency>
-			<groupId>com.mx.fic.inventory.endpoint</groupId>
-			<artifactId>fic-inventory-endpoint</artifactId>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-services</artifactId>
 			<version>${project.version}</version>
-			<type>war</type>
+			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-business</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-persistent</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>com.mx.fic.inventory</groupId>
+			<artifactId>fic-inventory-dto</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.mx.fic.inventory.endpoint</groupId> -->
+<!-- 			<artifactId>fic-inventory-endpoint</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 			<type>war</type> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -74,31 +74,31 @@
 					<finalName>fic-inventory-ear</finalName>
 					<generateApplicationXml>true</generateApplicationXml>
 					<modules>
-<!-- 						<ejbModule> -->
-<!-- 							<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 							<artifactId>fic-inventory-business</artifactId> -->
-<!-- 							<bundleFileName>fic-inventory-business.jar</bundleFileName> -->
-<!-- 						</ejbModule> -->
-<!-- 						<jarModule> -->
-<!-- 							<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 							<artifactId>fic-inventory-persistent</artifactId> -->
-<!-- 							<bundleFileName>fic-inventory-persistent.jar</bundleFileName> -->
-<!-- 						</jarModule>						 -->
-<!-- 						<jarModule> -->
-<!-- 							<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 							<artifactId>fic-inventory-services</artifactId> -->
-<!-- 							<bundleFileName>fic-inventory-services.jar</bundleFileName> -->
-<!-- 						</jarModule> -->
+						<ejbModule>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-business</artifactId>
+							<bundleFileName>fic-inventory-business.jar</bundleFileName>
+						</ejbModule>
+						<jarModule>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-persistent</artifactId>
+							<bundleFileName>fic-inventory-persistent.jar</bundleFileName>
+						</jarModule>						
+						<jarModule>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-services</artifactId>
+							<bundleFileName>fic-inventory-services.jar</bundleFileName>
+						</jarModule>
 
-<!-- 						<jarModule> -->
-<!-- 							<groupId>com.mx.fic.inventory</groupId> -->
-<!-- 							<artifactId>fic-inventory-dto</artifactId> -->
-<!-- 							<bundleFileName>fic-inventory-dto.jar</bundleFileName> -->
-<!-- 						</jarModule> -->
-							<webModule>
-								<groupId>com.mx.fic.inventory.endpoint</groupId>
-								<artifactId>fic-inventory-endpoint</artifactId>
-							</webModule>
+						<jarModule>
+							<groupId>com.mx.fic.inventory</groupId>
+							<artifactId>fic-inventory-dto</artifactId>
+							<bundleFileName>fic-inventory-dto.jar</bundleFileName>
+						</jarModule>
+<!-- 							<webModule> -->
+<!-- 								<groupId>com.mx.fic.inventory.endpoint</groupId> -->
+<!-- 								<artifactId>fic-inventory-endpoint</artifactId> -->
+<!-- 							</webModule> -->
 					</modules>
 				</configuration>
 			</plugin>

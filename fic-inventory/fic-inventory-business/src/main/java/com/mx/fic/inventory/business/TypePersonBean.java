@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -20,7 +19,6 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePersonDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TypePerson;
-import com.mx.fic.inventory.services.TypePersonBeanLocal;
 
 //@Local
 @Stateless (mappedName = "TypePersonBean")
@@ -30,6 +28,10 @@ public class TypePersonBean implements TypePersonBeanLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypePersonBeanLocal#save(com.mx.fic.inventory.dto.TypePersonDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TypePersonDTO typePersonDTO) throws PersistenceException{
 		final TypePerson typePerson = new TypePerson();
@@ -48,6 +50,10 @@ public class TypePersonBean implements TypePersonBeanLocal {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypePersonBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<TypePersonDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<TypePerson> typePersonLst = new ArrayList<TypePerson>();
 		List<TypePersonDTO> typePersonDTOLst = null;

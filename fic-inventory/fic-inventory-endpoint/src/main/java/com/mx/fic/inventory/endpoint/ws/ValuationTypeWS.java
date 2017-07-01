@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.ValuationTypeBean;
+import com.mx.fic.inventory.business.ValuationTypeBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ValuationTypeDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -23,7 +23,7 @@ import com.mx.fic.inventory.endpoint.response.ValuationTypeResponse;
 @Path("/valuationType")
 public class ValuationTypeWS {
 	@EJB(mappedName="ValuationTypeBean")
-	private ValuationTypeBean valuationTypeBean;
+	private ValuationTypeBeanLocal valuationTypeBean;
 	private static final Logger logger = LoggerFactory.getLogger(ValuationTypeWS.class);
 	
 	@POST

@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -21,16 +20,19 @@ import com.mx.fic.inventory.dto.MovementConceptDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.Status;
-import com.mx.fic.inventory.services.MovementConceptBeanLocal;
 
 //@Local
 @Stateless (mappedName= "MovementConceptoBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class MovementConceptBean implements MovementConceptBeanLocal{
+public class MovementConceptBean implements MovementConceptBeanLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MovementConceptBeanLocal#save(com.mx.fic.inventory.dto.MovementConceptDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final MovementConceptDTO movementConceptDTO) throws PersistenceException{
 		final MovementConcept movementConcept = new MovementConcept();
@@ -51,6 +53,10 @@ public class MovementConceptBean implements MovementConceptBeanLocal{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MovementConceptBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<MovementConceptDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<MovementConceptDTO> movementConceptDTOLst = null;
 		MovementConceptDTO movementConceptDTO = null;
