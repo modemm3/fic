@@ -12,7 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.PricesBean;
+
+import com.mx.fic.inventory.business.PricesBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.PricesDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.PricesResponse;
 @Path("/prices")
 public class PricesWS {
 	@EJB(mappedName="PricesBean")
-	private PricesBean pricesBean;
+	private PricesBeanLocal pricesBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(PricesWS.class);
 	

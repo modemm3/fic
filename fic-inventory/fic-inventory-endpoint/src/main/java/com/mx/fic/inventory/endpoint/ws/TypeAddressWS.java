@@ -11,7 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.TypeAddressBean;
+
+import com.mx.fic.inventory.business.TypeAddressBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypeAddressDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.persistent.TypeAddress;
 @Path("/typeAddress")
 public class TypeAddressWS {
 	@EJB(mappedName="TypeAddressBean")
-	private TypeAddressBean typeAddressBean;
+	private TypeAddressBeanLocal typeAddressBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(TypeAddress.class);
 	

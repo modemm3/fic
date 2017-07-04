@@ -11,7 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.SeasonBean;
+
+import com.mx.fic.inventory.business.SeasonBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.SeasonDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.SeasonResponse;
 public class SeasonWS {
 
 	@EJB(mappedName="SeasonBean")
-	private SeasonBean seasonBean;
+	private SeasonBeanLocal seasonBean;
 	private static final Logger logger = LoggerFactory.getLogger(SeasonWS.class);
 	
 	@POST

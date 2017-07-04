@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.MovementTypeBean;
+import com.mx.fic.inventory.business.MovementTypeBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MovementTypeDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -24,7 +24,7 @@ import com.mx.fic.inventory.endpoint.response.MovementTypeResponse;
 @Path("/movementType")
 public class MovementTypeWS {
 	@EJB(mappedName="MovementTypeBean")
-	private MovementTypeBean movementTypeBean;
+	private MovementTypeBeanLocal movementTypeBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MovementTypeWS.class);
 	

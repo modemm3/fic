@@ -2,7 +2,7 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,20 +13,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 
-@Local
+//@Local
 @Stateless (mappedName="StatusBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class StatusBean {
+public class StatusBean implements StatusBeanLocal{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.StatusBeanLocal#save(com.mx.fic.inventory.dto.StatusDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final StatusDTO statusDTO) throws PersistenceException{
 		final Status status = new Status();
@@ -45,6 +50,10 @@ public class StatusBean {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.StatusBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<StatusDTO> getAllByCompany(final Integer idCompany) throws PersistenceException{		
 		List<StatusDTO> statusDTOLst=null;
 		StatusDTO statusDTO= null;

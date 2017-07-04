@@ -44,11 +44,11 @@
 			<artifactId>fic-inventory-dto</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.mx.fic.inventory</groupId>
-			<artifactId>fic-inventory-services</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.mx.fic.inventory</groupId> -->
+<!-- 			<artifactId>fic-inventory-services</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.mx.fic.inventory</groupId>
 			<artifactId>fic-inventory-persistent</artifactId>
@@ -76,6 +76,11 @@
 			<!-- <version>${arquillian.junit.container}</version> -->
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-log4j12</artifactId>
+    <version>1.7.12</version>
+</dependency>
 	</dependencies>
 	<profiles>
 		<profile>

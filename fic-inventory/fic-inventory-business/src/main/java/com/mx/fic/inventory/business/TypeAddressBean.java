@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -21,14 +20,18 @@ import com.mx.fic.inventory.dto.TypeAddressDTO;
 import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.TypeAddress;
 
-@Local
+//@Local
 @Stateless (mappedName = "TypeAddressBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TypeAddressBean {
+public class TypeAddressBean implements TypeAddressBeanLocal  {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypeAddressBeanLocal#save(com.mx.fic.inventory.dto.TypeAddressDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TypeAddressDTO typeAddressDTO) throws PersistenceException{
 		final TypeAddress typeAddress = new TypeAddress();
@@ -48,6 +51,10 @@ public class TypeAddressBean {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypeAddressBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<TypeAddressDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<TypeAddressDTO> typeAddresDTOLst = null;
 		TypeAddressDTO typeAddresDTO = null;

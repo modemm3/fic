@@ -12,7 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.ProductBean;
+
+import com.mx.fic.inventory.business.ProductBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.ProductDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.ProductResponse;
 @Path("/product")
 public class ProductWS {
 	@EJB(mappedName="ProductBean") 
-	private ProductBean productBean;
+	private ProductBeanLocal productBean;
 	private static final Logger logger = LoggerFactory.getLogger(ProductWS.class);
 
 	@POST

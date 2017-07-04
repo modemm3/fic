@@ -11,7 +11,8 @@ import org.slf4j.Logger;
 import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.StatusBean;
+
+import com.mx.fic.inventory.business.StatusBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.StatusDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -21,7 +22,7 @@ import com.mx.fic.inventory.endpoint.response.StatusResponse;
 public class StatusWS {
 	
 	@EJB(mappedName="StatusBean")
-	private StatusBean statusBean;
+	private StatusBeanLocal statusBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(StatusWS.class);
 	

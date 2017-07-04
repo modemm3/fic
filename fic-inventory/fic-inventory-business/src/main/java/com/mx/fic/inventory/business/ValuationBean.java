@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -23,14 +22,18 @@ import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.Valuation;
 import com.mx.fic.inventory.persistent.ValuationType;
 
-@Local
+//@Local
 @Stateless (mappedName="ValuationBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class ValuationBean {
+public class ValuationBean implements ValuationBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.ValuationBeanLocal#saveValuation(com.mx.fic.inventory.dto.ValuationDTO)
+	 */
+	@Override
 	@TransactionAttribute (TransactionAttributeType.REQUIRED)
 	public void saveValuation(final ValuationDTO valuationDTO) throws PersistenceException{
 		final Valuation valuation = new Valuation();
@@ -58,6 +61,10 @@ public class ValuationBean {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.ValuationBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<ValuationDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<Valuation> valuationLst = new ArrayList<Valuation>();
 		List<ValuationDTO> valuationDTOLst = null;

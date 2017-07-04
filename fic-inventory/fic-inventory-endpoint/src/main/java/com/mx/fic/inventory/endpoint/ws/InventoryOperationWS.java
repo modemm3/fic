@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mx.fic.inventory.business.InventoryOperationBean;
+import com.mx.fic.inventory.business.InventoryOperationBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.InventoryOperationDTO;
 import com.mx.fic.inventory.endpoint.response.InventoryOperationResponse;
@@ -25,7 +25,7 @@ import com.mx.fic.inventory.request.InventoryOperationRequest;
 public class InventoryOperationWS {
 	
 	@EJB(mappedName="InventoryOperationBean")
-	private InventoryOperationBean inventoryOperationBean;
+	private InventoryOperationBeanLocal inventoryOperationBean;
 
 	private static final Logger logger = LoggerFactory.getLogger(InventoryOperationWS.class);
 	

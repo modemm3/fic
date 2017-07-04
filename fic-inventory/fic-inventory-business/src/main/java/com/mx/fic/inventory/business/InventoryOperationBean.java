@@ -25,13 +25,17 @@ import com.mx.fic.inventory.request.InventoryOperationRequest;
 @Local
 @Stateless (mappedName="InventoryOperationBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class InventoryOperationBean {
+public class InventoryOperationBean implements InventoryOperationBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	private static final Logger logger = LoggerFactory.getLogger(InventoryOperationBean.class);
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.InventoryOperationBeanLocal#getAllByProductAndCompany(com.mx.fic.inventory.request.InventoryOperationRequest)
+	 */
+	@Override
 	public List<InventoryOperationDTO> getAllByProductAndCompany(final InventoryOperationRequest request) throws PersistenceException, Exception{
 		List<InventoryOperationDTO> inventoryOperationDTOLst = null;
 		InventoryOperationDTO inventoryOperationDTO = null;

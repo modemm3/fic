@@ -12,7 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mx.fic.inventory.business.OperationsBean;
+
+import com.mx.fic.inventory.business.OperationsBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.OperationsDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -22,7 +23,7 @@ import com.mx.fic.inventory.endpoint.response.OperationsResponse;
 public class OperationsWS {
 
 	@EJB(mappedName="OperationsBean")
-	private OperationsBean operationsBean;
+	private OperationsBeanLocal operationsBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(OperationsWS.class);
 	

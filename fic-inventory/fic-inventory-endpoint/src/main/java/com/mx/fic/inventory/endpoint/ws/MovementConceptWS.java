@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mx.fic.inventory.business.MovementConceptBean;
+import com.mx.fic.inventory.business.MovementConceptBeanLocal;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MovementConceptDTO;
 import com.mx.fic.inventory.endpoint.response.Message;
@@ -24,7 +25,7 @@ import com.mx.fic.inventory.endpoint.response.MovementConceptResponse;
 public class MovementConceptWS {
 
 	@EJB(mappedName="MovementConceptBean")
-	private MovementConceptBean  movementConceptBean;
+	private MovementConceptBeanLocal  movementConceptBean;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MovementConceptBean.class);
 	

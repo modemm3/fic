@@ -2,7 +2,7 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePriceDTO;
@@ -20,14 +21,18 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypePrice;
 
-@Local
+//@Local
 @Stateless (mappedName= "TypePriceBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class TypePriceBean {
+public class TypePriceBean implements TypePriceBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypePriceBeanLocal#save(com.mx.fic.inventory.dto.TypePriceDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TypePriceDTO typePriceDTO) throws PersistenceException{
 		final TypePrice typePrice = new TypePrice();
@@ -49,6 +54,10 @@ public class TypePriceBean {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.TypePriceBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<TypePriceDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
 		List<TypePriceDTO> typePriceDTOLst= null;
 		TypePriceDTO typePryceDTO=null;

@@ -42,6 +42,12 @@
 			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.mx.fic.inventory.endpoint</groupId> -->
+<!-- 			<artifactId>fic-inventory-endpoint</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 			<type>war</type> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -89,6 +95,10 @@
 							<artifactId>fic-inventory-dto</artifactId>
 							<bundleFileName>fic-inventory-dto.jar</bundleFileName>
 						</jarModule>
+<!-- 							<webModule> -->
+<!-- 								<groupId>com.mx.fic.inventory.endpoint</groupId> -->
+<!-- 								<artifactId>fic-inventory-endpoint</artifactId> -->
+<!-- 							</webModule> -->
 					</modules>
 				</configuration>
 			</plugin>

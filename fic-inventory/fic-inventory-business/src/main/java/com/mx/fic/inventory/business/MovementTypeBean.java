@@ -3,7 +3,6 @@ package com.mx.fic.inventory.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -23,14 +22,18 @@ import com.mx.fic.inventory.persistent.MovementConcept;
 import com.mx.fic.inventory.persistent.MovementType;
 import com.mx.fic.inventory.persistent.Status;
 
-@Local
+//@Local
 @Stateless (mappedName ="MovementTypeBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
-public class MovementTypeBean {
+public class MovementTypeBean implements MovementTypeBeanLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MovementTypeBeanLocal#save(com.mx.fic.inventory.dto.MovementTypeDTO)
+	 */
+	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final MovementTypeDTO movementTypeDTO) throws PersistenceException{
 		final MovementType movementType = new MovementType();
@@ -57,6 +60,10 @@ public class MovementTypeBean {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mx.fic.inventory.business.MovementTypeBeanLocal#getAllByCompany(java.lang.Integer)
+	 */
+	@Override
 	public List<MovementTypeDTO> getAllByCompany(final Integer companyId) throws PersistenceException{
 		List<MovementType> movementTypeLst = new ArrayList<MovementType>();
 		List<MovementTypeDTO> movementTypeDTOLst = null;
