@@ -1,0 +1,89 @@
+DROP TRIGGER inventory_operation_trigger ON inventory_operation
+
+CREATE TRIGGER inventory_operation_trigger
+	AFTER INSERT ON operations
+FOR EACH ROW EXECUTE PROCEDURE saveReportValuation();
+
+
+CREATE OR REPLACE FUNCTION saveReportValuation()
+ RETURNS TRIGGER AS $$
+ DECLARE
+        keyvaluation text;--varchar(150);
+        movconcept varchar(200);
+        movtype varchar(255);
+        inventoryoperation_id integer;
+	r RECORD;
+	newRest numeric;
+	stocksupdate numeric(19,3);
+ BEGIN	
+        select valtype.key_valuation , movconcep.name, movtype.name into
+        keyvaluation, movconcept, movtype
+        from operations op
+        inner join valuation val on val.company_id=op.company_id
+        inner join valuation_type valtype on valtype.id = val.valuation_type_id
+        inner join movement_type movtype on movtype.id = op.movement_type_id
+        inner join movement_concept movconcep on movconcep.id = movtype.movement_concept_id
+        inner join status s on s.id = val.status_id and s.name ='Activo'
+        where op.id = NEW.id;
+        
+        raise info '%', NEW.id;
+
+	stocksupdate = NEW.stocks;
+
+
+
+        if keyvaluation is not null then
+		if keyvaluation = 'PEPS' then
+			
+			if movconcept = 'Entradas' then
+			  raise info 'movconcept %', movconcept;
+			 SELECT nextval('inventory_operation_id_seq') into inventoryoperation_id;
+			  raise info 'inventory operation id => %', inventoryoperation_id;
+			  
+			   INSERT INTO inventory_operation(
+			   id, operation_id, movement_concept, movement_type, movement_date, amount, value_unit, value_total, 
+			   amount_balance, value_unit_balance, value_total_balance, company_id, product_id, inventory_operation_id)
+			   values (inventoryoperation_id,NEW.id, movconcept, movtype, NEW.creation_date, NEW.stocks, NEW.unit_price, NEW.stocks * NEW.unit_price,
+			   NEW.stocks, NEW.unit_price, NEW.stocks * NEW.unit_price, NEW.company_id, NEW.product_id, inventoryoperation_id);  
+			elsif  movconcept = 'Salidas' then
+			   FOR r IN
+				SELECT id, amount, value_unit, amount_balance, value_unit_balance, movement_concept
+				FROM inventory_operation
+				WHERE status = 'true' and company_id = NEW.company_id and product_id = NEW.product_id
+				order by inventory_operation_id ASC
+			    LOOP
+				if stocksupdate <= r.amount_balance then
+				raise info 'movconcept %', movconcept;
+				SELECT nextval('inventory_operation_id_seq') into inventoryoperation_id;
+				raise info 'inventory operation id => %', inventoryoperation_id;
+				
+					INSERT INTO inventory_operation(
+						id, operation_id, movement_concept, movement_type, movement_date, amount, value_unit, value_total, 
+						amount_balance, value_unit_balance, value_total_balance, company_id, product_id, inventory_operation_id)
+						values (inventoryoperation_id,NEW.id, movconcept, movtype, NEW.creation_date, stocksupdate, r.value_unit_balance, stocksupdate * r.value_unit_balance,
+						r.amount_balance - stocksupdate, r.value_unit_balance,(r.amount_balance - stocksupdate) * r.value_unit_balance, NEW.company_id, NEW.product_id, r.id);  
+
+					UPDATE inventory_operation set status= false where id = r.id;
+
+				elsif stocksupdate > r.amount_balance then
+
+					stocksupdate := stocksupdate - r.amount_balance;
+					raise info 'movconcept %', movconcept;
+					SELECT nextval('inventory_operation_id_seq') into inventoryoperation_id;
+					raise info 'inventory operation id => %', inventoryoperation_id;
+
+					INSERT INTO inventory_operation(
+						id, operation_id, movement_concept, movement_type, movement_date, amount, value_unit, value_total, 
+						amount_balance, value_unit_balance, value_total_balance, company_id, product_id, inventory_operation_id, status)
+						values (inventoryoperation_id,NEW.id, movconcept, movtype, NEW.creation_date, r.amount_balance, r.value_unit_balance, r.amount_balance * r.value_unit_balance,
+						null, null , null , NEW.company_id, NEW.product_id, r.id, false);  
+
+					UPDATE inventory_operation set status= false where id = r.id;
+				end if;
+			    END LOOP;
+			end if;	
+		end if;          
+        end if;
+        return NEW;
+ END;
+$$ LANGUAGE plpgsql;
