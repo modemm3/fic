@@ -11,4 +11,5 @@
     <include file="db-changelogs/v000/changelog_2017_06_02.xml"/>
     <include file="db-changelogs/v000/changelog_2017_06_03.xml"/>
     <include file="db-changelogs/v000/changelog_2017_06_06.xml"/>
+    <include file="db-changelogs/v000/changelog_2017_07_30.xml"/>    
  </databaseChangeLog>

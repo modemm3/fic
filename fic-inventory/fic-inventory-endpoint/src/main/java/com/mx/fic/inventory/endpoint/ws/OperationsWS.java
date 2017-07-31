@@ -38,8 +38,8 @@ public class OperationsWS {
 		Message message = new Message();
 		
 		try{
-			if((operationsDTO!=null && operationsDTO.getProviderId()!=null) && 
-					(operationsDTO.getCompanyId()!=null && operationsDTO.getMovementTypeId()!=null) && 
+			if((operationsDTO!=null && 
+					operationsDTO.getCompanyId()!=null) && 
 						(operationsDTO.getStatusId()!=null && operationsDTO.getTimeUnitId()!=null) && 
 							(operationsDTO.getStocks()!=null && operationsDTO.getProductDTO()!=null) &&
 							(operationsDTO.getUnitPrice()!=null && operationsDTO.getUnitPrice()>0)){
