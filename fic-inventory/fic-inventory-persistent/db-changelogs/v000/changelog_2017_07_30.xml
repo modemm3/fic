@@ -51,4 +51,14 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.l
             </column>    	
         </addColumn>              
     </changeSet>	
+    <changeSet author="perita" id="31">
+        <addColumn tableName="operations">
+            <column name="operation_master_id" remarks="Id de la operacion master" type="INT4">
+               <constraints nullable="true"/>
+            </column>    	
+        </addColumn>                       
+    </changeSet>  
+    <changeSet author="perita" id="32">
+        <addForeignKeyConstraint baseColumnNames="operation_master_id" baseTableName="operations" constraintName="fkOperationsOperationMaster" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="operation_master"/>
+    </changeSet>	      
 </databaseChangeLog>
