@@ -1,3 +1,25 @@
 {
-	"txt_userNamer":"User Name"
+	"index_title":"Punto de Venta",
+	"sale_title":"Venta de Productos",
+	"sale":{
+		"title":"Venta",
+		"form":{
+			"lbl_id":"Código del Producto",
+			"lbl_id_placeholder":"Ingrese el Código",
+			"btn_add":"Agregar",
+			"btn_sale":"Vender",
+			"btn_sale_placeholder":"Realizar la Venta",
+			"btn_change":"Cambiar",
+			"btn_change_placeHolder":"Cambiar Cantidad",
+			"tb_title":"Nota",
+			"table":{
+				"code":"Código de Barras",
+				"description":"Descripción del Producto",
+				"salePrice":"Precio de Venta",
+				"stock":"Cantidad",
+				"price":"Importe",
+				"amount":"Cantidad en existencia"
+			}
+		}
+	}
 }
