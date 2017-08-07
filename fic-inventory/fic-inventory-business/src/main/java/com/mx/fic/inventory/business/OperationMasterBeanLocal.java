@@ -8,6 +8,6 @@ import com.mx.fic.inventory.dto.OperationMasterDTO;
 @Local
 public interface OperationMasterBeanLocal {
 
-	public void save(OperationMasterDTO operationMasterDTO) throws PersistenceException, Exception;
+	public Integer save(OperationMasterDTO operationMasterDTO) throws PersistenceException, Exception;
 		
 }

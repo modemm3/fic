@@ -1,27 +1,23 @@
 package com.mx.fic.inventory.dto;
 
-import java.sql.Timestamp;
 
-public class OperationMasterDTO {
-	
+public class OperationMasterDTO implements BaseDTO{
+
+	private static final long serialVersionUID = 1111997348537176415L;
 	private Integer id;
-	private Timestamp operationDate;
+	private Long operationDate;
 	private Integer statusId;
 	private Integer movementTypeId;
 	private Integer companyId;
 	private String folioDocument;
+	private Long creationDate;
+	private Long modificationDate;
 	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Timestamp getOperationDate() {
-		return operationDate;
-	}
-	public void setOperationDate(Timestamp operationDate) {
-		this.operationDate = operationDate;
 	}
 	public Integer getStatusId() {
 		return statusId;
@@ -47,7 +43,25 @@ public class OperationMasterDTO {
 	public void setFolioDocument(String folioDocument) {
 		this.folioDocument = folioDocument;
 	}
-
+	public Long getOperationDate() {
+		return operationDate;
+	}
+	public void setOperationDate(Long operationDate) {
+		this.operationDate = operationDate;
+	}
+	public Long getCreationDate() {
+		return creationDate;
+	}
+	public void setCreationDate(Long creationDate) {
+		this.creationDate = creationDate;
+	}
+	public Long getModificationDate() {
+		return modificationDate;
+	}
+	public void setModificationDate(Long modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("OperationMasterDTO [id=");
@@ -62,6 +76,10 @@ public class OperationMasterDTO {
 		builder.append(companyId);
 		builder.append(", folioDocument=");
 		builder.append(folioDocument);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", modificationDate=");
+		builder.append(modificationDate);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -70,8 +88,10 @@ public class OperationMasterDTO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
+		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((folioDocument == null) ? 0 : folioDocument.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((modificationDate == null) ? 0 : modificationDate.hashCode());
 		result = prime * result + ((movementTypeId == null) ? 0 : movementTypeId.hashCode());
 		result = prime * result + ((operationDate == null) ? 0 : operationDate.hashCode());
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
@@ -91,6 +111,11 @@ public class OperationMasterDTO {
 				return false;
 		} else if (!companyId.equals(other.companyId))
 			return false;
+		if (creationDate == null) {
+			if (other.creationDate != null)
+				return false;
+		} else if (!creationDate.equals(other.creationDate))
+			return false;
 		if (folioDocument == null) {
 			if (other.folioDocument != null)
 				return false;
@@ -100,6 +125,11 @@ public class OperationMasterDTO {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (modificationDate == null) {
+			if (other.modificationDate != null)
+				return false;
+		} else if (!modificationDate.equals(other.modificationDate))
 			return false;
 		if (movementTypeId == null) {
 			if (other.movementTypeId != null)

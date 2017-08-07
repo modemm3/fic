@@ -3,14 +3,20 @@ package com.mx.fic.inventory.persistent;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class OperationMaster {
+@Entity
+@Table (name="operation_master")
+public class OperationMaster implements BaseEntity{
+	
+	private static final long serialVersionUID = 4294420049156118001L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,6 +34,11 @@ public class OperationMaster {
 	private Company company;
 	@Column(name="folio_document")
 	private String folioDocument;
+	@Column(name="creation_date")
+	private Timestamp creationDate;
+	@Column(name="modification_date")
+	private Timestamp modificationDate;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -65,6 +76,19 @@ public class OperationMaster {
 		this.folioDocument = folioDocument;
 	}
 	
+	public Timestamp getCreationDate() {
+		return creationDate;
+	}
+	public void setCreationDate(Timestamp creationDate) {
+		this.creationDate = creationDate;
+	}
+	public Timestamp getModificationDate() {
+		return modificationDate;
+	}
+	public void setModificationDate(Timestamp modificationDate) {
+		this.modificationDate = modificationDate;
+	}
+	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("OperationMaster [id=");
@@ -79,6 +103,10 @@ public class OperationMaster {
 		builder.append(company);
 		builder.append(", folioDocument=");
 		builder.append(folioDocument);
+		builder.append(", creationDate=");
+		builder.append(creationDate);
+		builder.append(", modificationDate=");
+		builder.append(modificationDate);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -87,8 +115,10 @@ public class OperationMaster {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
 		result = prime * result + ((folioDocument == null) ? 0 : folioDocument.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((modificationDate == null) ? 0 : modificationDate.hashCode());
 		result = prime * result + ((movementType == null) ? 0 : movementType.hashCode());
 		result = prime * result + ((operationDate == null) ? 0 : operationDate.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -108,6 +138,11 @@ public class OperationMaster {
 				return false;
 		} else if (!company.equals(other.company))
 			return false;
+		if (creationDate == null) {
+			if (other.creationDate != null)
+				return false;
+		} else if (!creationDate.equals(other.creationDate))
+			return false;
 		if (folioDocument == null) {
 			if (other.folioDocument != null)
 				return false;
@@ -117,6 +152,11 @@ public class OperationMaster {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (modificationDate == null) {
+			if (other.modificationDate != null)
+				return false;
+		} else if (!modificationDate.equals(other.modificationDate))
 			return false;
 		if (movementType == null) {
 			if (other.movementType != null)

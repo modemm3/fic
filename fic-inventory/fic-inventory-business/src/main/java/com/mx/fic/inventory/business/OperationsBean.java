@@ -20,6 +20,7 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.InventoryDTO;
 import com.mx.fic.inventory.dto.OperationsDTO;
 import com.mx.fic.inventory.persistent.Company;
+import com.mx.fic.inventory.persistent.OperationMaster;
 import com.mx.fic.inventory.persistent.Operations;
 import com.mx.fic.inventory.persistent.Product;
 import com.mx.fic.inventory.persistent.Status;
@@ -44,7 +45,6 @@ public class OperationsBean implements OperationsBeanLocal {
 	/* (non-Javadoc)
 	 * @see com.mx.fic.inventory.business.OperationsBeanLocal#save(com.mx.fic.inventory.dto.OperationsDTO)
 	 */
-	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final OperationsDTO operationsDTO) throws PersistenceException, Exception{
 		final Operations operations = new Operations();
@@ -52,6 +52,7 @@ public class OperationsBean implements OperationsBeanLocal {
 		final Status status = new Status();
 		final Company company = new Company();
 		final TimeUnit timeUnit = new TimeUnit();
+		final OperationMaster operationMaster = new OperationMaster();
 		InventoryDTO inventoryDTO = new InventoryDTO();
 		boolean existProduct = false;
 		Integer productId = 0;
@@ -94,6 +95,9 @@ public class OperationsBean implements OperationsBeanLocal {
 				
 				timeUnit.setId(operationsDTO.getTimeUnitId());			
 				operations.setTimeUnit(timeUnit);
+				
+				operationMaster.setId(operationsDTO.getOperationMasterId());
+				operations.setOperationMaster(operationMaster);
 				
 				entityManager.persist(operations);
 				

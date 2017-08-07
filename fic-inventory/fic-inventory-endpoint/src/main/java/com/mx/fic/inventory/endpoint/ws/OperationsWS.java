@@ -42,7 +42,8 @@ public class OperationsWS {
 					operationsDTO.getCompanyId()!=null) && 
 						(operationsDTO.getStatusId()!=null && operationsDTO.getTimeUnitId()!=null) && 
 							(operationsDTO.getStocks()!=null && operationsDTO.getProductDTO()!=null) &&
-							(operationsDTO.getUnitPrice()!=null && operationsDTO.getUnitPrice()>0)){
+							(operationsDTO.getUnitPrice()!=null && operationsDTO.getUnitPrice()>0) &&
+							operationsDTO.getOperationMasterId()!=null){
 				operationsBean.save(operationsDTO);
 				message.setCode(200);
 				message.setMessage("exito");
@@ -77,9 +78,14 @@ public class OperationsWS {
 			if(companyId!=null){
 				operationsDTOLst = new ArrayList<OperationsDTO>();
 				operationsDTOLst = operationsBean.getAllByCompany(companyId);
-				message.setCode(200);
-				message.setMessage("exito");
-				response.setOperationsDTOLst(operationsDTOLst);				
+				if(operationsDTOLst!=null && operationsDTOLst.size()>0){
+					message.setCode(200);
+					message.setMessage("exito");
+					response.setOperationsDTOLst(operationsDTOLst);
+				}else{
+					message.setCode(204);
+					message.setMessage("No contenido");
+				}
 			}else{
 				message.setCode(400);
 				message.setMessage("error => Es requerido el id de la compañía");						

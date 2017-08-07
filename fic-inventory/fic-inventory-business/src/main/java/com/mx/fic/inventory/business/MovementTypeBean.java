@@ -14,6 +14,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MovementTypeDTO;
@@ -29,6 +32,8 @@ public class MovementTypeBean implements MovementTypeBeanLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MovementTypeBean.class);
 	
 	/* (non-Javadoc)
 	 * @see com.mx.fic.inventory.business.MovementTypeBeanLocal#save(com.mx.fic.inventory.dto.MovementTypeDTO)
@@ -56,6 +61,7 @@ public class MovementTypeBean implements MovementTypeBeanLocal {
 			entityManager.persist(movementType);
 			
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			logger.error("Error en bean "+ e);
 			throw new PersistenceException("Erro al guardar los estatus");
 		}
 	}

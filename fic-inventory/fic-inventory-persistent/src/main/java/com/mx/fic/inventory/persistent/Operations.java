@@ -15,7 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table (name="operations")
 @NamedQueries({
-	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id")
+	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id"),
+	@NamedQuery (name="Operations.getMovementConcept", query=""
+			+ "select mc from OperationMaster as om "
+			+ "inner join om.movementType as mt "
+			+ "inner join mt.movementConcept mc where om.id=:operationMasterId")	
 	/*@NamedQuery (name="Operations.getMovementConcept", query="select mc from MovementType as mt inner join mt.movementConcept as mc "+
 			"where mt.id=:movementTypeId")*/
 })
@@ -44,6 +48,9 @@ public class Operations implements BaseEntity{
 	@JoinColumn(name="time_unit_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private TimeUnit timeUnit;
+	@JoinColumn(name="operation_master_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private OperationMaster operationMaster;
 	/*@Column(name="delivery_time")
 	private Integer deliveryTime;*/
 	/*@JoinColumn(name="provider_id", referencedColumnName="id")
@@ -90,6 +97,12 @@ public class Operations implements BaseEntity{
 	}
 	public void setStocks(Double stocks) {
 		this.stocks = stocks;
+	}
+	public OperationMaster getOperationMaster() {
+		return operationMaster;
+	}
+	public void setOperationMaster(OperationMaster operationMaster) {
+		this.operationMaster = operationMaster;
 	}
 	/*public String getFolioDocument() {
 		return folioDocument;
@@ -140,6 +153,8 @@ public class Operations implements BaseEntity{
 		builder.append(stocks);
 		builder.append(", timeUnit=");
 		builder.append(timeUnit);
+		builder.append(", operationMaster=");
+		builder.append(operationMaster);
 		builder.append(", company=");
 		builder.append(company);
 		builder.append(", unitPrice=");
@@ -153,6 +168,7 @@ public class Operations implements BaseEntity{
 		int result = 1;
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((operationMaster == null) ? 0 : operationMaster.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
@@ -178,6 +194,11 @@ public class Operations implements BaseEntity{
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (operationMaster == null) {
+			if (other.operationMaster != null)
+				return false;
+		} else if (!operationMaster.equals(other.operationMaster))
 			return false;
 		if (product == null) {
 			if (other.product != null)
@@ -205,6 +226,6 @@ public class Operations implements BaseEntity{
 		} else if (!unitPrice.equals(other.unitPrice))
 			return false;
 		return true;
-	}	
+	}
 	
 }

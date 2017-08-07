@@ -23,20 +23,20 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 		operationsDTO.setUnitPrice(operations.getUnitPrice());
 		operationsDTO.setId(operations.getId());
 		
-
-		
 		if(operations.getProduct() != null){
 			productDTO.setId(operations.getProduct().getId());			
 			operationsDTO.setProductDTO(productDTO);
 		}
-		
-
 		
 		if(operations.getStatus() != null){
 			operationsDTO.setStatusId(operations.getStatus().getId());
 		}
 		
 		operationsDTO.setStocks(operations.getStocks());
+		
+		if(operations.getOperationMaster()!=null){
+			operationsDTO.setOperationMasterId(operations.getOperationMaster().getId());
+		}
 		
 		if(operations.getTimeUnit() != null){
 			operationsDTO.setTimeUnitId(operations.getTimeUnit().getId());

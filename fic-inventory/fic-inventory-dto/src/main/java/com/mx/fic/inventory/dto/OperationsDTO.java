@@ -9,7 +9,9 @@ public class OperationsDTO implements BaseDTO{
 	private Double stocks;
 	private Integer timeUnitId;
 	private Integer companyId;
+	private Integer operationMasterId;
 	private Double unitPrice;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -52,12 +54,41 @@ public class OperationsDTO implements BaseDTO{
 	public void setUnitPrice(Double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
-	@Override
+	public Integer getOperationMasterId() {
+		return operationMasterId;
+	}
+	public void setOperationMasterId(Integer operationMasterId) {
+		this.operationMasterId = operationMasterId;
+	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OperationsDTO [id=");
+		builder.append(id);
+		builder.append(", productDTO=");
+		builder.append(productDTO);
+		builder.append(", statusId=");
+		builder.append(statusId);
+		builder.append(", stocks=");
+		builder.append(stocks);
+		builder.append(", timeUnitId=");
+		builder.append(timeUnitId);
+		builder.append(", companyId=");
+		builder.append(companyId);
+		builder.append(", operationMasterId=");
+		builder.append(operationMasterId);
+		builder.append(", unitPrice=");
+		builder.append(unitPrice);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((companyId == null) ? 0 : companyId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((operationMasterId == null) ? 0 : operationMasterId.hashCode());
 		result = prime * result + ((productDTO == null) ? 0 : productDTO.hashCode());
 		result = prime * result + ((statusId == null) ? 0 : statusId.hashCode());
 		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
@@ -65,7 +96,7 @@ public class OperationsDTO implements BaseDTO{
 		result = prime * result + ((unitPrice == null) ? 0 : unitPrice.hashCode());
 		return result;
 	}
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -83,6 +114,11 @@ public class OperationsDTO implements BaseDTO{
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (operationMasterId == null) {
+			if (other.operationMasterId != null)
+				return false;
+		} else if (!operationMasterId.equals(other.operationMasterId))
 			return false;
 		if (productDTO == null) {
 			if (other.productDTO != null)
@@ -110,26 +146,6 @@ public class OperationsDTO implements BaseDTO{
 		} else if (!unitPrice.equals(other.unitPrice))
 			return false;
 		return true;
-	}
-	
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OperationsDTO [id=");
-		builder.append(id);
-		builder.append(", productDTO=");
-		builder.append(productDTO);
-		builder.append(", statusId=");
-		builder.append(statusId);
-		builder.append(", stocks=");
-		builder.append(stocks);
-		builder.append(", timeUnitId=");
-		builder.append(timeUnitId);
-		builder.append(", companyId=");
-		builder.append(companyId);
-		builder.append(", unitPrice=");
-		builder.append(unitPrice);
-		builder.append("]");
-		return builder.toString();
 	}
 	
 }
