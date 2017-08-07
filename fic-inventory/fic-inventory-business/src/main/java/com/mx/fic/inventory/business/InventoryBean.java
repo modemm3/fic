@@ -149,7 +149,7 @@ public class InventoryBean implements InventoryBeanLocal{
 		try{
 			if(inventory!=null && (inventory.getId()!=null && inventory.getId()!=0)){
 				TypedQuery<MovementConcept>  query = entityManager.createNamedQuery("Operations.getMovementConcept", MovementConcept.class);
-				query.setParameter("movementTypeId", operationsDTO.getMovementTypeId());
+				query.setParameter("operationMasterId", operationsDTO.getOperationMasterId());
 				
 				movementConcept= query.getSingleResult();
 				

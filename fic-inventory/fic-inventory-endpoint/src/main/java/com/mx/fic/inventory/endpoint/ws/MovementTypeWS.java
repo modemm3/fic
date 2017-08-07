@@ -33,7 +33,7 @@ public class MovementTypeWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveMovementType(MovementTypeDTO movementTypeDTO){
-		logger.info("Entra a guardar el tipo de movimiento => "+ movementTypeDTO);
+		logger.info("Entra a guardar el tipo de movimiento ", movementTypeDTO);
 		MovementTypeResponse response = new MovementTypeResponse();
 		Message message = new Message();
 				
@@ -50,11 +50,13 @@ public class MovementTypeWS {
 			}
 			
 		}catch(PersistenceException e){
+			logger.error("Error WS ", e);
 			message.setCode(500);
-			message.setMessage("error => Error interno");
+			message.setMessage("Error interno");
 		}catch(Exception e){
+			logger.error("Error WS ", e);
 			message.setCode(500);
-			message.setMessage("error => Error interno");
+			message.setMessage("Error interno");
 		}
 		response.setMessage(message);
 		
@@ -84,12 +86,12 @@ public class MovementTypeWS {
 			}
 		}catch(PersistenceException e){
 			message.setCode(500);
-			message.setMessage("error => Error interno");
+			message.setMessage("Error interno");
 			logger.error("Persistence=> " + e);
 		}catch (Exception e){
 			message.setCode(500);
-			message.setMessage("error => Error interno");
-			logger.error("Exception => " + e);
+			message.setMessage("Error interno");
+			logger.error("Exception " , e);
 		}
 		response.setMessage(message);
 		

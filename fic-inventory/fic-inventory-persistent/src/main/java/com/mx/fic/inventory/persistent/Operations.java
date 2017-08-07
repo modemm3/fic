@@ -1,7 +1,5 @@
 package com.mx.fic.inventory.persistent;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,8 +16,12 @@ import javax.persistence.Table;
 @Table (name="operations")
 @NamedQueries({
 	@NamedQuery (name="Operations.getAllByCompany", query ="select o from Operations o where o.company.id=:id"),
-	@NamedQuery (name="Operations.getMovementConcept", query="select mc from MovementType as mt inner join mt.movementConcept as mc "+
-			"where mt.id=:movementTypeId")
+	@NamedQuery (name="Operations.getMovementConcept", query=""
+			+ "select mc from OperationMaster as om "
+			+ "inner join om.movementType as mt "
+			+ "inner join mt.movementConcept mc where om.id=:operationMasterId")	
+	/*@NamedQuery (name="Operations.getMovementConcept", query="select mc from MovementType as mt inner join mt.movementConcept as mc "+
+			"where mt.id=:movementTypeId")*/
 })
 public class Operations implements BaseEntity{
 
@@ -31,26 +33,29 @@ public class Operations implements BaseEntity{
 	@JoinColumn(name="product_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Product product;
-	@JoinColumn(name="movement_type_id", referencedColumnName="id")
+	/*@JoinColumn(name="movement_type_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
-	private MovementType movementType;
+	private MovementType movementType;*/
 	@JoinColumn(name="status_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Status status;
-	@Column(name="creation_date")
-	private Timestamp creationDate;
+	/*@Column(name="creation_date")
+	private Timestamp creationDate;*/
 	@Column(name="stocks")
 	private Double stocks;
-	@Column(name="folio_document")
-	private String folioDocument;
+	/*@Column(name="folio_document")
+	private String folioDocument;*/
 	@JoinColumn(name="time_unit_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private TimeUnit timeUnit;
-	@Column(name="delivery_time")
-	private Integer deliveryTime;
-	@JoinColumn(name="provider_id", referencedColumnName="id")
+	@JoinColumn(name="operation_master_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Provider provider;
+	private OperationMaster operationMaster;
+	/*@Column(name="delivery_time")
+	private Integer deliveryTime;*/
+	/*@JoinColumn(name="provider_id", referencedColumnName="id")
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Provider provider;*/
 	@JoinColumn(name="company_id", referencedColumnName="id")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Company company;
@@ -69,43 +74,49 @@ public class Operations implements BaseEntity{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	public MovementType getMovementType() {
+	/*public MovementType getMovementType() {
 		return movementType;
 	}
 	public void setMovementType(MovementType movementType) {
 		this.movementType = movementType;
-	}
+	}*/
 	public Status getStatus() {
 		return status;
 	}
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public Timestamp getCreationDate() {
+	/*public Timestamp getCreationDate() {
 		return creationDate;
 	}
 	public void setCreationDate(Timestamp creationDate) {
 		this.creationDate = creationDate;
-	}
+	}*/
 	public Double getStocks() {
 		return stocks;
 	}
 	public void setStocks(Double stocks) {
 		this.stocks = stocks;
 	}
-	public String getFolioDocument() {
+	public OperationMaster getOperationMaster() {
+		return operationMaster;
+	}
+	public void setOperationMaster(OperationMaster operationMaster) {
+		this.operationMaster = operationMaster;
+	}
+	/*public String getFolioDocument() {
 		return folioDocument;
 	}
 	public void setFolioDocument(String folioDocument) {
 		this.folioDocument = folioDocument;
-	}
+	}*/
 	public TimeUnit getTimeUnit() {
 		return timeUnit;
 	}
 	public void setTimeUnit(TimeUnit timeUnit) {
 		this.timeUnit = timeUnit;
 	}
-	public Integer getDeliveryTime() {
+	/*public Integer getDeliveryTime() {
 		return deliveryTime;
 	}
 	public void setDeliveryTime(Integer deliveryTime) {
@@ -116,7 +127,7 @@ public class Operations implements BaseEntity{
 	}
 	public void setProvider(Provider provider) {
 		this.provider = provider;
-	}
+	}*/
 	public Company getCompany() {
 		return company;
 	}
@@ -130,17 +141,35 @@ public class Operations implements BaseEntity{
 		this.unitPrice = unitPrice;
 	}
 	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Operations [id=");
+		builder.append(id);
+		builder.append(", product=");
+		builder.append(product);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", stocks=");
+		builder.append(stocks);
+		builder.append(", timeUnit=");
+		builder.append(timeUnit);
+		builder.append(", operationMaster=");
+		builder.append(operationMaster);
+		builder.append(", company=");
+		builder.append(company);
+		builder.append(", unitPrice=");
+		builder.append(unitPrice);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
-		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
-		result = prime * result + ((deliveryTime == null) ? 0 : deliveryTime.hashCode());
-		result = prime * result + ((folioDocument == null) ? 0 : folioDocument.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((movementType == null) ? 0 : movementType.hashCode());
+		result = prime * result + ((operationMaster == null) ? 0 : operationMaster.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		result = prime * result + ((provider == null) ? 0 : provider.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((stocks == null) ? 0 : stocks.hashCode());
 		result = prime * result + ((timeUnit == null) ? 0 : timeUnit.hashCode());
@@ -161,40 +190,20 @@ public class Operations implements BaseEntity{
 				return false;
 		} else if (!company.equals(other.company))
 			return false;
-		if (creationDate == null) {
-			if (other.creationDate != null)
-				return false;
-		} else if (!creationDate.equals(other.creationDate))
-			return false;
-		if (deliveryTime == null) {
-			if (other.deliveryTime != null)
-				return false;
-		} else if (!deliveryTime.equals(other.deliveryTime))
-			return false;
-		if (folioDocument == null) {
-			if (other.folioDocument != null)
-				return false;
-		} else if (!folioDocument.equals(other.folioDocument))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (movementType == null) {
-			if (other.movementType != null)
+		if (operationMaster == null) {
+			if (other.operationMaster != null)
 				return false;
-		} else if (!movementType.equals(other.movementType))
+		} else if (!operationMaster.equals(other.operationMaster))
 			return false;
 		if (product == null) {
 			if (other.product != null)
 				return false;
 		} else if (!product.equals(other.product))
-			return false;
-		if (provider == null) {
-			if (other.provider != null)
-				return false;
-		} else if (!provider.equals(other.provider))
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -217,36 +226,6 @@ public class Operations implements BaseEntity{
 		} else if (!unitPrice.equals(other.unitPrice))
 			return false;
 		return true;
-	}
-	
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Operations [id=");
-		builder.append(id);
-		builder.append(", product=");
-		builder.append(product);
-		builder.append(", movementType=");
-		builder.append(movementType);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append(", creationDate=");
-		builder.append(creationDate);
-		builder.append(", stocks=");
-		builder.append(stocks);
-		builder.append(", folioDocument=");
-		builder.append(folioDocument);
-		builder.append(", timeUnit=");
-		builder.append(timeUnit);
-		builder.append(", deliveryTime=");
-		builder.append(deliveryTime);
-		builder.append(", provider=");
-		builder.append(provider);
-		builder.append(", company=");
-		builder.append(company);
-		builder.append(", unitPrice=");
-		builder.append(unitPrice);
-		builder.append("]");
-		return builder.toString();
 	}
 	
 }

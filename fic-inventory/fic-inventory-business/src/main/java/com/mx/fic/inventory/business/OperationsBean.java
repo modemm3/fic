@@ -2,7 +2,6 @@ package com.mx.fic.inventory.business;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -14,23 +13,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.InventoryDTO;
 import com.mx.fic.inventory.dto.OperationsDTO;
 import com.mx.fic.inventory.persistent.Company;
-import com.mx.fic.inventory.persistent.MovementType;
+import com.mx.fic.inventory.persistent.OperationMaster;
 import com.mx.fic.inventory.persistent.Operations;
 import com.mx.fic.inventory.persistent.Product;
-import com.mx.fic.inventory.persistent.Provider;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TimeUnit;
 
-//@Local
 @Stateless (mappedName= "OperationsBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class OperationsBean implements OperationsBeanLocal {
@@ -50,16 +45,14 @@ public class OperationsBean implements OperationsBeanLocal {
 	/* (non-Javadoc)
 	 * @see com.mx.fic.inventory.business.OperationsBeanLocal#save(com.mx.fic.inventory.dto.OperationsDTO)
 	 */
-	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final OperationsDTO operationsDTO) throws PersistenceException, Exception{
 		final Operations operations = new Operations();
-		final MovementType movementType = new MovementType();
 		final Product product = new Product();
-		final Provider provider = new Provider();
 		final Status status = new Status();
 		final Company company = new Company();
 		final TimeUnit timeUnit = new TimeUnit();
+		final OperationMaster operationMaster = new OperationMaster();
 		InventoryDTO inventoryDTO = new InventoryDTO();
 		boolean existProduct = false;
 		Integer productId = 0;
@@ -85,12 +78,7 @@ public class OperationsBean implements OperationsBeanLocal {
 				company.setId(operationsDTO.getCompanyId());
 				operations.setCompany(company);
 				
-				operations.setCreationDate(operationsDTO.getCreationDate());
-				operations.setDeliveryTime(operationsDTO.getDeliveryTime());
-				operations.setFolioDocument(operationsDTO.getFolioDocument());
 				operations.setUnitPrice(operationsDTO.getUnitPrice());
-				movementType.setId(operationsDTO.getMovementTypeId());
-				operations.setMovementType(movementType);
 				
 				if(operationsDTO.getProductDTO() != null){
 					operationsDTO.getProductDTO().setCompanyId(operationsDTO.getCompanyId());
@@ -99,8 +87,6 @@ public class OperationsBean implements OperationsBeanLocal {
 					operations.setProduct(product);
 				}
 				
-				provider.setId(operationsDTO.getProviderId());
-				operations.setProvider(provider);
 				
 				status.setId(operationsDTO.getStatusId());
 				operations.setStatus(status);
@@ -109,6 +95,9 @@ public class OperationsBean implements OperationsBeanLocal {
 				
 				timeUnit.setId(operationsDTO.getTimeUnitId());			
 				operations.setTimeUnit(timeUnit);
+				
+				operationMaster.setId(operationsDTO.getOperationMasterId());
+				operations.setOperationMaster(operationMaster);
 				
 				entityManager.persist(operations);
 				

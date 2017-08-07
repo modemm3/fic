@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+	<changeSet author="perita" id="27">
+        <dropColumn tableName="operations" columnName="movement_type_id"></dropColumn>
+        <dropColumn tableName="operations" columnName="creation_date"></dropColumn>
+        <dropColumn tableName="operations" columnName="folio_document"></dropColumn>
+        <dropColumn tableName="operations" columnName="delivery_time"></dropColumn>
+        <dropColumn tableName="operations" columnName="provider_id"></dropColumn>
+              
+        <createTable remarks="Tabla que controla el flujo de los movimiento" tableName="operation_master">
+            <column autoIncrement="true" name="id" remarks="Id consecutivo de la operacion master" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="operationmaster_pkey"/>
+            </column>
+            <column name="operation_date" remarks="Fecha de operación" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>       
+            </column>
+            <column name="status_id" remarks="Estatus que indica si la operacion continua en proceso" type="INT4">
+            	<constraints nullable="false"/>            
+            </column>
+
+            <column name="movement_type_id" remarks="Id del tipo de movimiento" type="INT4">
+                <constraints nullable="false"/>
+            </column> 
+            <column name="company_id" remarks="Id de la compañía que pertenece la operación" type="INT4">
+                <constraints nullable="false"/>
+            </column>           
+        </createTable>                
+	</changeSet>
+    <changeSet author="perita" id="28">
+        <addForeignKeyConstraint baseColumnNames="status_id" baseTableName="operation_master" constraintName="fkOperationMasterStatus" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="status"/>
+        <addForeignKeyConstraint baseColumnNames="company_id" baseTableName="operation_master" constraintName="fkOperationMasterCompany" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="company"/>
+        <addForeignKeyConstraint baseColumnNames="movement_type_id" baseTableName="operation_master" constraintName="fkOperationMasterMovementType" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="movement_type"/>        
+    </changeSet>	
+    <changeSet author="perita" id="29">
+        <addColumn tableName="operation_master">
+    		 <column name="folio_document" type="VARCHAR(255)"/>
+    	</addColumn>     
+    </changeSet>     	
+    <changeSet author="perita" id="30">
+        <addColumn tableName="operation_master">
+            <column name="creation_date" remarks="Fecha de creación" type="TIMESTAMP WITHOUT TIME ZONE">
+               <constraints nullable="false"/>
+            </column>    	
+        </addColumn>
+        <addColumn tableName="operation_master">
+            <column name="modification_date" remarks="Fecha de modificación" type="TIMESTAMP WITHOUT TIME ZONE">
+               <constraints nullable="false"/>
+            </column>    	
+        </addColumn>              
+    </changeSet>	
+    <changeSet author="perita" id="31">
+        <addColumn tableName="operations">
+            <column name="operation_master_id" remarks="Id de la operacion master" type="INT4">
+               <constraints nullable="true"/>
+            </column>    	
+        </addColumn>                       
+    </changeSet>  
+    <changeSet author="perita" id="32">
+        <addForeignKeyConstraint baseColumnNames="operation_master_id" baseTableName="operations" constraintName="fkOperationsOperationMaster" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="operation_master"/>
+    </changeSet>	      
+</databaseChangeLog>

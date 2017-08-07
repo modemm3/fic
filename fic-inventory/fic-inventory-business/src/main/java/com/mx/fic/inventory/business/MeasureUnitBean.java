@@ -14,6 +14,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
+import org.apache.log4j.Logger;
+
 import com.mx.fic.inventory.business.builder.config.TransferObjectAssembler;
 import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.MeasureUnitDTO;
@@ -27,6 +29,8 @@ public class MeasureUnitBean implements MeasureUnitBeanLocal {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	private final static Logger logger = Logger.getLogger(MeasureUnitBean.class);
 	
 	/* (non-Javadoc)
 	 * @see com.mx.fic.inventory.business.MeasureUnitBeanLocal#save(com.mx.fic.inventory.dto.MeasureUnitDTO)
@@ -44,6 +48,7 @@ public class MeasureUnitBean implements MeasureUnitBeanLocal {
 			
 			entityManager.persist(measureUnit);
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e ){
+			logger.error("Error en Bean "+ e);
 			throw new PersistenceException("Errror al guardar las unidades de medida");
 		}
 	}

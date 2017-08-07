@@ -20,23 +20,12 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 			operationsDTO.setCompanyId(operations.getCompany().getId());
 		}
 		
-		operationsDTO.setCreationDate(operations.getCreationDate());
-		operationsDTO.setDeliveryTime(operations.getDeliveryTime());
-		operationsDTO.setFolioDocument(operations.getFolioDocument());
 		operationsDTO.setUnitPrice(operations.getUnitPrice());
 		operationsDTO.setId(operations.getId());
-		
-		if(operations.getMovementType() != null){
-			operationsDTO.setMovementTypeId(operations.getMovementType().getId());
-		}
 		
 		if(operations.getProduct() != null){
 			productDTO.setId(operations.getProduct().getId());			
 			operationsDTO.setProductDTO(productDTO);
-		}
-		
-		if(operations.getProvider() != null){
-			operationsDTO.setProviderId(operations.getProvider().getId());
 		}
 		
 		if(operations.getStatus() != null){
@@ -44,6 +33,10 @@ public class OperationsBuilder extends AbstractDTOBuilder {
 		}
 		
 		operationsDTO.setStocks(operations.getStocks());
+		
+		if(operations.getOperationMaster()!=null){
+			operationsDTO.setOperationMasterId(operations.getOperationMaster().getId());
+		}
 		
 		if(operations.getTimeUnit() != null){
 			operationsDTO.setTimeUnitId(operations.getTimeUnit().getId());
