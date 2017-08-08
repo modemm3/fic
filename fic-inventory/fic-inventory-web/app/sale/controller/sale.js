@@ -11,5 +11,45 @@ controller('saleController', ['$scope',function($scope){
 //	for(var i = 0; i != elems.length; ++i) {
 //		elems[i].style.visibility = "hidden"; // hidden has to be a string
 //	}
-	
+//	$scope.tickets = [{
+//		"code":"",
+//		"description":"",
+//		"salePrice":"",
+//		"stock":"",
+//		"price":"",
+//		"amount":""
+//	},
+//	{
+//		"code":"",
+//		"description":"",
+//		"salePrice":"",
+//		"stock":"",
+//		"price":"",
+//		"amount":""
+//	},
+//	{
+//		"code":"",
+//		"description":"",
+//		"salePrice":"",
+//		"stock":"",
+//		"price":"",
+//		"amount":""
+//	},
+//	{
+//		"code":"",
+//		"description":"",
+//		"salePrice":"",
+//		"stock":"",
+//		"price":"",
+//		"amount":""
+//	},
+//	{
+//		"code":"",
+//		"description":"",
+//		"salePrice":"",
+//		"stock":"",
+//		"price":"",
+//		"amount":""
+//	}	
+//	]
 }]);
