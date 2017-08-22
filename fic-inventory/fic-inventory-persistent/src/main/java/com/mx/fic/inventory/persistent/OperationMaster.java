@@ -10,10 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table (name="operation_master")
+@NamedQueries({
+	@NamedQuery(name="OperationMaster.updateStatus", 
+			query="update OperationMaster opM set opM.status.id=:statusId where opM.id=:opMastId"
+					)
+})
 public class OperationMaster implements BaseEntity{
 	
 	private static final long serialVersionUID = 4294420049156118001L;

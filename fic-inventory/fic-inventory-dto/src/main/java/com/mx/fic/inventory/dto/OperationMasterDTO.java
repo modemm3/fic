@@ -20,7 +20,7 @@ public class OperationMasterDTO implements BaseDTO{
 		this.id = id;
 	}
 	public Integer getStatusId() {
-		return statusId;
+		return statusId;	
 	}
 	public void setStatusId(Integer statusId) {
 		this.statusId = statusId;

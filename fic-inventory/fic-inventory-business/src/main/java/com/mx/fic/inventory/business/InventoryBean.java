@@ -157,7 +157,7 @@ public class InventoryBean implements InventoryBeanLocal{
 						if(movementConcept.getName().toUpperCase().equals("ENTRADAS")){
 							newStock= inventory.getCurrentStock() + operationsDTO.getStocks();
 						}else if(movementConcept.getName().toUpperCase().equals("SALIDAS")){
-							newStock= inventory.getCurrentStock() + operationsDTO.getStocks();
+							newStock= inventory.getCurrentStock() - operationsDTO.getStocks();
 						}else{
 							newStock= operationsDTO.getStocks();
 						}

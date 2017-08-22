@@ -3,6 +3,7 @@ package com.mx.fic.inventory.endpoint.ws;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -62,7 +63,44 @@ public class OperationMasterWS {
 		}
 		response.setMessage(message);
 		return Response.status(message.getCode()).entity(response).build();
-			
+	}
+
+	@PUT
+	@Path("statusOperationMaster")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response statusOperationMaster(OperationMasterDTO operationMasterDTO){
+		logger.info("save ", operationMasterDTO);
+		OperationMasterResponse response = new OperationMasterResponse();
+		Message message = new Message();
+		boolean updateStatus= false;
+		
+		try{
+			if((operationMasterDTO.getId()!=null && operationMasterDTO.getStatusId()!=null) &&
+					(operationMasterDTO.getId()!=0 && operationMasterDTO.getStatusId()!=0)){
+				updateStatus = operationMasterBean.updateStatus(operationMasterDTO.getStatusId(), operationMasterDTO.getId());
+				if(updateStatus== true){
+					message.setCode(200);
+					message.setMessage("exito");
+				}else{
+					message.setCode(204);
+					message.setMessage("Not content");
+				}
+			}else{
+				message.setCode(400);
+				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
+			}
+		}catch(PersistenceException e){
+			logger.error("Error WS ", e);
+			message.setCode(500);
+			message.setMessage("Internal Error");
+		}catch(Exception e){
+			logger.error("Error WS ",  e);
+			message.setCode(500);
+			message.setMessage("Internal Error");
+		}
+		response.setMessage(message);
+		return Response.status(message.getCode()).entity(response).build();
 	}
 	
 }
