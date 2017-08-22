@@ -9,5 +9,6 @@ import com.mx.fic.inventory.dto.OperationMasterDTO;
 public interface OperationMasterBeanLocal {
 
 	public Integer save(OperationMasterDTO operationMasterDTO) throws PersistenceException, Exception;
+	public Boolean updateStatus(Integer statusId, Integer operationMasterId) throws PersistenceException, Exception;
 		
 }

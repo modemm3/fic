@@ -10,7 +10,10 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
+import javax.persistence.TypedQuery;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.mx.fic.inventory.business.exception.PersistenceException;
@@ -72,6 +75,29 @@ public class OperationMasterBean implements OperationMasterBeanLocal {
 		}
 		
 		return operationMaster.getId();
+	}
+
+	public Boolean updateStatus(Integer statusId, Integer operationMasterId) throws PersistenceException, Exception {
+		int result=0;
+		boolean resultUpdate=false;
+		
+		try{
+			Query query = entityManager.createNamedQuery("OperationMaster.updateStatus", OperationMaster.class);
+			query.setParameter(1, statusId);
+			query.setParameter(2, operationMasterId);
+			
+			result= query.executeUpdate();
+			
+			logger.info("resultado de actualizar "+ result);
+			
+			if(result>0){
+				resultUpdate= true;
+			}
+		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e){
+			logger.error("Error en bean "+e);
+			throw new PersistenceException("Error al actualizar el estatus de la operacion master");
+		}
+		return resultUpdate;
 	}
 
 }
