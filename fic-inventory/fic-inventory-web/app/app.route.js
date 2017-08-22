@@ -2,8 +2,8 @@
 
 // Declare app level module which depends on views, and components
 angular.module('app.routes', ['ngResource','ngRoute','ui.router']).
-config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider','$urlRouterProvider',
-	 function($locationProvider, $routeProvider,$compileProvider,$stateProvider,$urlRouterProvider) {
+config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider','$urlRouterProvider','$translateProvider','tmhDynamicLocaleProvider',
+	 function($locationProvider, $routeProvider,$compileProvider,$stateProvider,$urlRouterProvider,$translateProvider,$tmhDynamicLocaleProvider) {
 //  $locationProvider.hashPrefix('!');
   $compileProvider.debugInfoEnabled(false);
   $compileProvider.commentDirectivesEnabled(false);
@@ -101,6 +101,13 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 	  templateUrl:'status/views/status.html'
 //	  controller: 'movementConceptController'
   });
+  $stateProvider.state('sale',{
+	  url:"/sale",
+	  parent:'dashboard',
+	  templateUrl:'sale/views/sale.html',
+      controller: 'saleController'
+  });
+  
 //  $stateProvider.state('typeAddress',{
 //	  url:"/typeAddress",
 //	  
@@ -112,13 +119,29 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
 //	  }
 //  });
   
-//	$translateProvider.useStaticFilesLoader({
-//		prefix : 'assets/locale/',
-//		suffix : '.json'
-//	});
-//	$translateProvider.useLocalStorage();
-//	$translateProvider.useLocalStorage();
-//	$translateProvider.preferredLanguage('es-mx')
-//	$translateProvider.fallbackLanguage([ 'es' ]);
-//	$tmhDynamicLocaleProvider.localeLocationPattern('assets/locale/locale_{{locale}}.js');
+	$translateProvider.useStaticFilesLoader({
+		prefix : 'assets/locale/',
+		suffix : '.json'
+	});
+	$translateProvider.useLocalStorage();
+	$translateProvider.useLocalStorage();
+	$translateProvider.preferredLanguage('es-mx')
+	$translateProvider.fallbackLanguage([ 'es-mx' ]);
+//	$translateProvider.useSanitizeValueStrategy('sanitize');
+	 $translateProvider.useSanitizeValueStrategy(null);
+	$tmhDynamicLocaleProvider.localeLocationPattern('assets/locale/locale_{{locale}}.js');
+	
+}]);
+angular.module('app.routes').run(['$rootScope','$translate','tmhDynamicLocale',function($rootScope,$translate,$tmhDynamicLocale){
+	console.log('Inicia la carga de Idioma');
+	$rootScope.country= {};
+	$rootScope.changeLanguage = function(language){
+		var prom = $translate.use(language);
+		var splitLanguage = language.split("-");
+		$translate.fallbackLanguage(splitLanguage[0]);
+		prom.then(function(languageKey){
+			console.log(languageKey);
+			$tmhDynamicLocale.set(languageKey);
+		});
+	}
 }]);

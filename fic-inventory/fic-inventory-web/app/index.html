@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  	<title>Facturacion, Inventarios y Contabilidad</title>
+  	<title>{{'index_title' | translate }}</title>
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--   	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" /> -->
 <!--   	<link href="assets/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
@@ -29,7 +29,7 @@
 
   	
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue-light sidebar-mini">
       <div ui-view></div>
 <!-- 	<div class="skin-blue-light"> -->
 <!-- 		<div ui-view="login"></div> -->
@@ -43,13 +43,15 @@
 <!-- 	</div> -->
 
 	<script src="assets/js/angular.min.js"></script>
-	<script src="assets/js/angular-resource.min.js"></script>
 	<script src="assets/js/angular-route.min.js"></script>
+	<script src="assets/js/angular-resource.min.js"></script>
+	<script src="assets/js/angular-cookies.min.js"></script>	
 	<script src="assets/js/angular-messages.min.js"></script>
 	<script src="assets/js/translate/angular-translate.min.js"></script>
 	<script src="assets/js/translate/angular-translate-loader-static-files.min.js"></script>
 	<script src="assets/js/translate/angular-translate-storage-local.min.js"></script>
 	<script src="assets/js/translate/angular-translate-storage-cookie.min.js"></script>
+	<script src="assets/js/tmhDynamicLocale/tmhDynamicLocale.js"></script>
 
 	<script src="assets/js/angular-modal-service.min.js"></script>
 	<script src="assets/js/angular-ui-router.min.js"></script>
@@ -77,6 +79,7 @@
 	<script type="text/javascript" src="company/services/companyServices.js"></script>
 	<script type="text/javascript" src="measure/controller/measureUnit.js"></script>
 	<script type="text/javascript" src="measure/services/measureUnitServices.js"></script>
+	<script type="text/javascript" src="sale/controller/sale.js"></script>
 	
 </body>
 </html>
