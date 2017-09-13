@@ -17,9 +17,9 @@ import javax.persistence.Table;
 @Entity
 @Table (name="operation_master")
 @NamedQueries({
-	@NamedQuery(name="OperationMaster.updateStatus", 
+	/*@NamedQuery(name="OperationMaster.updateStatus", 
 			query="update OperationMaster opM set opM.status.id=:statusId where opM.id=:opMastId"
-					)
+				)*/
 })
 public class OperationMaster implements BaseEntity{
 	
