@@ -1,0 +1,45 @@
+<div>
+	<button type="button" class="close" aria-hidden="true">&times;</button>
+	<div class="panel panel-primary">
+		<div class="panel-heading">{{'company.title' | translate}}</div>
+		<div class="panel-body">
+		<div id="d" class="modal fade"></div>
+			<table st-table="rowCollection" class="table table-striped">
+				<thead>
+					<tr>
+						<th>{{'company.form.table.id' | translate}}</th>
+						<th>{{'company.form.table.name' | translate}}</th>
+						<th>{{'company.form.table.reason_social' | translate}}</th>
+						<th>{{'company.form.table.rfc' | translate}}</th>
+						<th>{{'company.form.table.email' | translate}}</th>
+						<th>{{'company.form.table.contact_name' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in companies">
+						<td>{{row.companyDTO.id}}</td>
+						<td>{{row.companyDTO.name}}</td>
+						<td>{{row.companyDTO.reasonSocial}}</td>
+						<td>{{row.companyDTO.rfc}}</td>
+						<td>{{row.companyDTO.email}}</td>
+						<td>{{row.companyDTO.contactName}}</td>
+						<td>
+							<button type="button" ng-click="showdiv()"
+								class="btn btn-sm btn-success">
+								<i class="glyphicon glyphicon-edit"> </i>
+							</button>
+						</td>
+
+						<td>
+							<button type="button" ng-click="removeItem(row)"
+								class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-remove-circle"> </i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>

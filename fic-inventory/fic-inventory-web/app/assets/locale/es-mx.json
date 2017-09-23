@@ -21,5 +21,18 @@
 				"amount":"Cantidad en existencia"
 			}
 		}
+	},
+	"company":{
+		"title":"Listado de Compañias",
+		"form":{
+			"table":{
+				"id":"Id",
+				"name":"Nombre",
+				"reason_social":"Razón Social",
+				"rfc":"Rfc",
+				"email":"Email",
+				"contact_name":"Nombre de Contacto"
+			}
+		}
 	}
 }

@@ -46,8 +46,10 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   $stateProvider.state('company',{
 	  url:"/company",
 	  parent:'dashboard',
-	  templateUrl:'company/views/company.html',
+	  templateUrl:'company/views/listCompany.html',
 	  controller: 'companyController'
+//		  templateUrl:'company/views/company.html',
+//		  controller: 'companyController'
 		  
   });
   $stateProvider.state('measure',{

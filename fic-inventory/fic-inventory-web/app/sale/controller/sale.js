@@ -28,7 +28,9 @@ angular.module('app.controller').controller('saleController', [ '$scope', functi
 
 	$scope.keyAdd = function(keyEvent){
 		if (keyEvent.keyCode == 13) {
-	        $scope.add();
+			if($scope.ticket != undefined && $scope.ticket.code != ''){
+				$scope.add();
+			}
 	    }
 		
 	}
