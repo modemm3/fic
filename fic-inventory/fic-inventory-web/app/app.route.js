@@ -39,7 +39,7 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   $stateProvider.state('typeAddress',{
 	  url:"/typeAddress",
 	  parent:'dashboard',
-	  templateUrl:'typeAddress/views/typeAddress.html',
+	  templateUrl:'typeAddress/views/listTypeAddress.html',
 	  controller: 'typeAddressController'
 
   });

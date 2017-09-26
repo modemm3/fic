@@ -5,7 +5,10 @@
 angular.module('app.controller').
 controller('typeAddressController', ['$scope','TypeAddressServices',function($scope,TypeAddressServices){
 	
-	$scope.typeAddress={
+	$scope.typeAddressesTO=[
+		
+	];
+	$scope.TypeAddressDTO={
 			id:'',
 			name:'',
 			description:'',
@@ -19,6 +22,15 @@ controller('typeAddressController', ['$scope','TypeAddressServices',function($sc
 			}
 	};
 	$scope.show=false;
+	$scope.init = function(){
+		TypeAddressServices.getTypeAddressByCompany(1).success(function(typeAddressResponse){
+			$scope.typeAddressResponse.message.code=typeAddressResponse.message.code;
+			if($scope.typeAddressResponse.message.code===200){
+				$scope.show=true;
+				$scope.typeAddressesTO=typeAddressResponse.typeAddressDTOLst;
+			}
+		});
+	};
 	$scope.save = function(){
 		TypeAddressServices.saveTypeAddress($scope.typeAddress).success(function(typeAddressResponse){
 			$scope.typeAddressResponse.message.code=typeAddressResponse.message.code;
@@ -28,4 +40,5 @@ controller('typeAddressController', ['$scope','TypeAddressServices',function($sc
 			}
 		});
 	}
+	$scope.init();
 }]);

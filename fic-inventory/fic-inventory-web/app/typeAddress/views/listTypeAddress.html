@@ -1,0 +1,41 @@
+<div>
+	<button type="button" class="close" aria-hidden="true">&times;</button>
+	<div class="panel panel-primary">
+		<div class="panel-heading">{{'typeAddress.title' | translate}}</div>
+		<div class="panel-body">
+		<div id="d" class="modal fade"></div>
+			<table st-table="rowCollection" class="table table-striped">
+				<thead>
+					<tr>
+						<th>{{'typeAddress.form.table.id' | translate}}</th>
+						<th>{{'typeAddress.form.table.name' | translate}}</th>
+						<th>{{'typeAddress.form.table.description' | translate}}</th>
+						<th>{{'typeAddress.form.table.company' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="typeAddress in typeAddressesTO">
+						<td>{{typeAddress.id}}</td>
+						<td>{{typeAddress.name}}</td>
+						<td>{{typeAddress.description}}</td>
+						<td>{{typeAddress.company}}</td>
+						<td>
+							<button type="button" ng-click="showdiv()"
+								class="btn btn-sm btn-success">
+								<i class="glyphicon glyphicon-edit"> </i>
+							</button>
+						</td>
+
+						<td>
+							<button type="button" ng-click="removeItem(row)"
+								class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-remove-circle"> </i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>
