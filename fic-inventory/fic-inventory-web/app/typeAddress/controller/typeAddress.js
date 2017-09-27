@@ -1,14 +1,14 @@
 /**
- * Controler para la carga de inventario inicial
+ * Controller para la carga de inventario inicial
  */
 'use strict';
 angular.module('app.controller').
-controller('typeAddressController', ['$scope','TypeAddressServices',function($scope,TypeAddressServices){
+controller('typeAddressController', ['$scope','TypeAddressServices','$compile',function($scope,TypeAddressServices,$compile){
 	
 	$scope.typeAddressesTO=[
 		
 	];
-	$scope.TypeAddressDTO={
+	$scope.typeAddress={
 			id:'',
 			name:'',
 			description:'',
@@ -39,6 +39,23 @@ controller('typeAddressController', ['$scope','TypeAddressServices',function($sc
 				$scope.typeAddressResponse.message.message=typeAddressResponse.message.message;
 			}
 		});
-	}
+	};
+    $scope.showdiv = function(data){
+        $scope.typeAddress.id = data.id;
+        $scope.typeAddress.name = data.name;
+        $scope.typeAddress.description = data.description;
+        $scope.typeAddress.companyId = data.companyId;
+    	var compiledeHTML = $compile("<div typeaddress ></div>")($scope);
+    	$("#d").empty();	
+        $("#d").append(compiledeHTML);
+        $("#d").modal('show');
+      };	
+	
 	$scope.init();
-}]);
+}]).directive('typeaddress', function() {
+	return {
+		templateUrl:"typeAddress/views/typeAddress.html"
+//			templateUrl:"company/views/company.html"
+	};
+	
+});

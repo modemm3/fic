@@ -42,7 +42,11 @@
 				"id":"Id",
 				"name":"Nombre",
 				"description":"Descripcion",
-				"company":"Nombre de la compañía"
+				"company":"Nombre de la compañía",
+				"button":{
+					"new":"Nuevo",
+					"search":"Búsqueda Global ..."
+				}
 			}
 		}
 	}
