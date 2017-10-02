@@ -33,6 +33,7 @@ public class ValuationWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveValuation(ValuationDTO valuationDTO){
+		System.out.println("valuation "+ valuationDTO);
 		logger.info("Entra a guardar la valuación => "+ valuationDTO);
 		ValuationResponse response = new ValuationResponse();
 		Message message = new Message();
@@ -40,7 +41,7 @@ public class ValuationWS {
 		logger.info("saveValuation");
 		
 		try{
-			if((valuationDTO!=null && valuationDTO.getCompanyId()!=null) &&
+			if((valuationDTO.getCompanyId()!=null) &&
 					(valuationDTO.getDateEnd()!=null && valuationDTO.getDateStart()!=null) &&
 					valuationDTO.getExerciseFiscal()!=null &&
 					(valuationDTO.getStatusId()!=null && valuationDTO.getValuationTypeId()!=null)){

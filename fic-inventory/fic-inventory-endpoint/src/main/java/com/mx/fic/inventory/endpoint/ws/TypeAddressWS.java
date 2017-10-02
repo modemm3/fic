@@ -1,14 +1,17 @@
 package com.mx.fic.inventory.endpoint.ws;
 
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,6 +98,41 @@ public class TypeAddressWS {
 		}
 		
 		response.setMessage(message);
+		return Response.status(message.getCode()).entity(response).build();
+	}
+
+	@PUT
+	@Path("typeAddress")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response typeAddress(TypeAddressDTO typeAddressDTO){
+		logger.info("Entra a actualizar el tipo de dirección => "+ typeAddressDTO);
+		TypeAddressResponse response = new TypeAddressResponse();
+		Message message = new Message();
+		
+		try{
+			if((typeAddressDTO!=null && typeAddressDTO.getName()!=null) &&
+					typeAddressDTO.getCompanyId()!=null && typeAddressDTO.getId()!=null){
+				typeAddressBean.save(typeAddressDTO);
+				message.setCode(200);
+				message.setMessage("exito");
+				
+			}else{
+				message.setCode(400);
+				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
+			}
+			
+		}catch(PersistenceException e){
+			message.setCode(500);
+			message.setMessage("PersistenceException => Error interno");
+			logger.error("Persistence=> " + e);						
+		}catch(Exception e){
+			message.setCode(500);
+			message.setMessage("Exception => Error interno");
+			logger.error("Exception => " + e);						
+		}
+		response.setMessage(message);
+		
 		return Response.status(message.getCode()).entity(response).build();
 	}
 

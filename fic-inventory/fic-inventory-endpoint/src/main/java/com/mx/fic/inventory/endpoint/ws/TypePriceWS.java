@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -19,6 +20,12 @@ import com.mx.fic.inventory.business.exception.PersistenceException;
 import com.mx.fic.inventory.dto.TypePriceDTO;
 import com.mx.fic.inventory.endpoint.response.TypePriceResponse;
 
+/**
+ * Se expone el servicio que contiene las operaciones de los tipos de
+ * precio pertenecientes a una compañía
+ * @author developer
+ *
+ */
 @Path("/typePrice")
 public class TypePriceWS {
 	@EJB(mappedName= "TypePriceBean")
@@ -43,6 +50,46 @@ public class TypePriceWS {
 				message.setCode(200);
 				message.setMessage("exito");
 			}else{
+				message.setCode(400);
+				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
+			}
+		}catch(PersistenceException e){
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+			logger.error("Persistence=> " + e);			
+		}catch(Exception e){
+			message.setCode(500);
+			message.setMessage("error => Error interno");
+			logger.error("Exception => " + e);			
+		}
+		
+		response.setMessage(message);
+		
+		return Response.status(message.getCode()).entity(response).build();
+	}
+
+	@PUT
+	@Path("typePriceById")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response typePriceById(TypePriceDTO typePriceDTO){
+		logger.info("Entra a actualiar el tipo de precios => "+ typePriceDTO);
+		TypePriceResponse response = new TypePriceResponse();
+		Message message = new Message();
+		boolean update = false;
+		try{
+			if((typePriceDTO!=null && typePriceDTO.getName()!=null && typePriceDTO.getStatusId()!=null) && 
+					(typePriceDTO.getId()!=null && typePriceDTO.getDescription()!=null)){
+				update = typePriceBean.update(typePriceDTO);
+				if(update){
+					message.setCode(200);
+					message.setMessage("exito");
+				}else{
+					message.setCode(204);
+					message.setMessage("No se actualizo el registro, verifique que exista");
+				}
+			}else{
+				
 				message.setCode(400);
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
 			}

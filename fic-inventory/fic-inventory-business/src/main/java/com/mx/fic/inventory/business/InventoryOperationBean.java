@@ -62,6 +62,8 @@ public class InventoryOperationBean implements InventoryOperationBeanLocal {
 			logger.info("Error al obtener el inventario operacion por compañía y producto");
 			throw new Exception("Error al obtener el inventario operacion por compañía y producto");
 		}
+		
+		System.out.println("Inventory operation "+inventoryOperationDTOLst);
 		return inventoryOperationDTOLst;
 	}
 }

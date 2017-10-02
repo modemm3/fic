@@ -32,8 +32,9 @@ public class OperationsWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveOperations(OperationsDTO operationsDTO){
-		logger.info("saveOperations inicia save operation => "+ operationsDTO);
 		System.out.println ("=> "+operationsDTO);
+
+		logger.info("saveOperations inicia save operation => "+ operationsDTO);
 		OperationsResponse response = new OperationsResponse();
 		Message message = new Message();
 		
@@ -49,7 +50,7 @@ public class OperationsWS {
 				message.setMessage("exito");
 			}else{
 				message.setCode(400);
-				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");			
+				message.setMessage("error => Elementos requeridos para operacion vienen nulos, favor de validar");			
 			}
 			
 		}catch(PersistenceException e){
