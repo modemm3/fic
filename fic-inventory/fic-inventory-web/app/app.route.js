@@ -55,15 +55,17 @@ config(['$locationProvider', '$routeProvider','$compileProvider','$stateProvider
   $stateProvider.state('measure',{
 	  url:"/measure",
 	  parent:'dashboard',
-	  templateUrl:'measure/views/measure.html',
+	  templateUrl:'measure/views/measureUnitList.html',
+//	  templateUrl:'measure/views/measure.html',
 	  controller: 'measureUnitController'
 		  
   });
   $stateProvider.state('movementConcept',{
 	  url:"/movementConcept",
 	  parent:'dashboard',
-	  templateUrl:'movementConcept/views/movementConcept.html',
-	  controller: 'companyController'
+	  templateUrl:'movementConcept/views/movementConceptList.html',
+//	  templateUrl:'movementConcept/views/movementConcept.html',
+	  controller: 'MovementConceptController'
 		  
   });
   $stateProvider.state('movementType',{

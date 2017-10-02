@@ -1,0 +1,57 @@
+<div>
+	<button type="button" class="close" aria-hidden="true">&times;</button>
+	<div class="panel panel-primary">
+		<div class="panel-heading">{{'movementConcept.title' | translate}}</div>
+		<div class="panel-body">
+			<div id="d" class="modal fade"></div>
+			<table st-table="movementConcepts" st-safe-src="movementConceptList"
+				class="table table-striped">
+				<thead>
+					<tr>
+						<th colspan="3"><input st-search="" class="form-control"
+							placeholder="{{'measureUnit.form.table.button.search' | translate}}" type="text" /></th>
+						<th colspan="3">
+							<button type="button" ng-click="add(measureUnit)"
+								class="btn btn-sm btn-primary">
+								<i class="glyphicon glyphicon-plus">{{'measureUnit.form.table.button.new' | translate}}</i>
+							</button>
+						</th>	
+					</tr>
+					<tr>
+						<th>{{'movementConcept.form.table.id' | translate}}</th>
+						<th>{{'movementConcept.form.table.name' | translate}}</th>
+						<th>{{'movementConcept.form.table.description' | translate}}</th>
+						<th>{{'movementConcept.form.table.company' | translate}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="movementConcept in movementConcepts">
+						<td>{{movementConcept.id}}</td>
+						<td>{{movementConcept.name}}</td>
+						<td>{{movementConcept.description}}</td>
+						<td>{{movementConcept.company}}</td>
+						<td>
+							<button type="button" ng-click="edit(measureUnit)"
+								class="btn btn-sm btn-success">
+								<i class="glyphicon glyphicon-edit"> </i>
+							</button>
+							<button type="button" ng-click="removeItem(measureUnit)"
+								class="btn btn-sm btn-danger">
+								<i class="glyphicon glyphicon-remove-circle"> </i>
+							</button>							
+						</td>
+
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="5" class="text-center">
+							<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="15"></div>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
+	</div>
+</div>

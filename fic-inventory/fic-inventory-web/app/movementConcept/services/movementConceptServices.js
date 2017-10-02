@@ -8,6 +8,10 @@
 				saveMeasureUnit:function(movementConceptDTO){
 					return $http({method: 'POST',url:urlBase+'movementConcept/saveMovementConcept/',
 						headers:{'Content-Type':'application/json'},data:movementConceptDTO})
+				},
+				getMovementConcetpByCompany:function(companyId){
+					return $http({method: 'POST',url:urlBase+'movementConcept/getMovementConcetpByCompany/'+companyId,
+						headers:{'Content-Type':'application/json'}})
 				}
 			};
 		}]);

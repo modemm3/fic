@@ -20,6 +20,7 @@
 				"price":"Importe",
 				"amount":"Cantidad en existencia"
 			}
+			
 		}
 	},
 	"company":{
@@ -36,8 +37,56 @@
 		}
 	},
 	"typeAddress":{
-		"title":"Listado de tipos de direcciones",
+		"title":"Tipos de direcciones",
 		"form":{
+			"lbl_name":"Nombre",
+			"placeholder_name":"Ingrese el nombre",
+			"lbl_description":"Descripción",
+			"placeholder_description":"Ingrese la descripción",
+			"btn_save":"Guardar",
+			"placeholder_save":"Guardar el tipo de dirección",
+			"table":{
+				"id":"Id",
+				"name":"Nombre",
+				"description":"Descripcion",
+				"company":"Nombre de la compañía",
+				"button":{
+					"new":"Nuevo",
+					"search":"Búsqueda Global ..."
+				}
+			}
+		}
+	},
+	"measureUnit":{
+		"title":"Unidades de Medida",
+		"form":{
+			"lbl_name":"Nombre Unidad",
+			"placeholder_name":"Ingrese el nombre de la unidad",
+			"lbl_description":"Descripción",
+			"placeholder_description":"Ingrese la descripción",
+			"btn_save":"Guardar",
+			"placeholder_save":"Guardar el tipo de dirección",
+			"table":{
+				"id":"Id",
+				"name":"Nombre",
+				"description":"Descripcion",
+				"company":"Nombre de la compañía",
+				"button":{
+					"new":"Nuevo",
+					"search":"Búsqueda Global ..."
+				}
+			}
+		}
+	},
+	"movementConcept":{
+		"title":"Concepto de Movimientos",
+		"form":{
+			"lbl_name":"Nombre Unidad",
+			"placeholder_name":"Ingrese el nombre de la unidad",
+			"lbl_description":"Descripción",
+			"placeholder_description":"Ingrese la descripción",
+			"btn_save":"Guardar",
+			"placeholder_save":"Guardar el tipo de dirección",
 			"table":{
 				"id":"Id",
 				"name":"Nombre",

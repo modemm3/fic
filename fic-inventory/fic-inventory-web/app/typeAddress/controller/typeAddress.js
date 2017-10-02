@@ -5,6 +5,7 @@
 angular.module('app.controller').
 controller('typeAddressController', ['$scope','TypeAddressServices','$compile',function($scope,TypeAddressServices,$compile){
 	
+	$scope.itemsByPage=3;
 	$scope.typeAddressesTO=[
 		
 	];
@@ -40,12 +41,30 @@ controller('typeAddressController', ['$scope','TypeAddressServices','$compile',f
 			}
 		});
 	};
-    $scope.showdiv = function(data){
+	$scope.initValues = function() {
+		$scope.typeAddress={
+				id:'',
+				name:'',
+				description:'',
+				companyId:'1'
+					
+		};
+    	$("#d").empty();
+	}
+	$scope.add = function(data) {
+		$scope.initValues();
+    	var compiledeHTML = $compile("<div typeaddress class='row text-center'></div>")($scope);
+        $("#d").append(compiledeHTML);
+        $("#d").modal('show');
+		
+	}
+    $scope.edit = function(data){
         $scope.typeAddress.id = data.id;
         $scope.typeAddress.name = data.name;
         $scope.typeAddress.description = data.description;
         $scope.typeAddress.companyId = data.companyId;
-    	var compiledeHTML = $compile("<div typeaddress ></div>")($scope);
+//    	var compiledeHTML = $compile("<div class='row'><div class='col-sm-10 col-sm-offset-1 hid'><div class='row'><div class='col-sm-10 col-sm-offset-1 hid'><div class='row'><div typeaddress class='col-sm-2 col-sm-offset-5'>1</div></div></div></div></div></div>")($scope);
+    	var compiledeHTML = $compile("<div typeaddress class='row text-center'></div>")($scope);
     	$("#d").empty();	
         $("#d").append(compiledeHTML);
         $("#d").modal('show');

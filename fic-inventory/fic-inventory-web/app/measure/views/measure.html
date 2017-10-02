@@ -1,21 +1,21 @@
 <div class="container center-block">
 	<button type="button" class="close" aria-hidden="true">&times;</button>
 	<div class="panel panel-primary">
-	<div class="panel-heading">Unidades de Medida x
+	<div class="panel-heading">{{'measureUnit.title' | translate}}
 	
 	</div>
 		<div class="panel-body">
 			<form class="form">
 				<div class="form-group">
-					<label class="col-lg-1">Nombre Unidad</label>
+					<label class="col-lg-1">{{'measureUnit.form.lbl_name' | translate}}</label>
 					<div class="col-lg-5">
-						<input type="text" class="form-control" ng-model="measureUnit.name" placeholder="Nombre Unidad"></input>
+						<input type="text" class="form-control" ng-model="measureUnit.name" placeholder="{{'measureUnit.form.placeholder_name' | translate}}"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-lg-2">Descripcion</label>
+					<label class="col-lg-2">{{'measureUnit.form.lbl_description' | translate}}</label>
 					<div class="col-lg-4">
-						<input type="text" class="form-control" ng-model="measureUnit.description"  placeholder="Descripcion"></input>
+						<input type="text" class="form-control" ng-model="measureUnit.description"  placeholder="{{'measureUnit.form.placeholder_description' | translate}}"></input>
 					</div>
 				</div>
 			</form>
@@ -23,7 +23,7 @@
 		<div class="panel-footer">
 		  	<div class="btn-group">
 			    <button type="button" class="btn btn-default" ng-click="save()">
-			      <span  data-toggle="Guardar el tipo de direcci&oacuten" class="glyphicon glyphicon-floppy-save">Guardar</span>
+			      <span  data-toggle="Guardar el tipo de direcci&oacuten" class="glyphicon glyphicon-floppy-save">{{'measureUnit.form.btn_save' | translate}}</span>
 			    </button>
 		    </div>
     	</div>		
