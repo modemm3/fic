@@ -13,5 +13,7 @@ public interface TypePriceBeanLocal {
 	void save(TypePriceDTO typePriceDTO) throws PersistenceException;
 
 	List<TypePriceDTO> getAllByCompany(Integer idCompany) throws PersistenceException;
+	
+	boolean update(TypePriceDTO typePriceDTO) throws PersistenceException;
 
 }

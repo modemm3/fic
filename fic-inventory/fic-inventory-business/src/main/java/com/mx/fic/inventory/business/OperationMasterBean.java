@@ -78,23 +78,26 @@ public class OperationMasterBean implements OperationMasterBeanLocal {
 	}
 
 	public Boolean updateStatus(Integer statusId, Integer operationMasterId) throws PersistenceException, Exception {
-		int result=0;
 		boolean resultUpdate=false;
+		Status status= null;
+		OperationMaster operationMaster = null;
 		
 		try{
-			Query query = entityManager.createNamedQuery("OperationMaster.updateStatus", OperationMaster.class);
-			query.setParameter(1, statusId);
-			query.setParameter(2, operationMasterId);
 			
-			result= query.executeUpdate();
+			operationMaster = entityManager.find(OperationMaster.class, operationMasterId);
 			
-			logger.info("resultado de actualizar "+ result);
+			status = new Status();
+			status.setId(statusId);
+			operationMaster.setStatus(status);
 			
-			if(result>0){
-				resultUpdate= true;
+			if(operationMaster!=null){
+				entityManager.persist(operationMaster);
+				resultUpdate = true;
 			}
+			
 		}catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e){
 			logger.error("Error en bean "+e);
+			e.printStackTrace();
 			throw new PersistenceException("Error al actualizar el estatus de la operacion master");
 		}
 		return resultUpdate;

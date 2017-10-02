@@ -70,6 +70,7 @@ public class OperationMasterWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response statusOperationMaster(OperationMasterDTO operationMasterDTO){
+		System.out.println("operation "+ operationMasterDTO);
 		logger.info("save ", operationMasterDTO);
 		OperationMasterResponse response = new OperationMasterResponse();
 		Message message = new Message();
@@ -91,10 +92,12 @@ public class OperationMasterWS {
 				message.setMessage("error => Elementos requeridos vienen nulos, favor de validar");
 			}
 		}catch(PersistenceException e){
+			e.printStackTrace();
 			logger.error("Error WS ", e);
 			message.setCode(500);
 			message.setMessage("Internal Error");
 		}catch(Exception e){
+			e.printStackTrace();
 			logger.error("Error WS ",  e);
 			message.setCode(500);
 			message.setMessage("Internal Error");

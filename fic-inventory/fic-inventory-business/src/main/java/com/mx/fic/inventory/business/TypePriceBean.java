@@ -21,7 +21,13 @@ import com.mx.fic.inventory.persistent.Company;
 import com.mx.fic.inventory.persistent.Status;
 import com.mx.fic.inventory.persistent.TypePrice;
 
-//@Local
+/**
+ * Contiene las operaciones para dar de alta, actualizar, 
+ * consultar y/o eliminar los tipo de precio pertenecientes
+ * a una compañía
+ * @author developer
+ *
+ */
 @Stateless (mappedName= "TypePriceBean")
 @TransactionManagement (TransactionManagementType.CONTAINER)
 public class TypePriceBean implements TypePriceBeanLocal {
@@ -32,7 +38,12 @@ public class TypePriceBean implements TypePriceBeanLocal {
 	/* (non-Javadoc)
 	 * @see com.mx.fic.inventory.business.TypePriceBeanLocal#save(com.mx.fic.inventory.dto.TypePriceDTO)
 	 */
-	@Override
+	/**
+	 * Método que guarda el tipo de precio perteneciente a alguna compañía
+	 * @param Recibe el objeto a guardar correspondiente al tipo de precio
+	 * @return no retorna resultado, sin embargo si se produce un fallo 
+	 * regresa una excepción
+	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(final TypePriceDTO typePriceDTO) throws PersistenceException{
 		final TypePrice typePrice = new TypePrice();
@@ -54,10 +65,13 @@ public class TypePriceBean implements TypePriceBeanLocal {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.mx.fic.inventory.business.TypePriceBeanLocal#getAllByCompany(java.lang.Integer)
+
+	/**
+	 * Método que consulta la lista de precios pertenecientes a una 
+	 * compañía
+	 * @param Recibe el id de la compañía
+	 * @return Retorna la lista de precios pertenecientes a una compañía
 	 */
-	@Override
 	public List<TypePriceDTO> getAllByCompany(final Integer idCompany) throws PersistenceException {
 		List<TypePriceDTO> typePriceDTOLst= null;
 		TypePriceDTO typePryceDTO=null;
@@ -76,6 +90,30 @@ public class TypePriceBean implements TypePriceBeanLocal {
 		}
 		
 		return typePriceDTOLst;
+	}
+
+	/**
+	 * Método que actualiza el tipo de precio por Id
+	 * @param Recibe el objeto a actualizar correspondiente a el tipo de precio
+	 * @Return Regresa un boolean para indicar si la actualización se realizo
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean update(TypePriceDTO typePriceDTO) throws PersistenceException {
+		
+		TypePrice typePrice = null;
+		boolean result= false;
+		
+		typePrice = entityManager.find(TypePrice.class, typePriceDTO.getId());
+		
+		if(typePrice!=null){
+			
+			typePrice.setDescription(typePriceDTO.getDescription());
+			typePrice.setName(typePriceDTO.getName());
+			entityManager.persist(typePrice);
+			result = true;
+		}
+		
+		return result;
 	}
 	
 
