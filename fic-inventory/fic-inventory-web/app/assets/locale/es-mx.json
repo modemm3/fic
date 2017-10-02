@@ -34,5 +34,20 @@
 				"contact_name":"Nombre de Contacto"
 			}
 		}
+	},
+	"typeAddress":{
+		"title":"Listado de tipos de direcciones",
+		"form":{
+			"table":{
+				"id":"Id",
+				"name":"Nombre",
+				"description":"Descripcion",
+				"company":"Nombre de la compañía",
+				"button":{
+					"new":"Nuevo",
+					"search":"Búsqueda Global ..."
+				}
+			}
+		}
 	}
 }
