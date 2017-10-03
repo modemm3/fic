@@ -81,12 +81,12 @@
 	"movementConcept":{
 		"title":"Concepto de Movimientos",
 		"form":{
-			"lbl_name":"Nombre Unidad",
-			"placeholder_name":"Ingrese el nombre de la unidad",
+			"lbl_name":"Nombre Movimiento",
+			"placeholder_name":"Ingrese el nombre del movimiento",
 			"lbl_description":"Descripción",
 			"placeholder_description":"Ingrese la descripción",
 			"btn_save":"Guardar",
-			"placeholder_save":"Guardar el tipo de dirección",
+			"placeholder_save":"Guardar el tipo de movimiento",
 			"table":{
 				"id":"Id",
 				"name":"Nombre",
